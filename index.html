@@ -141,7 +141,7 @@ var wave = 0;
 
 var dw = 8000, dne = 500,
     d0 = 3000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 3000, d8 = 2000,
-    d9 = 600, d10 = 7000, d11 = 1200, d12 = 2000, d13 = 1000;
+    d9 = 600, d10 = 3000, d11 = 1200, d12 = 2000, d13 = 1000;
 
 var r0a = 0.03, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.03, r1 = 0.3, r2 = 0.5;
 
@@ -370,7 +370,7 @@ window.onload = function() {
       animate(ak[i], 5/*fade out*/, d10);
       setTimeout(function() {
         animate(ak[i], -1/*no effect*/, dne);
-      }, d10/2);
+      }, d10);
     } else if (rnd() < r0e) {
       i = Math.trunc(rnd() * ak.length);
       animate(ak[i], 5/*fade out*/, d11);
