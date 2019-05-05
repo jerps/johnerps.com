@@ -70,21 +70,6 @@ a.animatedText {
   margin: 3% 0 3% 0;
 }
 
-#pgmr2a, #pgmr2b {
-  float: left;
-}
-
-#pr {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: -12%;
-}
-
-.prx {
-  margin: 0 auto 0 auto;
-}
-
 #middle {
   display: flex;
   flex-direction: column;
@@ -101,6 +86,25 @@ a.animatedText {
   #bottom * {
     margin: auto 0 0 0;
   }
+
+#email2, #telno {
+  margin-left: auto;
+}
+
+#pgmr2a, #pgmr2b {
+  float: left;
+}
+
+#pr {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -12%;
+}
+
+.prx {
+  margin: 0 auto 0 auto;
+}
 
 .item {
   display: flex;

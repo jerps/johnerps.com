@@ -39,6 +39,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <meta name="keywords" content="john erps projects ibm i as/400 iSeries rpg java javascript c python html css programmer programming software developer"/>
   <link rel="shortcut icon" href="/images/favicon.ico"/>
   <link rel="stylesheet" href="css/normalize.min.css"/>
+  <link rel="stylesheet" href="css/tippy.css">
   <link rel="stylesheet" href="css/balloon.css"/>
   <link rel="stylesheet" href="css/main.css?v=5"/>
 </head>
@@ -48,6 +49,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <div>
         <canvas id="email1" class="animatedText"></canvas>
         <canvas id="email2" class="animatedText"></canvas>
+        <canvas id="telno" class="animatedText"></canvas>
       </div>
       <div>
         <canvas id="pgmr1" class="animatedText" style="float: right;"></canvas>
@@ -65,16 +67,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       <!-- --  * RpgMap  -- -->
 
-      <div class="item" data-balloon="Latest RpgMap: v1.2.1 (march 2019)" data-balloon-pos="up">
-          <a href="https://johnerps.com/RpgMap/docs/index.html" target="_blank"><canvas id="nrpgmap" class="animatedText"></canvas></a>&nbsp;&nbsp;<div class="sep">&#10072;</div>&nbsp;&nbsp;&nbsp;
-          <canvas id="drpgmap" class="animatedText"></canvas>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/RpgMap/archive/v1.2.1.zip" download><img class="img-download" src="images/download.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/RpgMap" target="_blank"><img class="img-github" src="images/github.png"></a>
+      <div class="item">
+        <a data-balloon="Latest RpgMap: v1.2.1 (march 2019)" data-balloon-pos="up" href="https://johnerps.com/RpgMap/docs/index.html" target="_blank"><canvas id="nrpgmap" class="animatedText"></canvas></a>&nbsp;&nbsp;<div class="sep">&#10072;</div>&nbsp;&nbsp;&nbsp;
+        <canvas id="drpgmap" class="animatedText"></canvas>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/RpgMap/archive/v1.2.1.zip" download><img title="<span style='color: white; font-size: 0.8rem;'>Download RpgMap</span>" id="download-rpgmap" class="img-download" src="images/download.png"></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/RpgMap" target="_blank"><img title="<span style='color: white; font-size: 0.8rem;'>Go to RpgMap Repository on GitHub</span>" id="github-rpgmap" class="img-github" src="images/github.png"></a>
       </div>
 
       <!-- --  * Yagols  -- -->
 
-      <div class="item" data-balloon="Latest Yagols: v3.8 (april 2019)" data-balloon-pos="up">
-        <a href="https://johnerps.com/Yagols.html" target="_blank"><canvas id="nyagols" class="animatedText"></canvas></a>&nbsp;&nbsp;<pre class="sep">&#10072;</pre>&nbsp;&nbsp;&nbsp;
-        <canvas id="dyagols" class="animatedText"></canvas>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/Yagols/archive/V3.8.zip" download><img class="img-download" src="images/download.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/Yagols" target="_blank"><img class="img-github" src="images/github.png"></a>
+      <div class="item">
+        <a data-balloon="Latest Yagols: v3.8 (april 2019)" data-balloon-pos="up" href="https://johnerps.com/Yagols.html" target="_blank"><canvas id="nyagols" class="animatedText"></canvas></a>&nbsp;&nbsp;<pre class="sep">&#10072;</pre>&nbsp;&nbsp;&nbsp;
+        <canvas id="dyagols" class="animatedText"></canvas>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/Yagols/archive/V3.8.zip" download><img title="<span style='color: white; font-size: 0.8rem;'>Download Yagols</span>" id="download-yagols" class="img-download" src="images/download.png"></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/Yagols" target="_blank"><img title="<span style='color: white; font-size: 0.8rem;'>Go to Yagols Repository on GitHub</span>" id="github-yagols" class="img-github" src="images/github.png"></a>
       </div>
 
     </div>
@@ -91,39 +97,42 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </div>
   </div>
 </body>
-<script type="text/javascript" src="js/canvas_effects.js?v=2"></script>
+
+<script src="js/canvas_effects.js"></script>
+<script src="js/tippy.js"></script>
+
 <script>
 
 (function(){
 
 var t = [
-          '  \u29A2  all-round programmer   ',
-          '  \u00A9 2017-2019 John Erps     ',
-          '   LinkedIn  ',
-          '   GitHub  ',
-          '  IBM i on Power Systems  ',
-          '',
-          '',
-          '    \u22C5 \u22C5 \u22C5  Projects  \u22C5 \u22C5 \u22C5    ',
-          '   '+unscramble([111,106,110,104,101,46,112,114,64,115,109,103,105,97,46,108,111,99,109])+'  ',
-          '  \u29A2  IBM i (AS/400) ',
-          'specialist   ',
-          '   '+unscramble([111,106,110,104,106,64,104,111,101,110,112,114,46,115,111,99,109])+'  ',
-          '',
-          '',
-          'RpgMap',
-          'A versatile in-memory key/value store for RPG',
-          'Yagols',
-          'Yet another Game of Life simulator'
-        ];
-
+  '\u29A2  all-round programmer  ',
+  '\u00A9 2017-2019 John Erps   ',
+  '  LinkedIn',
+  '  GitHub',
+  'IBM i on Power Systems',
+  '',
+  unscramble([51,43,32,49,32,54,48,52,50,50,52,51,50,50])+' ',
+  '    \u22C5 \u22C5 \u22C5  Projects  \u22C5 \u22C5 \u22C5    ',
+  unscramble([111,106,110,104,101,46,112,114,64,115,109,103,105,97,46,108,111,99,109])+' ',
+  '\u29A2  IBM i (AS/400) ',
+  'specialist  ',
+  '  '+unscramble([111,106,110,104,106,64,104,111,101,110,112,114,46,115,111,99,109])+' ',
+  '',
+  '',
+  'RpgMap',
+  'A versatile in-memory key/value store for RPG',
+  'Yagols',
+  'Yet another Game of Life simulator'
+];
+console.log(t);
 var rgb0 = [0, 0, 0], nrgb0 = [0, 0, 0], drgb0 = [120, 20, 20],
     rgb1 = [120, 20, 20], nrgb1 = [0, 0, 0], drgb1 = [120, 20, 20],
     rgbab = [120, 20, 20, 1],
     fontFamily = 'Arial', nfontFamily = 'Poppins', dfontFamily = 'Poppins',
     fontProps = '',
-    letterSpacing = 6.4, nletterSpacing = 9, dletterSpacing = 9,
-    borderw = 2;
+    letterSpacing = 6.4, nletterSpacing = 10, dletterSpacing = 9,
+    borderw = 1;
 
 var anim = {};
 
@@ -144,20 +153,16 @@ var ready = false, ak, lmpx, lmpy, lmmt = performance.now(), lmmtd = 50;
 
 window.onload = function() {
 
+  new Tippy('#download-rpgmap', {arrow: true, animation: 'fade'});
+  new Tippy('#github-rpgmap', {arrow: true, animation: 'fade'});
+  new Tippy('#download-yagols', {arrow: true, animation: 'fade'});
+  new Tippy('#github-yagols', {arrow: true, animation: 'fade'});
+
   reganim('email1', {
     text: t[11],
     border: [borderw, 0, 0, 0],
-    fontSize: 1.2,
+    fontSize: 1.1,
     yf: 2,
-    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
-    rgb1chars: '',
-    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
-  });
-  reganim('email2', {
-    text: t[8],
-    border: [0, 0, borderw, 0],
-    fontSize: 1,
-    yf: 0,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
@@ -188,6 +193,24 @@ window.onload = function() {
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: 'i',
     fontFamily: fontFamily, fontProps: 'bold', letterSpacing: letterSpacing
+  });
+  reganim('email2', {
+    text: t[8],
+    border: [0, 0, 0, 0],
+    fontSize: 0.95,
+    yf: 2,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
+  });
+  reganim('telno', {
+    text: t[6],
+    border: [0, 0, borderw, 0],
+    fontSize: 1,
+    yf: 0.5,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
   });
   reganim('pr1', {
     text: t[7],
