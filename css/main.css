@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins");
 
+::selection {
+  background-color: rgba(200, 200, 70, 0.7);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -21,14 +25,16 @@ body {
   height: 100%;
 }
 
-::selection {
-  background-color: rgba(200, 150, 200, 0.3);
-}
-
 hr {
   width: 100%;
   background-color:rgba(120, 20, 20, 1);
   height: 1px;
+}
+
+@keyframes anchorhover {
+  0%{background-position:0% 74%}
+  50%{background-position:100% 27%}
+  100%{background-position:0% 74%}
 }
 
 a {
@@ -36,7 +42,10 @@ a {
 }
 a:hover {
   text-decoration: none;
-  background-color: darksalmon;
+  background: linear-gradient(218deg, #22a886, #505c59, #7fe3ca);
+  background-size: 600% 600%;
+  animation: anchorhover 7s ease infinite;
+  border-radius: 50%;
 }
 a:active {
   text-decoration: none;
@@ -48,10 +57,6 @@ a:visited {
 canvas.animatedText {
   width: 1;
   height: 1;
-  display: none;
-}
-
-a.animatedText {
   display: none;
 }
 
@@ -129,6 +134,10 @@ a.animatedText {
   width: 1.2em;
   height: 1.2em;
   vertical-align: middle;
+}
+
+#cpyr {
+  margin-top: auto;
 }
 
 @media all and (max-width: 1200px) {
