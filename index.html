@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<!--
+-----
+
+(c) 2017-2019 John Erps
+
+-----
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-----
+-->
+
+<html lang="en">
+<head>
+  <!--#include virtual="/include/gtag.html" -->
+  <title>John Erps</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Project page of John Erps"/>
+  <meta name="author" content="John Erps"/>
+  <meta name="keywords" content="john erps projects ibm i as/400 iSeries rpg java javascript c python html css programmer programming software developer"/>
+  <link rel="shortcut icon" href="/images/favicon.ico"/>
+  <link rel="stylesheet" href="css/normalize.min.css"/>
+  <link rel="stylesheet" href="css/balloon.css"/>
+  <link rel="stylesheet" href="css/main.css?v=5"/>
+</head>
+<body>
+  <div id="container">
+    <div id="top">
+      <div>
+        <canvas id="email1" class="animatedText"></canvas>
+        <canvas id="email2" class="animatedText"></canvas>
+      </div>
+      <div>
+        <canvas id="pgmr1" class="animatedText" style="float: right;"></canvas>
+        <br>
+        <div style="float: right;"><canvas id="pgmr2a" class="animatedText"></canvas><canvas id="pgmr2b" class="animatedText"></canvas></div>
+      </div>
+    </div>
+    <div id="pr">
+      <canvas id="pr1" class="prx animatedText"></canvas>
+      <hr>
+    </div>
+    <div id="middle">
+
+      <!-- --  Projects  -- -->
+
+      <!-- --  * RpgMap  -- -->
+
+      <div class="item" data-balloon="Latest RpgMap: v1.2.1 (march 2019)" data-balloon-pos="up">
+          <a href="https://johnerps.com/RpgMap/docs/index.html" target="_blank"><canvas id="nrpgmap" class="animatedText"></canvas></a>&nbsp;&nbsp;<div class="sep">&#10072;</div>&nbsp;&nbsp;&nbsp;
+          <canvas id="drpgmap" class="animatedText"></canvas>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/RpgMap/archive/v1.2.1.zip" download><img class="img-download" src="images/download.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/RpgMap" target="_blank"><img class="img-github" src="images/github.png"></a>
+      </div>
+
+      <!-- --  * Yagols  -- -->
+
+      <div class="item" data-balloon="Latest Yagols: v3.8 (april 2019)" data-balloon-pos="up">
+        <a href="https://johnerps.com/Yagols.html" target="_blank"><canvas id="nyagols" class="animatedText"></canvas></a>&nbsp;&nbsp;<pre class="sep">&#10072;</pre>&nbsp;&nbsp;&nbsp;
+        <canvas id="dyagols" class="animatedText"></canvas>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/Yagols/archive/V3.8.zip" download><img class="img-download" src="images/download.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/jerps/Yagols" target="_blank"><img class="img-github" src="images/github.png"></a>
+      </div>
+
+    </div>
+    <hr>
+    <div id="bottom">
+      <div class="links">
+        <a id="github-a" class="animatedText" href="https://github.com/jerps" target="_blank"><canvas id="github" class="animatedText"></canvas></a>
+        <a id="linkedin-a" class="animatedText" href="https://linkedin.com/in/john-erps" target="_blank"><canvas id="linkedin" class="animatedText"></canvas></a>
+      </div>
+      <div class="links">
+        <a id="ibmi-a" class="animatedText" href="https://www.ibm.com/it-infrastructure/power/os/ibm-i" target="_blank"><canvas id="ibmi" class="animatedText"></canvas></a>
+      </div>
+      <a id="cpyr-a" class="animatedText" href="https://johnerps.com" target="_blank"><canvas id="cpyr" class="animatedText" style="float: right;"></canvas></a>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="js/canvas_effects.js"></script>
+<script>
+
+(function(){
+
+var t = [
+          '  \u29A2  all-round programmer   ',
+          '  \u00A9 2017-2019 John Erps     ',
+          '   LinkedIn  ',
+          '   GitHub  ',
+          '  IBM i on Power Systems  ',
+          '',
+          '',
+          '    \u22C5 \u22C5 \u22C5  Projects  \u22C5 \u22C5 \u22C5    ',
+          '   '+unscramble([111,106,110,104,101,46,112,114,64,115,109,103,105,97,46,108,111,99,109])+'  ',
+          '  \u29A2  IBM i (AS/400) ',
+          'specialist   ',
+          '   '+unscramble([111,106,110,104,106,64,104,111,101,110,112,114,46,115,111,99,109])+'  ',
+          '',
+          '',
+          'RpgMap',
+          'A versatile in-memory key/value store for RPG',
+          'Yagols',
+          'Yet another Game of Life simulator'
+        ];
+
+var rgb0 = [0, 0, 0], nrgb0 = [0, 0, 0], drgb0 = [120, 20, 20],
+    rgb1 = [120, 20, 20], nrgb1 = [0, 0, 0], drgb1 = [120, 20, 20],
+    rgbab = [120, 20, 20, 1],
+    fontFamily = 'Arial', nfontFamily = 'Poppins', dfontFamily = 'Poppins',
+    fontProps = '',
+    letterSpacing = 6.4, nletterSpacing = 9, dletterSpacing = 9,
+    borderw = 2;
+
+var anim = {};
+
+var loaded = false;
+var inited = false;
+var resizet = null;
+
+var mouseoveranimtxtcanvasid = '';
+var wave = 0;
+
+var dw = 8000, dne = 500,
+    d0 = 3000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 3000, d8 = 2000,
+    d9 = 600, d10 = 4000, d11 = 1200, d12 = 2000, d13 = 1000;
+
+var r0a = 0.02, r0b = 0.02, r0c = 0.05, r0d = 0.05, r0e = 0.035, r1 = 0.2, r2 = 0.5;
+
+var ready = false, ak, lmpx, lmpy, lmmt = performance.now(), lmmtd = 50;
+
+window.onload = function() {
+
+  reganim('email1', {
+    text: t[11],
+    border: [borderw, 0, 0, 0],
+    fontSize: 1.2,
+    yf: 2,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
+  });
+  reganim('email2', {
+    text: t[8],
+    border: [0, 0, borderw, 0],
+    fontSize: 1,
+    yf: 0,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
+  });
+  reganim('pgmr1', {
+    text: t[0],
+    border: [borderw, 0, 0, 0],
+    fontSize: 1.1,
+    yf: 1.5,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
+  });
+  reganim('pgmr2b', {
+    text: t[10],
+    border: [0, 0, borderw, 0],
+    fontSize: 1.1,
+    yf: 0.3,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
+  });
+  reganim('pgmr2a', {
+    text: t[9],
+    border: [0, 0, borderw, 0],
+    fontSize: 1.1,
+    yf: 0.3,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: 'i',
+    fontFamily: fontFamily, fontProps: 'bold', letterSpacing: letterSpacing
+  });
+  reganim('pr1', {
+    text: t[7],
+    border: [0, 0, 0, 0],
+    fontSize: 1.3,
+    yf: 1,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: 'small-caps', letterSpacing: letterSpacing
+  });
+  reganim('nrpgmap', {
+    text: t[14],
+    border: [0, 0, 0, 0],
+    fontSize: 1.25,
+    yf: 0.6,
+    rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: nfontFamily, fontProps: fontProps, letterSpacing: nletterSpacing
+  });
+  reganim('drpgmap', {
+    text: t[15],
+    border: [0, 0, 0, 0],
+    fontSize: 0.85,
+    yf: 0.8,
+    rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: dfontFamily, fontProps: fontProps, letterSpacing: dletterSpacing
+  });
+  reganim('dyagols', {
+    text: t[17],
+    border: [0, 0, 0, 0],
+    fontSize: 0.85,
+    yf: 0.8,
+    rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: dfontFamily, fontProps: fontProps, letterSpacing: dletterSpacing
+  });
+  reganim('nyagols', {
+    text: t[16],
+    border: [0, 0, 0, 0],
+    fontSize: 1.25,
+    yf: 0.6,
+    rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: nfontFamily, fontProps: fontProps, letterSpacing: nletterSpacing
+  });
+  reganim('github', {
+    text: t[3],
+    border: [0, 0, 0, 0],
+    fontSize: 1,
+    yf: 1.5,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
+  });
+  reganim('linkedin', {
+    text: t[2],
+    border: [0, 0, borderw, 0],
+    fontSize: 1,
+    yf: 0.3,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
+  });
+  reganim('ibmi', {
+    text: t[4],
+    border: [0, 0, borderw, 0],
+    fontSize: 1,
+    yf: 0,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: 'i',
+    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
+  });
+  reganim('cpyr', {
+    text: t[1],
+    border: [0, 0, borderw, 0],
+    fontSize: 0.8,
+    yf: -0.5,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
+  });
+
+  ak = Object.keys(anim);
+
+  document.querySelectorAll('canvas.animatedText').forEach(function(e) {
+    e.addEventListener('mouseover', function(e) {
+      if (!inited || !ready) {
+        return;
+      }
+      if (e.target.id === mouseoveranimtxtcanvasid) {
+        return;
+      }
+      mouseoveranimtxtcanvasid = e.target.id;
+      animate(e.target.id, 5/*fade out*/, d3);
+      setTimeout(function() {
+        animate(e.target.id, 6/*random chars*/, d4);
+      }, d3);
+      setTimeout(function() {
+        animate(e.target.id, -1/*no effect*/, dne);
+      }, d3+d4);
+    }, false);
+    e.addEventListener('mouseleave', function(e) {
+      if (e.target.id === mouseoveranimtxtcanvasid) {
+        mouseoveranimtxtcanvasid = '';
+      }
+    }, false);
+  });
+
+  window.addEventListener('resize', function() {
+    if (!inited || !ready) {
+      return;
+    }
+    animateAll(6/*random chars*/, d5);
+    if (resizet) {
+      clearTimeout(resizet);
+      resizet = null;
+    };
+    resizet = setTimeout(function() {
+      resizet = null;
+      animateAll(4/*fade in*/, d6);
+    }, d5);
+  }, false);
+
+  window.addEventListener('mousemove', function(e) {
+    var x = performance.now();
+    if (!inited || !ready || x - lmmt < d13) {
+      return;
+    }
+    lmmt = x;
+    if (lmpx && lmpy) {
+      lmmtd = ((lmmtd = d13*(Math.abs(lmpx-e.pageX)/screen.width+Math.abs(lmpy-e.pageY)/screen.height)/2) < 50 ? 50 : lmmtd) * 2;
+      animateAll(5/*fade out*/, d13);
+      setTimeout(function() {
+        animateAll(-1/*no effect*/, dne);
+      }, lmmtd);
+    }
+    lmpx = e.pageX;
+    lmpy = e.pageY;
+  }, false);
+
+  loaded = true;
+
+  animateAll(0/*random effect*/, d0);
+
+  dowave(d0);
+
+  setInterval(function() {
+    var i, j, p1, p2, s;
+    if (!inited || !ready) {
+      return;
+    }
+    if (rnd() < r0a) {
+      s = '';
+      i = Math.trunc(rnd() * ak.length);
+      p1 = anim[ak[i]][0];
+      for (j = 0; j < p1.text.length; j++) {
+        s += rnd()<r1?p1.text[j]:rnd()<r2?'\u22C5':' ';
+      }
+      p2 = {
+        cName: ak[i],
+        effect: -1/*no effect*/,
+        duration: d7,
+        text: s,
+        border: p1.border,
+        fontSize: p1.fontSize,
+        yf: p1.yf,
+        rgb0: p1.rgb0, rgb1: p1.rgb1, rgbab: [255, 255, 255, 1],
+        rgb1chars: '',
+        fontFamily: p1.fontFamily, fontProps: p1.fontProps, letterSpacing: p1.letterSpacing
+      };
+      CanvasEffects.animateText(p2);
+      setTimeout(function() {
+        animate(ak[i], 6/*random chars*/, d8);
+      }, d7);
+      setTimeout(function() {
+        animate(ak[i], -1/*no effect*/, dne);
+      }, d7+d8);
+    } else if (rnd() < r0b) {
+      dowave(0);
+    } else if (rnd() < r0c) {
+      i = Math.trunc(rnd() * ak.length);
+      animate(ak[i], 6/*random chars*/, d9);
+      setTimeout(function() {
+        animate(ak[i], -1/*no effect*/, dne);
+      }, d9);
+    } else if (rnd() < r0d) {
+      i = Math.trunc(rnd() * ak.length);
+      animate(ak[i], 5/*fade out*/, d10);
+      setTimeout(function() {
+        animate(ak[i], -1/*no effect*/, dne);
+      }, d10/2);
+    } else if (rnd() < r0e) {
+      i = Math.trunc(rnd() * ak.length);
+      animate(ak[i], 5/*fade out*/, d11);
+      setTimeout(function() {
+        animate(ak[i], 0/*random effect*/, d12);
+      }, d11);
+    }
+  }, 1000);
+
+  setTimeout(function() {
+    ready = true;
+  }, dw);
+
+};
+
+function dowave(d) {
+  var i, j, c;
+  for (i = 0; i < wave; i++) {
+    c = null;
+    for (j = 0; j < ak.length; j++) {
+      if (anim[ak[j]][1] === i) {
+        c = ak[j];
+        break;
+      }
+    }
+    if (c) {
+      (function(c) {
+        setTimeout(function() {
+          if (!inited) {
+            return;
+          }
+          animate(c, 5/*fade out*/, d1);
+        }, d+d1/2*i);
+        setTimeout(function() {
+          if (!inited) {
+            return;
+          }
+          animate(c, 4/*fade in*/, d2);
+        }, d+d1/2*i+d1);
+      })(c);
+    }
+  }
+}
+
+function animateAll(effect, duration) {
+  if (loaded) {
+    if (!inited) {
+      inited = true;
+      document.querySelectorAll('a.animatedText').forEach(function(e) {
+        e.style.display = 'inline';
+      });
+      document.querySelectorAll('canvas.animatedText').forEach(function(e) {
+        e.style.display = 'inline';
+      });
+    }
+    Object.keys(anim).forEach(function(c){animate(c,effect,duration)});
+  }
+}
+
+function reganim(c, p) {
+  anim[c] = [p, wave++];
+}
+
+function animate(c, e, d) {
+  var p = anim[c][0];
+  p.cName = c;
+  p.effect = e;
+  p.duration = d;
+  CanvasEffects.animateText(p);
+}
+
+function unscramble(x) {
+  var s = '', i;
+  for (i = 0; i < x.length; i+=2) {
+    if (i < x.length - 1) {
+      s += String.fromCharCode(x[i+1]);
+    }
+    s += String.fromCharCode(x[i]);
+  }
+  return s;
+}
+
+// https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript/47593316#47593316
+function mulberry32(a) {
+    return function() {
+      var t = a += 0x6D2B79F5;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+}
+
+var rnd = mulberry32(performance.now() % (Math.pow(2, 32) - 1));
+
+})();
+
+</script>
+</html>
+
+<!--
+-----
+-->

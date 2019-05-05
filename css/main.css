@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: black;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #F9F9F9;
+  font-family: "Arial";
+  line-height: 1;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  text-shadow: none;
+  height: 100%;
+}
+
+::selection {
+  background-color: rgba(200, 150, 200, 0.3);
+}
+
+hr {
+  width: 100%;
+  background-color:rgba(120, 20, 20, 1);
+  height: 1px;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+  background-color: darksalmon;
+}
+a:active {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+
+canvas.animatedText {
+  width: 1;
+  height: 1;
+  display: none;
+}
+
+a.animatedText {
+  display: none;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin: 0 auto 0 auto;
+  line-height: 2;
+}
+
+#top {
+  display: flex;
+  justify-content: space-between;
+  margin: 3% 0 3% 0;
+}
+
+#pgmr2a, #pgmr2b {
+  float: left;
+}
+
+#pr {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -12%;
+}
+
+.prx {
+  margin: 0 auto 0 auto;
+}
+
+#middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  top: -6%;
+}
+
+#bottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 3% 0 3% 0;
+}
+  #bottom * {
+    margin: auto 0 0 0;
+  }
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 125%;
+  font-family: "Poppins";
+}
+
+.sep {
+  color: red;
+  vertical-align: middle;
+}
+
+.img-github {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+}
+
+.img-download {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+}
+
+@media all and (max-width: 1200px) {
+  #container {
+    font-size: 0.895rem;
+    width: 75%;
+  }
+}
+@media all and (max-width: 1000px) {
+  #container {
+    font-size: 0.790rem;
+    width: 80%;
+  }
+}
+@media all and (max-width: 800px) {
+  #container {
+    font-size: 0.685rem;
+    width: 85%;
+  }
+}
+@media all and (max-width: 600px) {
+  #container {
+    font-size: 0.580rem;
+    width: 90%;
+  }
+}
+@media all and (max-width: 400px) {
+  #container {
+    font-size: 0.475rem;
+    width: 95%;
+  }
+}
+@media all and (max-width: 200px) {
+  #container {
+    font-size: 0.370rem;
+    width: 100%;
+  }
+}
+@media all and (min-width: 1201px) {
+  #container {
+    font-size: 1rem;
+    width: 70%;
+  }
+}
