@@ -1,4 +1,10 @@
 <?php
+
+// (c) 2019 John Erps
+
+// See LICENSE.
+
+
 @$uri = $_GET["uri"];
 @$logbytes = filesize("getfile.log");
 $log = fopen("getfile.log", $logbytes != false && $logbytes > 10*1024*1024 ? "w" : "a");
