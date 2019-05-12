@@ -1,4 +1,5 @@
 /*
+
 (c) 2017-2019 John Erps
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -44,12 +45,12 @@ var CanvasEffects = new function() {
 
 var effects = [
 
-   // E1: Chars pop-up, one by one, in random order (random)
-   // E2: Chars come frome above or below, one by one, in random order (random)
-   // E3: Chars come frome left or right, one by one, in random order (random)
-   // E4: All chars fade in
-   // E5: All chars fade out
-   // E6: Characters are randomly chosen to be shown, every 10% of the time
+  // E1: Chars pop-up, one by one, in random order (random)
+  // E2: Chars come frome above or below, one by one, in random order (random)
+  // E3: Chars come frome left or right, one by one, in random order (random)
+  // E4: All chars fade in
+  // E5: All chars fade out
+  // E6: Characters are randomly chosen to be shown, every 10% of the time
 
   // E0 (impl template; simply shows all chars; can be selected with effect -1)
   function(props/* Properties are assigned as instance variables
@@ -334,8 +335,6 @@ this.animateText = function(settings) {
   }
 
   settings.effect = settings.effect || 0;
-
-  c.style.display = 'block';
 
   var oc = document.createElement('canvas'), cc = c.getContext('2d'), occ = oc.getContext('2d');
   var fs = Math.trunc(getEmPixels(document.getElementById('container')) * (settings.fontSize && settings.fontSize > 0 ? settings.fontSize : 1));

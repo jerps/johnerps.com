@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins");
-
 ::selection {
   background-color: rgba(200, 200, 70, 0.7);
 }
@@ -17,10 +15,9 @@ html {
 
 body {
   background-color: #F9F9F9;
-  font-family: "Arial";
   line-height: 1;
+  font-family: 'Arial';
   font-weight: normal;
-  letter-spacing: 0.5px;
   text-shadow: none;
   height: 100%;
 }
@@ -39,12 +36,18 @@ hr {
 
 a {
   text-decoration: none;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0);
 }
 a:hover {
   text-decoration: none;
-  background: linear-gradient(218deg, #22a886, #505c59, #7fe3ca);
+  background: linear-gradient(218deg, #2A8, #555, #8CC);
   background-size: 600% 600%;
-  animation: anchorhover 7s ease infinite;
+  animation: anchorhover 15s ease infinite;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#255;
   border-radius: 50%;
 }
 a:active {
@@ -96,7 +99,7 @@ canvas.animatedText {
   margin-left: auto;
 }
 
-#pgmr2a, #pgmr2b {
+#specla, #speclb {
   float: left;
 }
 
@@ -107,7 +110,7 @@ canvas.animatedText {
   top: -12%;
 }
 
-.prx {
+#prt {
   margin: 0 auto 0 auto;
 }
 
@@ -116,7 +119,6 @@ canvas.animatedText {
   flex-direction: row;
   justify-content: center;
   font-size: 125%;
-  font-family: "Poppins";
 }
 
 .sep {
@@ -124,16 +126,11 @@ canvas.animatedText {
   vertical-align: middle;
 }
 
-.img-github {
-  width: 1.2em;
-  height: 1.2em;
+.img-github, .img-download {
+  width: 1.3em;
+  height: 1.3em;
   vertical-align: middle;
-}
-
-.img-download {
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: middle;
+  margin-bottom: 0.4rem;
 }
 
 #cpyr {

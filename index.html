@@ -37,6 +37,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <meta name="description" content="Project page of John Erps"/>
   <meta name="author" content="John Erps"/>
   <meta name="keywords" content="john erps projects ibm i as/400 iSeries rpg java javascript c python html css programmer programming software developer"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata|Poppins|Saira Condensed:Light">
   <link rel="shortcut icon" href="/images/favicon.ico"/>
   <link rel="stylesheet" href="css/normalize.min.css"/>
   <link rel="stylesheet" href="css/tippy.css">
@@ -52,13 +53,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <canvas id="telno" class="animatedText"></canvas>
       </div>
       <div>
-        <canvas id="pgmr1" class="animatedText" style="float: right;"></canvas>
+        <canvas id="pgmr" class="animatedText" style="float: right;"></canvas>
         <br>
-        <div style="float: right;"><canvas id="pgmr2a" class="animatedText"></canvas><canvas id="pgmr2b" class="animatedText"></canvas></div>
+        <canvas id="pgml" class="animatedText" style="float: right;"></canvas>
+        <br>
+        <span style="float: right;"><canvas id="specla" class="animatedText"></canvas><canvas id="speclb" class="animatedText"></canvas></span>
       </div>
     </div>
     <div id="pr">
-      <canvas id="pr1" class="prx animatedText"></canvas>
+      <canvas id="prt" class="animatedText"></canvas>
       <hr>
     </div>
     <div id="middle">
@@ -101,6 +104,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 (function(){
 
+var HACK = false; //??
+
 var t = [
   '\u29A2  all-round programmer  ',
   ' \u00A9 2017-2019 John Erps   ',
@@ -108,26 +113,26 @@ var t = [
   ' GitHub ',
   ' IBM i on Power Systems ',
   '',
-  unscramble([51,43,32,49,32,54,48,52,50,50,52,51,50,50])+' ',
-  '    \u22C5 \u22C5 \u22C5  Projects  \u22C5 \u22C5 \u22C5    ',
-  unscramble([111,106,110,104,101,46,112,114,64,115,109,103,105,97,46,108,111,99,109])+' ',
+  unscramble([51,43,32,49,32,54,48,52,50,50,52,51,50,50])+'  ',
+  '    \u22C5 \u22C5 \u22C5  \u22C5P\u22C5r\u22C5o\u22C5j\u22C5e\u22C5c\u22C5t\u22C5s\u22C5  \u22C5 \u22C5 \u22C5    ',
+  unscramble([111,106,110,104,101,46,112,114,64,115,109,103,105,97,46,108,111,99,109])+'  ',
   '\u29A2  IBM i (AS/400) ',
-  'specialist  ',
+  ' specialist   ',
   '  '+unscramble([111,106,110,104,106,64,104,111,101,110,112,114,46,115,111,99,109])+' ',
-  '',
+  'RPG\u22C5Java\u22C5Javascript\u22C5Python\u22C5C\u22C5SQL\u22C5HTML\u22C5CSS   ',
   '',
   ' RpgMap ',
   'A versatile in-memory key/value store for RPG',
   ' Yagols ',
   'Yet another Game of Life simulator'
 ];
-console.log(t);
+
 var rgb0 = [0, 0, 0], nrgb0 = [0, 0, 0], drgb0 = [120, 20, 20],
     rgb1 = [120, 20, 20], nrgb1 = [0, 0, 0], drgb1 = [120, 20, 20],
     rgbab = [120, 20, 20, 1],
-    fontFamily = 'Arial', nfontFamily = 'Poppins', dfontFamily = 'Poppins',
+    fontFamily = 'Armata', nfontFamily = 'Poppins', dfontFamily = 'Poppins',
     fontProps = '',
-    letterSpacing = 6.4, nletterSpacing = 10, dletterSpacing = 9,
+    letterSpacing = 6.4, letterSpacing2 = 10;
     borderw = 1;
 
 var anim = {};
@@ -139,11 +144,11 @@ var resizet = null;
 var mouseoveranimtxtcanvasid = '';
 var wave = 0;
 
-var dw = 8000, dne = 500,
+var dw = 10000, dne = 200,
     d0 = 3000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 3000, d8 = 2000,
     d9 = 600, d10 = 3000, d11 = 1200, d12 = 2000, d13 = 1000;
 
-var r0a = 0.03, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.03, r1 = 0.3, r2 = 0.5;
+var r0a = 0.035, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.4, r2 = 0.5, r3 = 0.3, r4 = 0.35;
 
 var ready = false, ak, lmpx, lmpy, lmmt = performance.now(), lmmtd = 50;
 
@@ -163,7 +168,7 @@ window.onload = function() {
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
   });
-  reganim('pgmr1', {
+  reganim('pgmr', {
     text: t[0],
     border: [borderw, 0, 0, 0],
     fontSize: 1.1,
@@ -172,23 +177,14 @@ window.onload = function() {
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
   });
-  reganim('pgmr2b', {
-    text: t[10],
-    border: [0, 0, borderw, 0],
-    fontSize: 1.1,
-    yf: 0.3,
+  reganim('pgml', {
+    text: t[12],
+    border: [0, 0, 0, 0],
+    fontSize: 1,
+    yf: 0.1,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
-  });
-  reganim('pgmr2a', {
-    text: t[9],
-    border: [0, 0, borderw, 0],
-    fontSize: 1.1,
-    yf: 0.3,
-    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
-    rgb1chars: 'i',
-    fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
+    fontFamily: 'Saira Condensed, Light', fontProps: fontProps, letterSpacing: letterSpacing
   });
   reganim('email2', {
     text: t[8],
@@ -208,50 +204,68 @@ window.onload = function() {
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
   });
-  reganim('pr1', {
+  reganim('specla', {
+    text: t[9],
+    border: [0, 0, borderw, 0],
+    fontSize: 1,
+    yf: 0.2,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: 'i',
+    fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
+  });
+  reganim('speclb', {
+    text: t[10],
+    border: [0, 0, borderw, 0],
+    fontSize: 1,
+    yf: 0.2,
+    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
+  });
+  reganim('prt', {
     text: t[7],
     border: [0, 0, 0, 0],
     fontSize: 1.3,
     yf: 1,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: 'Poppins', fontProps: 'bold', letterSpacing: letterSpacing
+    fontFamily: 'Poppins', fontProps: 'bold', letterSpacing: letterSpacing2
   });
   reganim('nrpgmap', {
     text: t[14],
     border: [0, 0, 0, 0],
     fontSize: 1.25,
-    yf: 0.5,
+    yf: 0.2,
     rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: nfontFamily, fontProps: fontProps, letterSpacing: nletterSpacing
+    fontFamily: nfontFamily, fontProps: fontProps, letterSpacing: letterSpacing2
   });
   reganim('drpgmap', {
     text: t[15],
     border: [0, 0, 0, 0],
-    fontSize: 0.85,
-    yf: 0.8,
+    fontSize: 0.87,
+    yf: 0.2,
     rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: dfontFamily, fontProps: fontProps, letterSpacing: dletterSpacing
+    fontFamily: dfontFamily, fontProps: fontProps, letterSpacing: letterSpacing2
   });
   reganim('dyagols', {
     text: t[17],
     border: [0, 0, 0, 0],
-    fontSize: 0.85,
-    yf: 0.8,
+    fontSize: 0.87,
+    yf: 0.2,
     rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: dfontFamily, fontProps: fontProps, letterSpacing: dletterSpacing
+    fontFamily: dfontFamily, fontProps: fontProps, letterSpacing: letterSpacing2
   });
   reganim('nyagols', {
     text: t[16],
     border: [0, 0, 0, 0],
     fontSize: 1.25,
-    yf: 0.5,
+    yf: 0.2,
     rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: nfontFamily, fontProps: fontProps, letterSpacing: nletterSpacing
+    fontFamily: nfontFamily, fontProps: fontProps, letterSpacing: letterSpacing2
   });
   reganim('linkedin', {
     text: t[2],
@@ -283,7 +297,7 @@ window.onload = function() {
   reganim('cpyr', {
     text: t[1],
     border: [0, 0, borderw, 0],
-    fontSize: 0.8,
+    fontSize: 0.7,
     yf: 0,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
@@ -350,12 +364,18 @@ window.onload = function() {
 
   loaded = true;
 
-  animateAll(0/*random effect*/, d0);
+  HACK = true;
+  animateAll(0/*random effect*/, d0/3);
 
-  dowave(d0);
+  setTimeout(function() {
+    HACK = false;
+    animateAll(0/*random effect*/, d0/3*2);
+  }, d0/3);
+
+  dowave(d0*1.5);
 
   setInterval(function() {
-    var i, j, p1, p2, s;
+    var i, j, s;
     if (!inited || !ready) {
       return;
     }
@@ -367,36 +387,27 @@ window.onload = function() {
       }, d9);
     } else if (rnd() < r0d) {
       i = Math.trunc(rnd() * ak.length);
-      animate(ak[i], 5/*fade out*/, d10);
+      animate(ak[i], 5/*fade out*/, d10, rnd() < r4 ? { rgb0: [255,0,0] } : undefined);
       setTimeout(function() {
         animate(ak[i], -1/*no effect*/, dne);
       }, d10);
     } else if (rnd() < r0e) {
       i = Math.trunc(rnd() * ak.length);
-      animate(ak[i], 5/*fade out*/, d11);
+      animate(ak[i], 5/*fade out*/, d11, rnd() < r4 ? { rgb0: [255,0,0] } : undefined);
       setTimeout(function() {
         animate(ak[i], 0/*random effect*/, d12);
       }, d11);
     } else if (rnd() < r0a) {
       s = '';
       i = Math.trunc(rnd() * ak.length);
-      p1 = anim[ak[i]][0];
-      for (j = 0; j < p1.text.length; j++) {
-        s += p1.text[j]===' '?' ':rnd()<r1?p1.text[j]:rnd()<r2?'\u22C5':'-';
+      if (rnd() < r3) {
+        s = " ".repeat(p1.text.length);
+      } else {
+        for (j = 0; j < p1.text.length; j++) {
+          s += p1.text[j]===' '?' ':rnd()<r1?p1.text[j]:rnd()<r2?'\u22C5':'-';
+        }
       }
-      p2 = {
-        cName: ak[i],
-        effect: -1/*no effect*/,
-        duration: d7,
-        text: s,
-        border: p1.border,
-        fontSize: p1.fontSize,
-        yf: p1.yf,
-        rgb0: p1.rgb0, rgb1: p1.rgb1, rgbab: [255, 255, 255, 1],
-        rgb1chars: '',
-        fontFamily: p1.fontFamily, fontProps: p1.fontProps, letterSpacing: p1.letterSpacing
-      };
-      CanvasEffects.animateText(p2);
+      animate(ak[i], -1/*no effect*/, d7, {rgb1chars: '', text: s});
       setTimeout(function() {
         animate(ak[i], 6/*random chars*/, d8);
       }, d7);
@@ -406,7 +417,7 @@ window.onload = function() {
     } else if (rnd() < r0b) {
       dowave(0);
     }
-  }, 1200);
+  }, 1500);
 
   setTimeout(function() {
     ready = true;
@@ -448,7 +459,7 @@ function animateAll(effect, duration) {
     if (!inited) {
       inited = true;
       document.querySelectorAll('canvas.animatedText').forEach(function(e) {
-        e.style.display = 'inline';
+        e.style.display = 'block';
       });
     }
     Object.keys(anim).forEach(function(c){animate(c,effect,duration)});
@@ -459,12 +470,22 @@ function reganim(c, p) {
   anim[c] = [p, wave++];
 }
 
-function animate(c, e, d) {
-  var p = anim[c][0];
+function animate(c, e, d, px) {
+  var p = copyap(anim[c][0]);
   p.cName = c;
   p.effect = e;
   p.duration = d;
+  if (HACK) {
+    p.text = ' '.repeat(p.text.length);
+  }
+  if (px) {
+    Object.assign(p, px);
+  }
   CanvasEffects.animateText(p);
+}
+
+function copyap(p) {
+  return Object.assign({}, p);
 }
 
 function unscramble(x) {
