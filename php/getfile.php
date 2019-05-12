@@ -5,11 +5,11 @@
 // See LICENSE.
 
 
-@$uri = $_GET["uri"];
+@$url = $_GET["url"];
 @$logbytes = filesize("getfile.log");
 $log = fopen("getfile.log", $logbytes != false && $logbytes > 10*1024*1024 ? "w" : "a");
-fputs($log, $uri);
-@$content = file_get_contents($uri);
+fputs($log, $url);
+@$content = file_get_contents($url);
 header("Content-Type: text/plain; charset=utf-8");
 if ($content == false) {
   fputs($log, "  -->  FAIL");
