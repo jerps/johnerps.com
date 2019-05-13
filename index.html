@@ -37,7 +37,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <meta name="description" content="Project page of John Erps"/>
   <meta name="author" content="John Erps"/>
   <meta name="keywords" content="john erps projects ibm i as/400 iSeries rpg java javascript c python html css programmer programming software developer"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata|Poppins|Saira Condensed:Light">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata|Poppins|Open Sans Condensed:Bold">
   <link rel="shortcut icon" href="/images/favicon.ico"/>
   <link rel="stylesheet" href="css/normalize.min.css"/>
   <link rel="stylesheet" href="css/tippy.css">
@@ -53,11 +53,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <canvas id="telno" class="animatedText"></canvas>
       </div>
       <div>
-        <canvas id="pgmr" class="animatedText" style="float: right;"></canvas>
-        <br>
-        <canvas id="pgml" class="animatedText" style="float: right;"></canvas>
-        <br>
-        <span style="float: right;"><canvas id="specla" class="animatedText"></canvas><canvas id="speclb" class="animatedText"></canvas></span>
+        <canvas id="pgml" class="animatedText"></canvas>
+        <canvas id="pgmr" class="animatedText"></canvas>
+        <span id="specl"><canvas id="specla" class="animatedText"></canvas><canvas id="speclb" class="animatedText"></canvas></span>
       </div>
     </div>
     <div id="pr">
@@ -116,10 +114,10 @@ var t = [
   unscramble([51,43,32,49,32,54,48,52,50,50,52,51,50,50])+'  ',
   '    \u22C5 \u22C5 \u22C5  \u22C5P\u22C5r\u22C5o\u22C5j\u22C5e\u22C5c\u22C5t\u22C5s\u22C5  \u22C5 \u22C5 \u22C5    ',
   unscramble([111,106,110,104,101,46,112,114,64,115,109,103,105,97,46,108,111,99,109])+'  ',
-  '\u29A2  IBM i (AS/400) ',
+  ' \u29A2  IBM i (AS/400) ',
   ' specialist   ',
   '  '+unscramble([111,106,110,104,106,64,104,111,101,110,112,114,46,115,111,99,109])+' ',
-  'RPG\u22C5Java\u22C5Javascript\u22C5Python\u22C5C\u22C5SQL\u22C5HTML\u22C5CSS   ',
+  ' RPG\u22C5Java\u22C5Javascript\u22C5Python\u22C5C\u22C5SQL\u22C5HTML\u22C5CSS  ',
   '',
   ' RpgMap ',
   'A versatile in-memory key/value store for RPG',
@@ -168,23 +166,23 @@ window.onload = function() {
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: fontProps, letterSpacing: letterSpacing
   });
-  reganim('pgmr', {
-    text: t[0],
+  reganim('pgml', {
+    text: t[12],
     border: [borderw, 0, 0, 0],
-    fontSize: 1.1,
+    fontSize: 1,
     yf: 1.5,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
+    fontFamily: 'Open Sans Condensed, Bold', fontProps: fontProps, letterSpacing: letterSpacing
   });
-  reganim('pgml', {
-    text: t[12],
+  reganim('pgmr', {
+    text: t[0],
     border: [0, 0, 0, 0],
-    fontSize: 1,
-    yf: 0.1,
+    fontSize: 1.1,
+    yf: 1.1,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: 'Saira Condensed, Light', fontProps: fontProps, letterSpacing: letterSpacing
+    fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
   });
   reganim('email2', {
     text: t[8],

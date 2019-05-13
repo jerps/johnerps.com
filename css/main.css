@@ -99,6 +99,14 @@ canvas.animatedText {
   margin-left: auto;
 }
 
+#pgmr {
+  margin-left: auto;
+}
+
+#specl {
+  float: right;
+}
+
 #specla, #speclb {
   float: left;
 }
