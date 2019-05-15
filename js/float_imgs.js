@@ -23,7 +23,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-const IMGPATH = 'images/float', IMGEXT = '.jpg', IMGCOUNT = 38;
+const IMGPATH = 'images/float/', IMGEXT = '.jpg', IMGCOUNT = 38;
 
 
 var FloatImgs = {};

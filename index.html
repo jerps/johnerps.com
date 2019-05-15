@@ -387,13 +387,21 @@ window.onload = function() {
       }, d9);
     } else if (Util.rnd() < r0d) {
       i = Math.trunc(Util.rnd() * ak.length);
-      animate(ak[i], 5/*fade out*/, d10, Util.rnd() < r4 ? { rgb0: [255,0,0] } : undefined);
+      p = { rgbab: [255, 255, 255, 1] };
+      if (Util.rnd() < r4) {
+        p.rgb0 = [255,0,0];
+      };
+      animate(ak[i], 5/*fade out*/, d10, p);
       setTimeout(function() {
         animate(ak[i], -1/*no effect*/, dne);
       }, d10);
     } else if (Util.rnd() < r0e) {
       i = Math.trunc(Util.rnd() * ak.length);
-      animate(ak[i], 5/*fade out*/, d11, Util.rnd() < r4 ? { rgb0: [255,0,0] } : undefined);
+      p = { rgbab: [255, 255, 255, 1] };
+      if (Util.rnd() < r4) {
+        p.rgb0 = [255,0,0];
+      };
+      animate(ak[i], 5/*fade out*/, d11, p);
       setTimeout(function() {
         animate(ak[i], 0/*random effect*/, d12);
       }, d11);
