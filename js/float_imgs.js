@@ -109,7 +109,7 @@ function floatImgs(ssc) {
       clearInterval(iv);
       return;
     }
-    if (Util.rnd() < 0.084) {
+    if (Util.rnd() < 0.2) {
       floatImg();
     }
   }, 1000);
@@ -157,15 +157,16 @@ function floatImgs(ssc) {
       w = x * w / h;
       h = l = x;
     }
-    let x0, y0, x1, y1;
+    let x0, y0, x1, y1, xcp, ycp;
     switch (Math.trunc(4 * Util.rnd())) {
       case 0:
         x0 = 0 - l / 2 + (0.3 + 0.4 * Util.rnd()) * (br.width + l);
         y0 = 0 - l / 2;
-        switch ((x = Util.rnd()) < 0.6 ? 1 : x < 0.8 ? 0 : 2) {
+        switch ((x = Util.rnd()) < 0.4 ? 1 : x < 0.7 ? 0 : 2) {
           case 0:
             x1 = br.width + l / 2;
             y1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.height + l);
+
             break;
           case 1:
             x1 = 0 - l / 2 + (0.3 + 0.4 * Util.rnd()) * (br.width + l);
@@ -180,7 +181,7 @@ function floatImgs(ssc) {
       case 1:
         x0 = br.width + l / 2;
         y0 = 0 - l / 2 + (0.3 + 0.4 * Util.rnd()) * (br.height + l);
-        switch ((x = Util.rnd()) < 0.6 ? 1 : x < 0.8 ? 0 : 2) {
+        switch ((x = Util.rnd()) < 0.4 ? 1 : x < 0.7 ? 0 : 2) {
           case 0:
             x1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.width + l);
             y1 = br.height + l / 2;
@@ -198,7 +199,7 @@ function floatImgs(ssc) {
       case 2:
         x0 = 0 - l / 2 + (0.3 + 0.4 * Util.rnd()) * (br.width + l);
         y0 = br.height + l / 2;
-        switch ((x = Util.rnd()) < 0.6 ? 1 : x < 0.8 ? 0 : 2) {
+        switch ((x = Util.rnd()) < 0.4 ? 1 : x < 0.7 ? 0 : 2) {
           case 0:
             x1 = 0 - l / 2;
             y1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.height + l);
@@ -216,7 +217,7 @@ function floatImgs(ssc) {
       case 3:
         x0 = 0 - l / 2;
         y0 = 0 - l / 2 + (0.3 + 0.4 * Util.rnd()) * (br.height + l);
-        switch ((x = Util.rnd()) < 0.6 ? 1 : x < 0.8 ? 0 : 2) {
+        switch ((x = Util.rnd()) < 0.4 ? 1 : x < 0.7 ? 0 : 2) {
           case 0:
             x1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.width + l);
             y1 = 0 - l / 2;
@@ -232,11 +233,9 @@ function floatImgs(ssc) {
         }
         break;
     }
-    let pl = Math.sqrt(Math.pow(Math.abs(x0-x1), 2) + Math.pow(Math.abs(y0-y1), 2));
-    if (br.width > br.height && pl < br.width * 0.3 || br.width < br.height && pl < br.height * 0.3) {
-      return exit();
-    }
-    let rt = Math.trunc(Util.rnd() * 4), rd1 = 0, rd2 = 360, rr = 0, rrd = 0, rcc = Util.rnd() < 0.5 ? true : false;
+    xcp = br.width / 3 + Util.rnd() * br.width / 3;
+    ycp = br.height / 3 + Util.rnd() * br.height / 3;
+    let rt = Math.trunc(Util.rnd() * 4), rd1 = 0, rd2 = 360, rr = 0, rrd = 0, rcc = Util.rnd() < 0.5;
     if (rt === 1 || rt === 2) {
       rd1 = rd1 + Math.trunc(Util.rnd() * 90);
       rd2 = rd2 - Math.trunc(Util.rnd() * 90);
@@ -273,8 +272,8 @@ function floatImgs(ssc) {
       }
       t = sf0(t);
       let t1 = sf1(t), t2 = sf2(t);
-      img.style.left = ''+Math.round((1 - t1) * x0 + t1 * x1 - w / 2)+'px';
-      img.style.top = ''+Math.round((1 - t2) * y0 + t2 * y1 - h / 2)+'px';
+      img.style.left = ''+Math.round(Math.pow(1 - t1, 2) * x0 + 2 * (1 - t1) * t1 * xcp + Math.pow(t1, 2) * x1 - w / 2)+'px';
+      img.style.top = ''+Math.round(Math.pow(1 - t2, 2) * y0 + 2 * (1 - t2) * t2 * ycp + Math.pow(t2, 2) * y1 - h / 2)+'px';
       if (rt > 0) {
         let r = 0;
         if (rt === 3) {
