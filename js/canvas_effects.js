@@ -1,5 +1,7 @@
 /*
 
+Canvas Effects
+
 (c) 2017-2019 John Erps
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -36,7 +38,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     fontProps: "italic bold",          // font properties
     fontSize: 1,                       // font size in px = size of 1rem in px * fontSize; defaults to 1
     letterSpacing: 5,                  // letter spacing in % of font size in px; defaults to 0
-    yf: 0                              // if 0 then text is in the middle (sort of), < 0 move to top, > 0 move to bottom; defaults to 0
+    yp: 0                              // relative to fontsize in px. if 0 then text is in the middle (sort of), < 0 move to top, > 0 move to bottom; defaults to 0
   });
 
 */
@@ -61,7 +63,7 @@ var effects = [
             canvas height   "cheight" -> int,
             border rgba     "rgbab"   -> [ int (red), int (green), int (blue),  0..1 (alpha) ]
             border sizes    "border"  -> [ int (top), int (right), int (bottom), int (left) ],
-            y factor        "yf"      -> -1..1
+            y factor        "yp"      -> int
         }*/) {
     eInit(this, props);
     this.random = false; // eligible for random selection if true
@@ -87,9 +89,9 @@ var effects = [
     this.random = true;
     this.prepare = function() {
       this.x = 1 / this.chimgs.length;
-      this.r = randomIntArray(this.chimgs.length-1);
+      this.r = Util.randomIntArray(this.chimgs.length-1);
       this.pi = -1;
-      this.c = new Map();
+      this.c = new Set();
     };
     this.animateFrame = function(t) {
       this.beforeAnimateFrame(true);
@@ -98,7 +100,7 @@ var effects = [
         i = t === 1 ? this.chimgs.length - 1 : Math.trunc(t / this.x);
         if (i !== this.pi) {
           if (this.pi !== -1) {
-            this.c.set(this.r[this.pi], true);
+            this.c.add(this.r[this.pi]);
           }
           this.pi = i;
         }
@@ -122,19 +124,19 @@ var effects = [
     this.random = true;
     this.prepare = function() {
       this.x = 1 / this.chimgs.length;
-      this.r = randomIntArray(this.chimgs.length-1);
-      this.r2 = this.r.reduce(function(a,v){a.push(Math.random()); return a;},[]);
+      this.r = Util.randomIntArray(this.chimgs.length-1);
+      this.r2 = this.r.reduce(function(a,v){a.push(Util.rnd()); return a;},[]);
       this.pi = -1;
-      this.c = new Map();
+      this.c = new Set();
     };
     this.animateFrame = function(t) {
       this.beforeAnimateFrame(true);
       if (this.chimgs.length > 0) {
-        var i, j, x, p = this.yfp, d;
+        var i, j, x, p = 0, d;
         i = t === 1 ? this.chimgs.length - 1 : Math.trunc(t / this.x);
         if (i !== this.pi) {
           if (this.pi !== -1) {
-            this.c.set(this.r[this.pi], true);
+            this.c.add(this.r[this.pi]);
           }
           this.pi = i;
         }
@@ -160,10 +162,10 @@ var effects = [
     this.random = true;
     this.prepare = function() {
       this.x = 1 / this.chimgs.length;
-      this.r = randomIntArray(this.chimgs.length-1);
-      this.r2 = this.r.reduce(function(a,v){a.push(Math.random()); return a;},[]);
+      this.r = Util.randomIntArray(this.chimgs.length-1);
+      this.r2 = this.r.reduce(function(a,v){a.push(Util.rnd()); return a;},[]);
       this.pi = -1;
-      this.c = new Map();
+      this.c = new Set();
     };
     this.animateFrame = function(t) {
       this.beforeAnimateFrame(true);
@@ -172,7 +174,7 @@ var effects = [
         i = t === 1 ? this.chimgs.length - 1 : Math.trunc(t / this.x);
         if (i !== this.pi) {
           if (this.pi !== -1) {
-            this.c.set(this.r[this.pi], true);
+            this.c.add(this.r[this.pi]);
           }
           this.pi = i;
         }
@@ -242,7 +244,7 @@ var effects = [
         var i;
         if (!this.r || performance.now() - this.t > 200) {
           this.t = performance.now();
-          this.r = randomIntArray(this.chimgs.length-1).reduce(function(a,v){if (Math.random() < 0.5) {a.push(v);}; return a;},[]);
+          this.r = Util.randomIntArray(this.chimgs.length-1).reduce(function(a,v){if (Util.rnd() < 0.5) {a.push(v);}; return a;},[]);
         }
         for (i = 0; i < this.r.length; i++) {
           this.drawChImg(this.r[i]);
@@ -259,15 +261,15 @@ var busy = new Map();
 var eInit = function(e, props) {
   e.busy = true;
   e.ctx = props['ctx'];
+  e.pxs = props['pxs'];
   e.chimgs = props['chimgs'];
   e.fs = props['fs'];
   e.cwidth = props['cwidth'];
   e.cheight = props['cheight'];
   e.rgbab = props['rgbab'];
   e.border = props['border'];
-  e.yf = props['yf'];
-  e.yfp = Math.trunc((e.cheight - e.fs) / 4);
-  e.yfp += e.yf * e.yfp;
+  e.yp2 = Math.round((e.cheight - e.fs) / 2);
+  e.yp2 += e.yp2 * props['yp'];
   e.beforeAnimateFrame = function(f) {
     if (f) {
       this.ctx.clearRect(0, 0, this.cwidth, this.cheight);
@@ -281,7 +283,7 @@ var eInit = function(e, props) {
   e.drawChImg = function(i, a, px, py) {
     var img = this.chimgs[i][0], w = this.chimgs[i][1];
     this.ctx.globalAlpha = a === 0 ? 0 : a ? a : 1;
-    this.ctx.drawImage(img, 0, 0, Math.round(w+1)+1, Math.round(img.height)+1, Math.round(px ? px : this.chimgs[i][2]), Math.round(py ? py : this.yfp), Math.round(w+1)+1, Math.round(img.height)+1);
+    this.ctx.drawImage(img, 0, 0, Math.round((w+1)*this.pxs)+1, Math.round(img.height)+1, Math.round(px ? px : this.chimgs[i][2]), Math.round(py ? py+this.yp2 : this.yp2), Math.round(w+1)+1, Math.round(img.height/this.pxs)+1);
   };
   e.drawBorder = function() {
     var i, c = this.ctx, b = this.border, bc = this.rgbab;
@@ -294,20 +296,20 @@ var eInit = function(e, props) {
         c.beginPath();
         switch (i) {
           case 0:
-            c.moveTo(0, 0);
-            c.lineTo(this.cwidth, 0);
+            c.moveTo(0+b[i]/2, 0+b[i]/2);
+            c.lineTo(this.cwidth-b[i]/2, 0+b[i]/2);
             break;
           case 1:
-            c.moveTo(this.cwidth, 0);
-            c.lineTo(this.cwidth, this.cheight);
+            c.moveTo(this.cwidth-b[i]/2, 0+b[i]/2);
+            c.lineTo(this.cwidth-b[i]/2, this.cheight-b[i]/2);
             break;
           case 2:
-            c.moveTo(0, this.cheight);
-            c.lineTo(this.cwidth, this.cheight);
+            c.moveTo(0+b[i]/2, this.cheight-b[i]/2);
+            c.lineTo(this.cwidth-b[i]/2, this.cheight-b[i]/2);
             break;
           case 3:
-            c.moveTo(0, 0);
-            c.lineTo(0, this.cheight);
+            c.moveTo(0+b[i]/2, 0+b[i]/2);
+            c.lineTo(0+b[i]/2, this.cheight-b[i]/2);
             break;
         };
         c.stroke();
@@ -337,9 +339,11 @@ this.animateText = function(settings) {
   settings.effect = settings.effect || 0;
 
   var oc = document.createElement('canvas'), cc = c.getContext('2d'), occ = oc.getContext('2d');
-  var fs = Math.trunc(getEmPixels(document.getElementById('container')) * (settings.fontSize && settings.fontSize > 0 ? settings.fontSize : 1));
+  var fs = Math.trunc(Util.getEmPixels(document.getElementById('container')) * (settings.fontSize && settings.fontSize > 0 ? settings.fontSize : 1));
   var ls = settings.letterSpacing && settings.letterSpacing >= 0 ? Math.trunc(fs * settings.letterSpacing / 100) : 0;
   var chimgs = [], s, i, p, w, h, t, rf, c0, c1;
+
+  var pxs = Util.pixScale(cc);
 
   s = settings.text || '';
 
@@ -347,7 +351,7 @@ this.animateText = function(settings) {
 
   if (s) {
 
-    scalec(oc, occ, h, h);
+    scalec(pxs, oc, occ, h, h);
     cc.lineWidth = 1;
     cc.setLineDash([]);
     occ.textBaseline = 'top';
@@ -381,21 +385,24 @@ this.animateText = function(settings) {
 
   }
 
-  scalec(c, cc, w, h);
+  w = Math.round(w);
+
+  scalec(pxs, c, cc, w, h);
 
   cc.clearRect(0, 0, w, h);
 
   do {
-    e = new effects[settings.effect===-1?0:settings.effect?settings.effect:Math.trunc((effects.length-1)*Math.random())+1](
+    e = new effects[settings.effect===-1?0:settings.effect?settings.effect:Math.trunc((effects.length-1)*Util.rnd())+1](
       {
         ctx: cc,
+        pxs: pxs,
         chimgs: chimgs,
         fs: fs,
         cwidth: w,
         cheight: h,
         rgbab: settings.rgbab && settings.rgbab.length === 4 ? settings.rgbab : [0, 0, 0, 1],
         border: settings.border && settings.border.length === 4 ? settings.border : [0, 0, 0, 0],
-        yf: settings.yf ? settings.yf : 0
+        yp: settings.yp ? settings.yp : 0
       });
   } while (!settings.effect && !e.random);
 
@@ -420,64 +427,12 @@ this.animateText = function(settings) {
   requestAnimationFrame(rf);
 };
 
-var randomIntArray = function(m) {
-  var r = [], n = 0, i, j, x;
-  while (n <= m) {
-    r.splice(Math.trunc(Math.random()*(r.length+1)), 0, n);
-    i = 0;
-    while (i < r.length) {
-      if (Math.random() < 0.5) {
-        j = i === 0 ? r.length - 1 : i - 1;
-        x = r[j];
-        r[j] = r[i];
-        r[i] = x;
-      }
-      i++;
-    }
-    n++;
-  }
-  return r;
-};
-
-/*! getEmPixels  | Author: Tyson Matanich (http://matanich.com), 2013 | License: MIT */
-/* modified by j erps */
-var getEmPixels = function(e) {
-
-    // Form the style on the fly to result in smaller minified file
-    var important = '!important;';
-    var style = 'position:absolute' + important + 'visibility:hidden' + important + 'width:1em' + important + 'font-size:1em' + important + 'padding:0' + important;
-
-    // Create and style a test element
-    var testElement = document.createElement('i');
-    testElement.style.cssText = style;
-    e.appendChild(testElement);
-
-    // Get the client width of the test element
-    var value = testElement.clientWidth;
-
-    // Remove the test element
-    e.removeChild(testElement);
-
-    // Return the em value in pixels
-    return value;
-};
-
-function scalec(c, cc, w, h) {
-  var dpr = window.devicePixelRatio || 1;
-  var bspr = cc.webkitBackingStorePixelRatio||cc.mozBackingStorePixelRatio||cc.msBackingStorePixelRatio||cc.oBackingStorePixelRatio||cc.backingStorePixelRatio||1;
-  var dprbspr = dpr / bspr;
-  if (dpr === bspr) {
-    c.width = w;
-    c.height = h;
-    c.style.width = '';
-    c.style.height = '';
-  } else {
-    c.width = Math.round(w * dprbspr);
-    c.height = Math.round(h * dprbspr);
-    c.style.width = w + 'px';
-    c.style.height = h + 'px';
-  }
-  cc.scale(dprbspr, dprbspr);
+function scalec(pxs, c, cc, w, h) {
+  c.width = Math.round(w * pxs);
+  c.height = Math.round(h * pxs);
+  c.style.width = w + 'px';
+  c.style.height = h + 'px';
+  cc.scale(pxs, pxs);
 }
 
 };

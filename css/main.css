@@ -126,19 +126,17 @@ canvas.animatedText {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: 125%;
 }
 
 .sep {
   color: red;
-  vertical-align: middle;
+  margin-top: 0.16em;
 }
 
 .img-github, .img-download {
-  width: 1.3em;
-  height: 1.3em;
-  vertical-align: middle;
-  margin-bottom: 0.4rem;
+  width: 1.6em;
+  height: 1.6em;
+  margin-top: 0.35em;
 }
 
 #cpyr {
