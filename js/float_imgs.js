@@ -359,21 +359,33 @@ function sinfun() {
       max = av;
       maxt = a;
     }
-    if (max - av > av - min) {
-      max = max - av;
+    let q = Util.rnd() < 0.5;
+    if (q) {
+      [min,max] = [1-max,1-min];
+      [mint,maxt] = [maxt,mint];
+      if (max - bv > bv - min) {
+        max = max - bv;
+      } else {
+        max = bv - min;
+        maxt = mint;
+      }
     } else {
-      max = av - min;
-      maxt = mint;
+      if (max - av > av - min) {
+        max = max - av;
+      } else {
+        max = av - min;
+        maxt = mint;
+      }
     }
-    let l1 = b - a, l2 = b - maxt, l3 = l1 + l2;
+    let l1 = b - a, l2 = q ? maxt - a : b - maxt, l3 = l1 + l2;
     return function(t) {
       t = fun ? fun(t) : t;
       let x = t * l3;
       if (x > l1) {
         x = l1 - x + l1;
       }
-      x = Math.sin(Math.PI * (a + x) / f);
-      return (x < av ? av - x : x - av) / max;
+      x = q ? 1 - Math.sin(Math.PI * (b - x) / f) : Math.sin(Math.PI * (a + x) / f);
+      return (q ? x < bv ? bv - x : x - bv : x < av ? av - x : x - av) / max;
     };
   }
 
