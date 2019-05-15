@@ -109,7 +109,7 @@ function floatImgs(ssc) {
       clearInterval(iv);
       return;
     }
-    if (Util.rnd() < 0.075) {
+    if (Util.rnd() < 0.08) {
       floatImg();
     }
   }, 1000);
