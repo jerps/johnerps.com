@@ -158,6 +158,8 @@ function floatImgs(ssc) {
       h = l = x;
     }
     let x0, y0, x1, y1, xcp, ycp;
+    xcp = br.width / 3 + Util.rnd() * br.width / 3;
+    ycp = br.height / 3 + Util.rnd() * br.height / 3;
     switch (Math.trunc(4 * Util.rnd())) {
       case 0:
         x0 = 0 - l / 2 + (0.3 + 0.4 * Util.rnd()) * (br.width + l);
@@ -166,7 +168,8 @@ function floatImgs(ssc) {
           case 0:
             x1 = br.width + l / 2;
             y1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.height + l);
-
+            xcp -= br.width / 3;
+            ycp += br.width / 3;
             break;
           case 1:
             x1 = 0 - l / 2 + (0.3 + 0.4 * Util.rnd()) * (br.width + l);
@@ -175,6 +178,8 @@ function floatImgs(ssc) {
           case 2:
             x1 = 0 - l / 2;
             y1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.height + l);
+            xcp += br.width / 3;
+            ycp += br.width / 3;
             break;
         }
         break;
@@ -185,6 +190,8 @@ function floatImgs(ssc) {
           case 0:
             x1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.width + l);
             y1 = br.height + l / 2;
+            xcp -= br.width / 3;
+            ycp -= br.width / 3;
             break;
           case 1:
             x1 = 0 - l / 2;
@@ -193,6 +200,8 @@ function floatImgs(ssc) {
           case 2:
             x1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.width + l);
             y1 = 0 - l / 2;
+            xcp -= br.width / 3;
+            ycp += br.width / 3;
             break;
         }
         break;
@@ -203,6 +212,8 @@ function floatImgs(ssc) {
           case 0:
             x1 = 0 - l / 2;
             y1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.height + l);
+            xcp += br.width / 3;
+            ycp -= br.width / 3;
             break;
           case 1:
             x1 = 0 - l / 2 + (0.3 + 0.4 * Util.rnd()) * (br.width + l);
@@ -211,6 +222,8 @@ function floatImgs(ssc) {
           case 2:
             x1 = br.width + l / 2;
             y1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.height + l);
+            xcp -= br.width / 3;
+            ycp -= br.width / 3;
             break;
         }
         break;
@@ -221,6 +234,8 @@ function floatImgs(ssc) {
           case 0:
             x1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.width + l);
             y1 = 0 - l / 2;
+            xcp += br.width / 3;
+            ycp += br.width / 3;
             break;
           case 1:
             x1 = br.width + l / 2;
@@ -229,12 +244,12 @@ function floatImgs(ssc) {
           case 2:
             x1 = 0 - l / 2 + (0.4 + 0.2 * Util.rnd()) * (br.width + l);
             y1 = br.height + l / 2;
+            xcp += br.width / 3;
+            ycp -= br.width / 3;
             break;
         }
         break;
     }
-    xcp = br.width / 3 + Util.rnd() * br.width / 3;
-    ycp = br.height / 3 + Util.rnd() * br.height / 3;
     let rt = Math.trunc(Util.rnd() * 4), rd1 = 0, rd2 = 360, rr = 0, rrd = 0, rcc = Util.rnd() < 0.5;
     if (rt === 1 || rt === 2) {
       rd1 = rd1 + Math.trunc(Util.rnd() * 90);
@@ -252,12 +267,12 @@ function floatImgs(ssc) {
     img.style.height = ''+h+'px';
     img.style.borderRadius = '50%';
     img.style.zIndex = ''+(0-zi);
-    img.style.opacity = ''+(0.5-0.3*(zi-1)/8);
+    img.style.opacity = ''+(0.5-0.45*(zi-1)/8);
     img.style.position = 'absolute';
     img.style.visibility = 'hidden';
     document.body.appendChild(img);
     let visible = false;
-    let sf0 = sinfun(), sf1 = sinfun(), sf2 = sinfun(), sf3 = sinfun(), sf4 = sinfun(), sf5 = sinfun();
+    let sf0 = sinfun(zi), sf1 = sinfun(zi), sf2 = sinfun(zi), sf3 = sinfun(zi), sf4 = sinfun(zi), sf5 = sinfun(zi);
     let af = function() {
       let t = (performance.now() - ts) / td;
       if (stop() || t > 1) {
@@ -322,70 +337,35 @@ function loadImg(url) {
   });
 }
 
-function sinfun() {
+function sinfun(zi) {
 
-  let n = Math.trunc(Util.rnd() * 9), f = sinfun0();
+  let n = 1 + Math.trunc(Util.rnd() * zi / 3), f = sinfun0();
   while (--n > 0) {f = sinfun0(f);}
   return f;
 
   function sinfun0(fun) {
-    let a, b, f = Util.rnd() * 9 + 9;
-    do {a = Util.rnd() * 0.65 * f; b = 0.35 + Util.rnd() * 0.65 * f;} while (Math.abs(a-b) < 0.1);
-    if (a > b) {
-      [a,b] = [b,a];
-    }
-    let av = Math.sin(Math.PI * a / f), bv = Math.sin(Math.PI * b / f);
-    let max, maxt, min, mint;
-    if (a < f / 2) {
-      if (b < f / 2) {
-        min = av;
-        mint = a;
-        max = bv;
-        maxt = b;
+    let a = [], x = 0, y = 0, r = 0, dx, dy, dr = 0.05 + Util.rnd() * 0.05 * zi, i = 0;
+    while (y < 1) {
+      dx = 1 + Util.rnd() * zi * 2;
+      if (y > 1 - dr) {
+        dy = 1 - y;
+      } else if (y < dr || Util.rnd() > y - r) {
+        dy = Util.rnd() * (1 - y);
       } else {
-        if (av < bv) {
-          min = av;
-          mint = a;
-        } else {
-          min = bv;
-          mint = b;
-        }
-        max = 1;
-        maxt = f / 2;
+        dy = 0 - Util.rnd() * y;
       }
-    } else {
-      min = bv;
-      mint = b;
-      max = av;
-      maxt = a;
+      a.push([x, dx, y, dy]);
+      x += dx;
+      y += dy;
+      r += dr;
     }
-    let q = Util.rnd() < 0.5;
-    if (q) {
-      [min,max] = [1-max,1-min];
-      [mint,maxt] = [maxt,mint];
-      if (max - bv > bv - min) {
-        max = max - bv;
-      } else {
-        max = bv - min;
-        maxt = mint;
-      }
-    } else {
-      if (max - av > av - min) {
-        max = max - av;
-      } else {
-        max = av - min;
-        maxt = mint;
-      }
-    }
-    let l1 = b - a, l2 = q ? maxt - a : b - maxt, l3 = l1 + l2;
     return function(t) {
       t = fun ? fun(t) : t;
-      let x = t * l3;
-      if (x > l1) {
-        x = l1 - x + l1;
-      }
-      x = q ? 1 - Math.sin(Math.PI * (b - x) / f) : Math.sin(Math.PI * (a + x) / f);
-      return (q ? x < bv ? bv - x : x - bv : x < av ? av - x : x - av) / max;
+      while (t < a[i][0] / x) {i--;}
+      while (t > (a[i][0] + a[i][1]) / x) {i++;}
+      return a[i][3] < 0 ?
+          a[i][2] + a[i][3] * (1 - (Math.sin(Math.PI * (0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2)
+        : a[i][2] + a[i][3] * (Math.sin(Math.PI * (-0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2;
     };
   }
 
