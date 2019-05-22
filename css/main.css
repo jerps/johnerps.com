@@ -143,45 +143,254 @@ canvas.animatedText {
   margin-top: auto;
 }
 
+.gaugecont {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  border-radius: 1rem;
+  padding: 0.4rem 1rem 0.6rem 0.8rem;
+  transition: background-color 1s ease-out;
+}
+
+.gaugecontx {
+  background-color: rgba(100, 100, 250, 0.08);
+}
+
+.gauge {
+  width: 0.25rem;
+  height: 5rem;
+  background-color: rgba(250, 100, 100, 0.025);
+  border-style: solid;
+  border-color: rgba(100, 100, 250, 0.025);
+  border-width: 1px;
+  border-radius: 10px;
+  transition: background-color 0.7s ease-out, border-color 0.7s ease-out;
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+}
+
+.gaugesel {
+  background-color: rgba(250, 100, 100, 0.5);
+  border-color: rgba(100, 100, 250, 0.5);
+}
+
+.gaugeselx {
+  background-color: rgba(250, 100, 100, 0.15);
+  border-color: rgba(100, 100, 250, 0.15);
+}
+
+.gaugein {
+  background-color: rgba(180, 180, 250, 0.025);
+  border-style: solid;
+  border-color:rgba(200, 0, 100, 0.025);
+  border-width: 1px;
+  margin: auto;
+  border-radius: 10px;
+  transition: background-color 0.7s ease-out, border-color 0.7s ease-out;
+  padding: 0;
+}
+
+.gaugeinsel {
+  background-color: rgba(180, 180, 250, 0.5);
+  border-color:rgba(200, 0, 100, 0.5);
+}
+
+.gaugeinselx {
+  background-color: rgba(180, 180, 250, 0.15);
+  border-color:rgba(200, 0, 100, 0.15);
+}
+
+.gaugeknob {
+  position: relative;
+  background-color: rgba(100, 100, 150, 0.035);
+  border-style: solid;
+  border-color:rgba(200, 0, 100, 0.035);
+  border-width: 2px;
+  transition: background-color 0.5s ease-out, border-color 0.5s ease-out;
+  margin: 0.5rem 0 0 0;
+  padding: 1px;
+}
+
+.gaugeknob0 {
+  width: 0.6rem;
+  height: 0.4rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  left: 1.12rem;
+}
+
+.gaugeknob1 {
+  width: 0.6rem;
+  height: 0.4rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  left: 1.22rem;
+}
+
+.gaugeknob2 {
+  width: 1rem;
+  height: 0.5rem;
+  border-radius: 0.4rem;
+  left: 0.87rem;
+}
+
+.gaugeknobsel {
+  background-color: rgba(100, 100, 150, 0.5);
+  border-color:rgba(200, 0, 100, 0.5);
+}
+
+.gaugeknobselx {
+  background-color: rgba(100, 100, 150, 0.15);
+  border-color:rgba(200, 0, 100, 0.15);
+}
+
+.gaugeknobsel2 {
+  background-color: rgba(100, 0, 0, 0.5);
+  border-color:rgba(250, 50, 50, 0.6);
+}
+
+.gaugeknobin {
+  width: 40%;
+  height: 40%;
+  background-color: rgba(180, 180, 250, 0.035);
+  border-style: solid;
+  border-color:rgba(200, 0, 100, 0.035);
+  border-width: 2px;
+  margin: auto;
+  border-radius: 0.5rem;
+  transition: background-color 0.5s ease-out, border-color 0.5s ease-out;
+  padding: 0;
+}
+
+.gaugeknobinsel {
+  background-color: rgba(180, 180, 250, 0.5);
+  border-color:rgba(100, 0, 100, 0.5);
+}
+
+.gaugeknobinselx {
+  background-color: rgba(180, 180, 250, 0.15);
+  border-color:rgba(100, 0, 100, 0.15);
+}
+
+.gaugeknobinsel2 {
+  background-color: rgba(250, 250, 250, 0.5);
+  border-color:rgba(150, 0, 150, 0.6);
+}
+
+.gaugetxt {
+  font-family: 'Open Sans Condensed, Bold';
+  color: rgba(255, 255, 255, 0);
+  font-size: 0.1rem;
+  transition: color 1s ease-out, font-size 1s ease-out;
+  margin: 0 0 0 auto;
+  padding: 0;
+  position: absolute;
+  user-select: none;
+  top: 0.4rem;
+}
+
+.gaugetxtsel {
+  color: rgba(0, 0, 0, 1);
+  font-size: 1rem;
+}
+
+.gaugebtns {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0.2rem 0 0 0;
+}
+
+.gaugebtn {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 0.4rem;
+  background-color: rgba(100, 100, 150, 0.035);
+  border-style: solid;
+  border-color:rgba(200, 0, 100, 0.06);
+  background-color: rgba(100, 100, 150, 0.035);
+  border-width: 2px;
+  color:rgba(200, 0, 100, 0.05);
+  transition: background-color 0.5s ease-out, border-color 0.5s ease-out, color 0.5s ease-out;
+  margin: 0.1rem 0.2rem 0 0;
+  padding: 0;
+  font-family: 'Verdana';
+  font-size: '1.1rem';
+  font-style: 'bold';
+  text-align: center;
+  line-height: 1.1rem;
+  user-select: none;
+}
+
+.gaugebtnsel {
+  background-color: rgba(100, 100, 150, 0.5);
+  border-color:rgba(200, 0, 100, 0.5);
+  color:rgba(200, 0, 100, 0.4);
+}
+
+.gaugebtnselx {
+  background-color: rgba(100, 100, 150, 0.15);
+  border-color:rgba(200, 0, 100, 0.15);
+  color:rgba(200, 0, 100, 0.15);
+}
+
+.gaugebtnsel2 {
+  border-color:rgba(255, 0, 0, 1);
+  color:rgba(255, 0, 0, 1);
+}
+
 @media all and (max-width: 1200px) {
-  #container {
+  html {
     font-size: 0.895rem;
+  }
+  #container {
     width: 75%;
   }
 }
 @media all and (max-width: 1000px) {
-  #container {
+  html {
     font-size: 0.790rem;
+  }
+  #container {
     width: 80%;
   }
 }
 @media all and (max-width: 800px) {
-  #container {
+  html {
     font-size: 0.685rem;
+  }
+  #container {
     width: 85%;
   }
 }
 @media all and (max-width: 600px) {
-  #container {
+  html {
     font-size: 0.580rem;
+  }
+  #container {
     width: 90%;
   }
 }
 @media all and (max-width: 400px) {
-  #container {
+  html {
     font-size: 0.475rem;
+  }
+  #container {
     width: 95%;
   }
 }
 @media all and (max-width: 200px) {
-  #container {
+  html {
     font-size: 0.370rem;
+  }
+  #container {
     width: 100%;
   }
 }
 @media all and (min-width: 1201px) {
-  #container {
+  html {
     font-size: 1rem;
+  }
+  #container {
     width: 70%;
   }
 }

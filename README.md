@@ -4,6 +4,12 @@
 
 ### Changes
 
+* 2019-05-22
+
+  * Added widgets to control floating images.
+
+  * Use first working version of rss-ticker.
+
 * 2019-05-12
 
   * Added getfile.php and phpinfo.php.

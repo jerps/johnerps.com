@@ -86,7 +86,6 @@ Util.pixScale = function(cctx) {
 
 Util.rnd = mulberry32(performance.now() % (Math.pow(2, 32) - 1));
 
-
 // https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript/47593316#47593316
 function mulberry32(a) {
   return function() {
@@ -96,6 +95,32 @@ function mulberry32(a) {
     return ((t ^ t >>> 14) >>> 0) / 4294967296;
   };
 }
+
+Util.createCookie = function(name, value, days) {
+  var expires = '';
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    expires = '; expires=' + date.toGMTString();
+  }
+  document.cookie = name.trim() + '=' + escape(value.trim()) + expires + '; path=/';
+};
+
+Util.readCookie = function(name) {
+  var nameEQ = name.trim() + '=';
+  var a = document.cookie.split(';');
+  for (var i = 0; i < a.length; i++) {
+    var c = a[i].trim();
+    if (c.indexOf(nameEQ) === 0) {
+      return unescape(c.substring(nameEQ.length));
+    }
+  }
+  return null;
+};
+
+Util.eraseCookie = function(name) {
+  Util.createCookie(name, '', -1);
+};
 
 
 })();

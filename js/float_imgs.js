@@ -23,14 +23,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-const IMGPATH = 'images/float/', IMGEXT = '.jpg', IMGCOUNT = 38;
-
-
 var FloatImgs = {};
 
 
 (function() {
 
+const IMGPATH = 'images/float/', IMGEXT = '.jpg', IMGCOUNT = 38, ZISLOTS = 20;
 
 let sscounter = 0;
 
@@ -57,6 +55,123 @@ FloatImgs.stop = function() {
     window.removeEventListener('resize', resized);
   }
   stopfloat();
+};
+
+FloatImgs.t = FloatImgs.gt = FloatImgs.g10 = FloatImgs.g11 = 0;
+FloatImgs.r = FloatImgs.gr = FloatImgs.g20 = FloatImgs.g21 = 0;
+FloatImgs.d0 = FloatImgs.gd0 = FloatImgs.g30 = 0;
+FloatImgs.d1 = FloatImgs.gd1 = FloatImgs.g31 = 0;
+FloatImgs.mr0 = FloatImgs.gmr0 = FloatImgs.g40 = 0;
+FloatImgs.mr1 = FloatImgs.gmr1 = FloatImgs.g41 = 0;
+FloatImgs.ml0 = FloatImgs.gml0 = FloatImgs.g50 = 0;
+FloatImgs.ml1 = FloatImgs.gml1 = FloatImgs.g51 = 0;
+FloatImgs.ma0 = FloatImgs.gma0 = FloatImgs.g60 = 0;
+FloatImgs.ma1 = FloatImgs.gma1 = FloatImgs.g61 = 0;
+FloatImgs.mi = FloatImgs.gmi = FloatImgs.g70 = FloatImgs.g71 = 0;
+
+FloatImgs.fgt = function(g) {
+  FloatImgs.gt = FloatImgs.g10 = FloatImgs.g11 = g;
+  FloatImgs.t = 0.1 + Math.trunc(99.8 * g * 10) / 10;
+};
+
+FloatImgs.fgr = function(g) {
+  FloatImgs.gr = FloatImgs.g20 = FloatImgs.g21 = g;
+  FloatImgs.r = Math.trunc(0.999 * g * 1000) / 1000;
+};
+
+FloatImgs.fgd0 = function(g) {
+  FloatImgs.gd0 = FloatImgs.g30 = g;
+  FloatImgs.d0 = 1 + Math.trunc(998 * g);
+  if (FloatImgs.gd0 > FloatImgs.gd1) {
+    FloatImgs.fgd1(g);
+  }
+};
+
+FloatImgs.fgd1 = function(g) {
+  FloatImgs.gd1 = FloatImgs.g31 = g;
+  FloatImgs.d1 = 1 + Math.trunc(998 * g);
+  if (FloatImgs.gd1 < FloatImgs.gd0) {
+    FloatImgs.fgd0(g);
+  }
+};
+
+FloatImgs.fgmr0 = function(g) {
+  FloatImgs.gmr0 = FloatImgs.g40 = g;
+  FloatImgs.mr0 = Math.trunc(10 * g);
+  if (FloatImgs.gmr0 > FloatImgs.gmr1) {
+    FloatImgs.fgmr1(g);
+  }
+};
+
+FloatImgs.fgmr1 = function(g) {
+  FloatImgs.gmr1 = FloatImgs.g41 = g;
+  FloatImgs.mr1 = Math.trunc(10 * g);
+  if (FloatImgs.gmr1 < FloatImgs.gmr0) {
+    FloatImgs.fgmr0(g);
+  }
+};
+
+FloatImgs.fgml0 = function(g) {
+  FloatImgs.gml0 = FloatImgs.g50 = g;
+  FloatImgs.ml0 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
+  if (FloatImgs.gml0 > FloatImgs.gml1) {
+    FloatImgs.fgml1(g);
+  }
+};
+
+FloatImgs.fgml1 = function(g) {
+  FloatImgs.gml1 = FloatImgs.g51 = g;
+  FloatImgs.ml1 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
+  if (FloatImgs.gml1 < FloatImgs.gml0) {
+    FloatImgs.fgml0(g);
+  }
+};
+
+FloatImgs.fgma0 = function(g) {
+  FloatImgs.gma0 = FloatImgs.g60 = g;
+  FloatImgs.ma0 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
+  if (FloatImgs.gma0 > FloatImgs.gma1) {
+    FloatImgs.fgma1(g);
+  }
+};
+
+FloatImgs.fgma1 = function(g) {
+  FloatImgs.gma1 = FloatImgs.g61 = g;
+  FloatImgs.ma1 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
+  if (FloatImgs.gma1 < FloatImgs.gma0) {
+    FloatImgs.fgma0(g);
+  }
+};
+
+FloatImgs.fgmi = function(g) {
+  FloatImgs.gmi = FloatImgs.g70 = FloatImgs.g71 = g;
+  FloatImgs.mi = 1 + Math.trunc((ZISLOTS - 1) * g);
+};
+
+FloatImgs.fgt(0.3);
+FloatImgs.fgr(0.1);
+FloatImgs.fgd0(0.01);
+FloatImgs.fgd1(0.1);
+FloatImgs.fgmr0(0);
+FloatImgs.fgmr1(0);
+FloatImgs.fgml0(0.1);
+FloatImgs.fgml1(0.4);
+FloatImgs.fgma0(0.1);
+FloatImgs.fgma1(0.4);
+FloatImgs.fgmi(0.5);
+
+FloatImgs.dft = {
+  gt: FloatImgs.gt,
+  gr: FloatImgs.gr,
+  gd0: FloatImgs.gd0,
+  gd1: FloatImgs.gd1,
+  gmr0: FloatImgs.gmr0,
+  gmr1: FloatImgs.gmr1,
+  gml0: FloatImgs.gml0,
+  gml1: FloatImgs.gml1,
+  gma0: FloatImgs.gma0,
+  gma1: FloatImgs.gma1,
+  gmi: FloatImgs.gmi
 };
 
 function startfloat() {
@@ -104,30 +219,60 @@ function floatImgs(ssc) {
     return;
   }
 
+  let lt = performance.now(), x, zappc = 0;
+
+  FloatImgs.zapp = function() {
+    if (zappc >= Number.MAX_SAFE_INTEGER) {
+      zappc = 0;
+    }
+    zappc++;
+  };
+
   let iv = setInterval(() => {
     if (stop()) {
       clearInterval(iv);
+      FloatImgs.zapp = null;
       return;
     }
-    if (Util.rnd() < 0.2) {
+    if ((x = performance.now()) - lt > FloatImgs.t * 1000 && Util.rnd() < FloatImgs.r) {
+      lt = x;
       floatImg();
     }
-  }, 1000);
+  }, 100);
 
   async function floatImg() {
-    let zi = Math.trunc(Util.rnd() * 9) + 1, imgn, img;
-    if (zset.has(zi)) {
+    if (iset.size >= FloatImgs.mi) {
       return;
+    }
+    let zc = zappc, zi = Math.trunc(Util.rnd() * ZISLOTS) + 1, imgn = null, img;
+    if (zset.has(zi)) {
+      if (zset.size >= ZISLOTS) {
+        return;
+      }
+      let i = zi;
+      do {
+        i = i < ZISLOTS ? i+1 : 1;
+        if (i === zi) {
+          return;
+        }
+      } while (zset.has(i));
+      zi = i;
     }
     zset.add(zi);
     function exit() {
       if (ssc === sscounter) {
         zset.delete(zi);
-        iset.delete(imgn);
+        if (imgn) {
+          iset.delete(imgn);
+        }
       }
       return null;
     }
-    do {} while (iset.has(imgn = Math.trunc(Util.rnd() * IMGCOUNT) + 1) || ilist.indexOf(imgn) >= 0);
+    let x = Util.randomIntArray(IMGCOUNT-1), i = 0;
+    while (i < x.length && iset.has(imgn = x[i] + 1) || ilist.indexOf(imgn) >= 0) {i++;}
+    if (i >= x.length) {
+      exit();
+    }
     iset.add(imgn);
     ilist.push(imgn);
     if (ilist.length > IMGCOUNT / 2) {
@@ -146,8 +291,8 @@ function floatImgs(ssc) {
       return exit();
     }
     let pxs = Util.pixScale(document.createElement('canvas').getContext('2d'));
-    let w = img.width / pxs, h = img.height / pxs, br = document.body.getBoundingClientRect();
-    let x = 0.2 + 0.4 * Util.rnd(), l;
+    let l, w = img.width / pxs, h = img.height / pxs, br = document.body.getBoundingClientRect();
+    x = 0.2 + 0.4 * Util.rnd();
     if (w > h) {
       x = (x = br.width * x) > w ? w : x;
       h = x * h / w;
@@ -262,20 +407,21 @@ function floatImgs(ssc) {
       rrd = -90 + Math.trunc(Util.rnd() * 180);
     }
     let rf = 1 / (rr + 1);
-    let td = 30000 + 50000 * Util.rnd(), ts = performance.now();
+    let td = FloatImgs.d0 * 1000 + Math.trunc((FloatImgs.d1 - FloatImgs.d0 + 1) * Util.rnd()) * 1000, ts = performance.now();
     img.style.width = ''+w+'px';
     img.style.height = ''+h+'px';
     img.style.borderRadius = '50%';
     img.style.zIndex = ''+(0-zi);
-    img.style.opacity = ''+(0.5-0.45*(zi-1)/8);
+    img.style.opacity = ''+(0.5-0.35*(zi-1)/(ZISLOTS-1));
     img.style.position = 'absolute';
     img.style.visibility = 'hidden';
     document.body.appendChild(img);
     let visible = false;
-    let sf0 = sinfun(zi), sf1 = sinfun(zi), sf2 = sinfun(zi), sf3 = sinfun(zi), sf4 = sinfun(zi), sf5 = sinfun(zi);
+    let zappt = 0;
+    let sf0 = sinfun(), sf1 = sinfun(), sf2 = sinfun(), sf3 = sinfun(), sf4 = sinfun(), sf5 = sinfun();
     let af = function() {
       let t = (performance.now() - ts) / td;
-      if (stop() || t > 1) {
+      if (stop() || t > 1 || zappt > 0 && performance.now() - zappt > 2500) {
         visible = false;
         img.style.visibility = 'hidden';
         img.remove();
@@ -284,6 +430,11 @@ function floatImgs(ssc) {
       if (!visible) {
         visible = true;
         img.style.visibility = 'visible';
+      }
+      if (zappt === 0 && zc !== zappc) {
+        zappt = performance.now();
+        img.style.transition = 'opacity 2s ease-out';
+        img.style.opacity = '0';
       }
       t = sf0(t);
       let t1 = sf1(t), t2 = sf2(t);
@@ -337,16 +488,16 @@ function loadImg(url) {
   });
 }
 
-function sinfun(zi) {
+function sinfun() {
 
-  let n = 1 + Math.trunc(Util.rnd() * zi / 3), f = sinfun0();
-  while (--n > 0) {f = sinfun0(f);}
+  let n = FloatImgs.mr0 + Math.trunc((FloatImgs.mr1 - FloatImgs.mr0 + 1) * Util.rnd()), f = sinfun0();
+  while (n-- > 0) {f = sinfun0(f);}
   return f;
 
   function sinfun0(fun) {
-    let a = [], x = 0, y = 0, r = 0, dx, dy, dr = 0.05 + Util.rnd() * 0.05 * zi, i = 0;
+    let a = [], x = 0, y = 0, r = 0, dx, dy, dr = 0.05 + (FloatImgs.ma0 + (FloatImgs.ma1 - FloatImgs.ma0 + 0.01) * Util.rnd()) * 0.5, i = 0;
     while (y < 1) {
-      dx = 1 + Util.rnd() * zi * 2;
+      dx = 1 + (FloatImgs.ml0 + (FloatImgs.ml1 - FloatImgs.ml0 + 0.01) * Util.rnd()) * 10;
       if (y > 1 - dr) {
         dy = 1 - y;
       } else if (y < dr || Util.rnd() > y - r) {
