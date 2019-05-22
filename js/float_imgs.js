@@ -150,8 +150,8 @@ FloatImgs.fgmi = function(g) {
 
 FloatImgs.fgt(0.3);
 FloatImgs.fgr(0.1);
-FloatImgs.fgd0(0.05);
-FloatImgs.fgd1(0.2);
+FloatImgs.fgd0(0.1);
+FloatImgs.fgd1(0.3);
 FloatImgs.fgmr0(0);
 FloatImgs.fgmr1(0);
 FloatImgs.fgmrsl0(0);
