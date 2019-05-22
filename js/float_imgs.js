@@ -63,10 +63,10 @@ FloatImgs.d0 = FloatImgs.gd0 = FloatImgs.g30 = 0;
 FloatImgs.d1 = FloatImgs.gd1 = FloatImgs.g31 = 0;
 FloatImgs.mr0 = FloatImgs.gmr0 = FloatImgs.g40 = 0;
 FloatImgs.mr1 = FloatImgs.gmr1 = FloatImgs.g41 = 0;
-FloatImgs.ml0 = FloatImgs.gml0 = FloatImgs.g50 = 0;
-FloatImgs.ml1 = FloatImgs.gml1 = FloatImgs.g51 = 0;
-FloatImgs.ma0 = FloatImgs.gma0 = FloatImgs.g60 = 0;
-FloatImgs.ma1 = FloatImgs.gma1 = FloatImgs.g61 = 0;
+FloatImgs.mrsl0 = FloatImgs.gmrsl0 = FloatImgs.g50 = 0;
+FloatImgs.mrsl1 = FloatImgs.gmrsl1 = FloatImgs.g51 = 0;
+FloatImgs.mc0 = FloatImgs.gmc0 = FloatImgs.g60 = 0;
+FloatImgs.mc1 = FloatImgs.gmc1 = FloatImgs.g61 = 0;
 FloatImgs.mi = FloatImgs.gmi = FloatImgs.g70 = FloatImgs.g71 = 0;
 
 FloatImgs.fgt = function(g) {
@@ -81,7 +81,7 @@ FloatImgs.fgr = function(g) {
 
 FloatImgs.fgd0 = function(g) {
   FloatImgs.gd0 = FloatImgs.g30 = g;
-  FloatImgs.d0 = 1 + Math.trunc(998 * g);
+  FloatImgs.d0 = 1 + Math.trunc(98 * g);
   if (FloatImgs.gd0 > FloatImgs.gd1) {
     FloatImgs.fgd1(g);
   }
@@ -89,7 +89,7 @@ FloatImgs.fgd0 = function(g) {
 
 FloatImgs.fgd1 = function(g) {
   FloatImgs.gd1 = FloatImgs.g31 = g;
-  FloatImgs.d1 = 1 + Math.trunc(998 * g);
+  FloatImgs.d1 = 1 + Math.trunc(98 * g);
   if (FloatImgs.gd1 < FloatImgs.gd0) {
     FloatImgs.fgd0(g);
   }
@@ -111,35 +111,35 @@ FloatImgs.fgmr1 = function(g) {
   }
 };
 
-FloatImgs.fgml0 = function(g) {
-  FloatImgs.gml0 = FloatImgs.g50 = g;
-  FloatImgs.ml0 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
-  if (FloatImgs.gml0 > FloatImgs.gml1) {
-    FloatImgs.fgml1(g);
+FloatImgs.fgmrsl0 = function(g) {
+  FloatImgs.gmrsl0 = FloatImgs.g50 = g;
+  FloatImgs.mrsl0 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
+  if (FloatImgs.gmrsl0 > FloatImgs.gmrsl1) {
+    FloatImgs.fgmrsl1(g);
   }
 };
 
-FloatImgs.fgml1 = function(g) {
-  FloatImgs.gml1 = FloatImgs.g51 = g;
-  FloatImgs.ml1 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
-  if (FloatImgs.gml1 < FloatImgs.gml0) {
-    FloatImgs.fgml0(g);
+FloatImgs.fgmrsl1 = function(g) {
+  FloatImgs.gmrsl1 = FloatImgs.g51 = g;
+  FloatImgs.mrsl1 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
+  if (FloatImgs.gmrsl1 < FloatImgs.grsl0) {
+    FloatImgs.fgmrsl0(g);
   }
 };
 
-FloatImgs.fgma0 = function(g) {
-  FloatImgs.gma0 = FloatImgs.g60 = g;
-  FloatImgs.ma0 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
-  if (FloatImgs.gma0 > FloatImgs.gma1) {
-    FloatImgs.fgma1(g);
+FloatImgs.fgmc0 = function(g) {
+  FloatImgs.gmc0 = FloatImgs.g60 = g;
+  FloatImgs.mc0 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
+  if (FloatImgs.gmc0 > FloatImgs.gmc1) {
+    FloatImgs.fgmc1(g);
   }
 };
 
-FloatImgs.fgma1 = function(g) {
-  FloatImgs.gma1 = FloatImgs.g61 = g;
-  FloatImgs.ma1 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
-  if (FloatImgs.gma1 < FloatImgs.gma0) {
-    FloatImgs.fgma0(g);
+FloatImgs.fgmc1 = function(g) {
+  FloatImgs.gmc1 = FloatImgs.g61 = g;
+  FloatImgs.mc1 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
+  if (FloatImgs.gmc1 < FloatImgs.gmc0) {
+    FloatImgs.fgmc0(g);
   }
 };
 
@@ -154,24 +154,24 @@ FloatImgs.fgd0(0.01);
 FloatImgs.fgd1(0.1);
 FloatImgs.fgmr0(0);
 FloatImgs.fgmr1(0);
-FloatImgs.fgml0(0.1);
-FloatImgs.fgml1(0.4);
-FloatImgs.fgma0(0.1);
-FloatImgs.fgma1(0.4);
+FloatImgs.fgmrsl0(0.1);
+FloatImgs.fgmrsl1(0.4);
+FloatImgs.fgmc0(0.1);
+FloatImgs.fgmc1(0.4);
 FloatImgs.fgmi(0.5);
 
 FloatImgs.dft = {
-  gt: FloatImgs.gt,
-  gr: FloatImgs.gr,
-  gd0: FloatImgs.gd0,
-  gd1: FloatImgs.gd1,
-  gmr0: FloatImgs.gmr0,
-  gmr1: FloatImgs.gmr1,
-  gml0: FloatImgs.gml0,
-  gml1: FloatImgs.gml1,
-  gma0: FloatImgs.gma0,
-  gma1: FloatImgs.gma1,
-  gmi: FloatImgs.gmi
+  gt:     FloatImgs.gt,
+  gr:     FloatImgs.gr,
+  gd0:    FloatImgs.gd0,
+  gd1:    FloatImgs.gd1,
+  gmr0:   FloatImgs.gmr0,
+  gmr1:   FloatImgs.gmr1,
+  gmrsl0: FloatImgs.gmrsl0,
+  gmrsl1: FloatImgs.gmrsl1,
+  gmc0:   FloatImgs.gmc0,
+  gmc1:   FloatImgs.gmc1,
+  gmi:    FloatImgs.gmi
 };
 
 function startfloat() {
@@ -495,9 +495,9 @@ function sinfun() {
   return f;
 
   function sinfun0(fun) {
-    let a = [], x = 0, y = 0, r = 0, dx, dy, dr = 0.05 + (FloatImgs.ma0 + (FloatImgs.ma1 - FloatImgs.ma0 + 0.01) * Util.rnd()) * 0.5, i = 0;
+    let a = [], x = 0, y = 0, r = 0, dx, dy, dr = 0.05 + (1 - (FloatImgs.mc0 + (FloatImgs.mc1 - FloatImgs.mc0 + 0.01) * Util.rnd())) * 0.6, i = 0;
     while (y < 1) {
-      dx = 1 + (FloatImgs.ml0 + (FloatImgs.ml1 - FloatImgs.ml0 + 0.01) * Util.rnd()) * 10;
+      dx = 1 + (FloatImgs.mrsl0 + (FloatImgs.mrsl1 - FloatImgs.mrsl0 + 0.01) * Util.rnd()) * 10;
       if (y > 1 - dr) {
         dy = 1 - y;
       } else if (y < dr || Util.rnd() > y - r) {

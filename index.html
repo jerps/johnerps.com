@@ -270,34 +270,34 @@ function updFloatImgs_gmr1(y) {
   updGauge4Knob();
 }
 
-function updFloatImgs_gml0(y) {
+function updFloatImgs_gmrsl0(y) {
   var x;
   if (el.gauge5y0 >= 0) {
-    FloatImgs.fgml0((x = el.gauge5v0 + (el.gauge5y0 - y) / el.gauge5.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+    FloatImgs.fgmrsl0((x = el.gauge5v0 + (el.gauge5y0 - y) / el.gauge5.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
   }
   updGauge5Knob();
 }
 
-function updFloatImgs_gml1(y) {
+function updFloatImgs_gmrsl1(y) {
   var x;
   if (el.gauge5y1 >= 0) {
-    FloatImgs.fgml1((x = el.gauge5v1 + (el.gauge5y1 - y) / el.gauge5.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+    FloatImgs.fgmrsl1((x = el.gauge5v1 + (el.gauge5y1 - y) / el.gauge5.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
   }
   updGauge5Knob();
 }
 
-function updFloatImgs_gma0(y) {
+function updFloatImgs_gmc0(y) {
   var x;
   if (el.gauge6y0 >= 0) {
-    FloatImgs.fgma0((x = el.gauge6v0 + (el.gauge6y0 - y) / el.gauge6.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+    FloatImgs.fgmc0((x = el.gauge6v0 + (el.gauge6y0 - y) / el.gauge6.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
   }
   updGauge6Knob();
 }
 
-function updFloatImgs_gma1(y) {
+function updFloatImgs_gmc1(y) {
   var x;
   if (el.gauge6y1 >= 0) {
-    FloatImgs.fgma1((x = el.gauge6v1 + (el.gauge6y1 - y) / el.gauge6.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+    FloatImgs.fgmc1((x = el.gauge6v1 + (el.gauge6y1 - y) / el.gauge6.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
   }
   updGauge6Knob();
 }
@@ -312,18 +312,18 @@ function updFloatImgs_gmi(y) {
 
 function updGauge1Knob() {
   el.gauge1knob0.style.top = '' + ((el.gauge1.getBoundingClientRect().height - el.gauge1knob0.getBoundingClientRect().height) * (1 - FloatImgs.gt)).toFixed(3) + 'px';
-  el.gauge1txt.textContent = 'Interval: ' + FloatImgs.t.toFixed(1) + ' sec' + (FloatImgs.t === 1 ? '' : 's');
+  el.gauge1txt.textContent = 'Interval : ' + FloatImgs.t.toFixed(1) + ' sec' + (FloatImgs.t === 1 ? '' : 's');
 }
 
 function updGauge2Knob() {
   el.gauge2knob0.style.top = '' + ((el.gauge2.getBoundingClientRect().height - el.gauge2knob0.getBoundingClientRect().height) * (1 - FloatImgs.gr)).toFixed(3) + 'px';
-  el.gauge2txt.textContent = 'Probability: ' + FloatImgs.r.toFixed(3);
+  el.gauge2txt.textContent = 'Probability : ' + FloatImgs.r.toFixed(3);
 }
 
 function updGauge3Knob() {
   el.gauge3knob0.style.top = '' + ((el.gauge3.getBoundingClientRect().height - el.gauge3knob0.getBoundingClientRect().height) * (1 - FloatImgs.gd0)).toFixed(3) + 'px';
   el.gauge3knob1.style.top = '' + ((el.gauge3.getBoundingClientRect().height - el.gauge3knob1.getBoundingClientRect().height) * (1 - FloatImgs.gd1)).toFixed(3) + 'px';
-  let t = 'Duration: ' + FloatImgs.d0.toFixed(0);
+  let t = 'Duration : ' + FloatImgs.d0.toFixed(0);
   if (FloatImgs.d0 !== FloatImgs.d1) {
     t += ' - ' + FloatImgs.d1.toFixed(0);
   }
@@ -333,7 +333,7 @@ function updGauge3Knob() {
 function updGauge4Knob() {
   el.gauge4knob0.style.top = '' + ((el.gauge4.getBoundingClientRect().height - el.gauge4knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmr0)).toFixed(3) + 'px';
   el.gauge4knob1.style.top = '' + ((el.gauge4.getBoundingClientRect().height - el.gauge4knob1.getBoundingClientRect().height) * (1 - FloatImgs.gmr1)).toFixed(3) + 'px';
-  t = 'Motion/recursion: ' + FloatImgs.mr0.toFixed(0);
+  t = 'Motion / recursion : ' + FloatImgs.mr0.toFixed(0);
   if (FloatImgs.mr0 !== FloatImgs.mr1) {
     t += ' - ' + FloatImgs.mr1.toFixed(0);
   }
@@ -341,21 +341,21 @@ function updGauge4Knob() {
 }
 
 function updGauge5Knob() {
-  el.gauge5knob0.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob0.getBoundingClientRect().height) * (1 - FloatImgs.gml0)).toFixed(3) + 'px';
-  el.gauge5knob1.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob1.getBoundingClientRect().height) * (1 - FloatImgs.gml1)).toFixed(3) + 'px';
-  t = 'Motion/length: ' + FloatImgs.ml0.toFixed(2);
-  if (FloatImgs.ml0 !== FloatImgs.ml1) {
-    t += ' - ' + FloatImgs.ml1.toFixed(2);
+  el.gauge5knob0.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmrsl0)).toFixed(3) + 'px';
+  el.gauge5knob1.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob1.getBoundingClientRect().height) * (1 - FloatImgs.gmrsl1)).toFixed(3) + 'px';
+  t = 'Motion / rel step length : ' + FloatImgs.mrsl0.toFixed(2);
+  if (FloatImgs.mrsl0 !== FloatImgs.mrsl1) {
+    t += ' - ' + FloatImgs.mrsl1.toFixed(2);
   }
   el.gauge5txt.textContent = t;
 }
 
 function updGauge6Knob() {
-  el.gauge6knob0.style.top = '' + ((el.gauge6.getBoundingClientRect().height - el.gauge6knob0.getBoundingClientRect().height) * (1 - FloatImgs.gma0)).toFixed(3) + 'px';
-  el.gauge6knob1.style.top = '' + ((el.gauge6.getBoundingClientRect().height - el.gauge6knob1.getBoundingClientRect().height) * (1 - FloatImgs.gma1)).toFixed(3) + 'px';
-  t = 'Motion/amplitude: ' + FloatImgs.ma0.toFixed(2);
-  if (FloatImgs.ma0 !== FloatImgs.ma1) {
-    t += ' - ' + FloatImgs.ma1.toFixed(2);
+  el.gauge6knob0.style.top = '' + ((el.gauge6.getBoundingClientRect().height - el.gauge6knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmc0)).toFixed(3) + 'px';
+  el.gauge6knob1.style.top = '' + ((el.gauge6.getBoundingClientRect().height - el.gauge6knob1.getBoundingClientRect().height) * (1 - FloatImgs.gmc1)).toFixed(3) + 'px';
+  t = 'Motion / complexity : ' + FloatImgs.mc0.toFixed(2);
+  if (FloatImgs.mc0 !== FloatImgs.mc1) {
+    t += ' - ' + FloatImgs.mc1.toFixed(2);
   }
   el.gauge6txt.textContent = t;
 }
@@ -774,16 +774,16 @@ window.onload = function() {
       updFloatImgs_gmr1(e.pageY);
     }
     if (el.gauge5y0 >= 0) {
-      updFloatImgs_gml0(e.pageY);
+      updFloatImgs_gmrsl0(e.pageY);
     }
     if (el.gauge5y1 >= 0) {
-      updFloatImgs_gml1(e.pageY);
+      updFloatImgs_gmrsl1(e.pageY);
     }
     if (el.gauge6y0 >= 0) {
-      updFloatImgs_gma0(e.pageY);
+      updFloatImgs_gmc0(e.pageY);
     }
     if (el.gauge6y1 >= 0) {
-      updFloatImgs_gma1(e.pageY);
+      updFloatImgs_gmc1(e.pageY);
     }
     if (el.gauge7y0 >= 0) {
       updFloatImgs_gmi(e.pageY);
@@ -849,13 +849,13 @@ window.onload = function() {
       gaugeUnselect(4);
     }
     if (el.gauge5y0 >= 0) {
-      updFloatImgs_gml0(e.pageY);
+      updFloatImgs_gmrsl0(e.pageY);
       el.gauge5y0 = el.gauge5v0 = -1;
       el.gauge5knob0.classList.remove('gaugeknobsel2');
       el.gauge5knobin0.classList.remove('gaugeknobinsel2');
     }
     if (el.gauge5y1 >= 0) {
-      updFloatImgs_gml1(e.pageY);
+      updFloatImgs_gmrsl1(e.pageY);
       el.gauge5y1 = el.gauge5v1 = -1;
       el.gauge5knob1.classList.remove('gaugeknobsel2');
       el.gauge5knobin1.classList.remove('gaugeknobinsel2');
@@ -865,13 +865,13 @@ window.onload = function() {
       gaugeUnselect(5);
     }
     if (el.gauge6y0 >= 0) {
-      updFloatImgs_gma0(e.pageY);
+      updFloatImgs_gmc0(e.pageY);
       el.gauge6y0 = el.gauge6v0 = -1;
       el.gauge6knob0.classList.remove('gaugeknobsel2');
       el.gauge6knobin0.classList.remove('gaugeknobinsel2');
     }
     if (el.gauge6y1 >= 0) {
-      updFloatImgs_gma1(e.pageY);
+      updFloatImgs_gmc1(e.pageY);
       el.gauge6y1 = el.gauge6v1 = -1;
       el.gauge6knob1.classList.remove('gaugeknobsel2');
       el.gauge6knobin1.classList.remove('gaugeknobinsel2');
@@ -1111,10 +1111,10 @@ window.onload = function() {
     FloatImgs.fgd1(FloatImgs.dft.gd1);
     FloatImgs.fgmr0(FloatImgs.dft.gmr0);
     FloatImgs.fgmr1(FloatImgs.dft.gmr1);
-    FloatImgs.fgml0(FloatImgs.dft.gml0);
-    FloatImgs.fgml1(FloatImgs.dft.gml1);
-    FloatImgs.fgma0(FloatImgs.dft.gma0);
-    FloatImgs.fgma1(FloatImgs.dft.gma1);
+    FloatImgs.fgmrsl0(FloatImgs.dft.gmrsl0);
+    FloatImgs.fgmrsl1(FloatImgs.dft.gmrsl1);
+    FloatImgs.fgmc0(FloatImgs.dft.gmc0);
+    FloatImgs.fgmc1(FloatImgs.dft.gmc1);
     FloatImgs.fgmi(FloatImgs.dft.gmi);
     updGaugeKnobs();
   }, false);
@@ -1267,17 +1267,17 @@ function tip(sel, text) {
 function createCookieFloatImgs() {
   Util.createCookie(
       'FloatImgs',
-      't='   + FloatImgs.gt   + ';' +
-      'r='   + FloatImgs.gr   + ';' +
-      'd0='  + FloatImgs.gd0  + ';' +
-      'd1='  + FloatImgs.gd1  + ';' +
-      'mr0=' + FloatImgs.gmr0 + ';' +
-      'mr1=' + FloatImgs.gmr1 + ';' +
-      'ml0=' + FloatImgs.gml0 + ';' +
-      'ml1=' + FloatImgs.gml1 + ';' +
-      'ma0=' + FloatImgs.gma0 + ';' +
-      'ma1=' + FloatImgs.gma1 + ';' +
-      'mi='  + FloatImgs.gmi,
+      't='     + FloatImgs.gt     + ';' +
+      'r='     + FloatImgs.gr     + ';' +
+      'd0='    + FloatImgs.gd0    + ';' +
+      'd1='    + FloatImgs.gd1    + ';' +
+      'mr0='   + FloatImgs.gmr0   + ';' +
+      'mr1='   + FloatImgs.gmr1   + ';' +
+      'mrsl0=' + FloatImgs.gmrsl0 + ';' +
+      'mrsl1=' + FloatImgs.gmrsl1 + ';' +
+      'mc0='   + FloatImgs.gmc0   + ';' +
+      'mc1='   + FloatImgs.gmc1   + ';' +
+      'mi='    + FloatImgs.gmi,
       365);
 }
 
@@ -1308,17 +1308,17 @@ function readCookieFloatImgs() {
       case 'mr1':
         FloatImgs.fgmr1(parseFloat(a2[1]));
         break;
-      case 'ml0':
-        FloatImgs.fgml0(parseFloat(a2[1]));
+      case 'mrsl0':
+        FloatImgs.fgmrsl0(parseFloat(a2[1]));
         break;
-      case 'ml1':
-        FloatImgs.fgml1(parseFloat(a2[1]));
+      case 'mrsl1':
+        FloatImgs.fgmrsl1(parseFloat(a2[1]));
         break;
-      case 'ma0':
-        FloatImgs.fgma0(parseFloat(a2[1]));
+      case 'mc0':
+        FloatImgs.fgmc0(parseFloat(a2[1]));
         break;
-      case 'ma1':
-        FloatImgs.fgma1(parseFloat(a2[1]));
+      case 'mc1':
+        FloatImgs.fgmc1(parseFloat(a2[1]));
         break;
       case 'mi':
         FloatImgs.fgmi(parseFloat(a2[1]));
