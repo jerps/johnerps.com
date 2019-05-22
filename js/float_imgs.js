@@ -150,14 +150,14 @@ FloatImgs.fgmi = function(g) {
 
 FloatImgs.fgt(0.3);
 FloatImgs.fgr(0.1);
-FloatImgs.fgd0(0.01);
-FloatImgs.fgd1(0.1);
+FloatImgs.fgd0(0.05);
+FloatImgs.fgd1(0.2);
 FloatImgs.fgmr0(0);
 FloatImgs.fgmr1(0);
-FloatImgs.fgmrsl0(0.1);
-FloatImgs.fgmrsl1(0.4);
-FloatImgs.fgmc0(0.1);
-FloatImgs.fgmc1(0.4);
+FloatImgs.fgmrsl0(0);
+FloatImgs.fgmrsl1(0.5);
+FloatImgs.fgmc0(0);
+FloatImgs.fgmc1(0.5);
 FloatImgs.fgmi(0.5);
 
 FloatImgs.dft = {
