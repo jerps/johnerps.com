@@ -41,6 +41,10 @@ let zset = new Set();
 let iset = new Set();
 
 
+FloatImgs.tCallback = null;
+FloatImgs.rCallback = null;
+
+
 FloatImgs.start = function() {
   if (!rszlset) {
     rszlset = true;
@@ -112,13 +116,13 @@ FloatImgs.fgmc1 = function(g) {
   }
 };
 
-FloatImgs.fgt(0.3);
-FloatImgs.fgr(0.1);
-FloatImgs.fgmi(0.5);
-FloatImgs.fgd0(0.1);
-FloatImgs.fgd1(0.3);
+FloatImgs.fgt(0.2);
+FloatImgs.fgr(0.4);
+FloatImgs.fgmi(0.4);
+FloatImgs.fgd0(0.05);
+FloatImgs.fgd1(0.4);
 FloatImgs.fgmc0(0);
-FloatImgs.fgmc1(0.5);
+FloatImgs.fgmc1(0.4);
 
 FloatImgs.dft = {
   gt:     FloatImgs.gt,
@@ -190,9 +194,17 @@ function floatImgs(ssc) {
       FloatImgs.zapp = null;
       return;
     }
-    if ((x = performance.now()) - lt > FloatImgs.t * 1000 && Util.rnd() < FloatImgs.r) {
+    if ((x = performance.now()) - lt > FloatImgs.t * 1000) {
       lt = x;
-      floatImg();
+      if (FloatImgs.tCallback !== null) {
+        FloatImgs.tCallback();
+      }
+      if (Util.rnd() < FloatImgs.r) {
+        if (FloatImgs.rCallback !== null) {
+          FloatImgs.rCallback();
+        }
+        floatImg();
+      }
     }
   }, 100);
 

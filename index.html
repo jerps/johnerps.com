@@ -200,7 +200,7 @@ var r0a = 0.035, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.4, r2 = 
 
 var ready = false, ak, lmpx, lmpy, lmmt = performance.now(), lmmtd = 50, e;
 
-var oneknob = new Set([1,2,3]);
+var gaugenum = 5, oneknob = new Set([1,2,3]);
 
 function updFloatImgs_gt(y) {
   var x;
@@ -259,23 +259,23 @@ function updFloatImgs_gmc1(y) {
 }
 
 function updGauge1Knob() {
-  el.gauge1knob0.style.top = '' + ((el.gauge1.getBoundingClientRect().height - el.gauge1knob0.getBoundingClientRect().height) * (1 - FloatImgs.gt)).toFixed(3) + 'px';
+  el.gauge1knob0.style.top = '' + (el.gauge1.getBoundingClientRect().height * (1 - FloatImgs.gt)).toFixed(3) + 'px';
   el.gauge1txt.textContent = 'Interval : ' + FloatImgs.t.toFixed(1) + ' sec' + (FloatImgs.t === 1 ? '' : 's');
 }
 
 function updGauge2Knob() {
-  el.gauge2knob0.style.top = '' + ((el.gauge2.getBoundingClientRect().height - el.gauge2knob0.getBoundingClientRect().height) * (1 - FloatImgs.gr)).toFixed(3) + 'px';
+  el.gauge2knob0.style.top = '' + (el.gauge2.getBoundingClientRect().height * (1 - FloatImgs.gr)).toFixed(3) + 'px';
   el.gauge2txt.textContent = 'Probability : ' + FloatImgs.r.toFixed(3);
 }
 
 function updGauge3Knob() {
-  el.gauge3knob0.style.top = '' + ((el.gauge3.getBoundingClientRect().height - el.gauge3knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmi)).toFixed(3) + 'px';
+  el.gauge3knob0.style.top = '' + (el.gauge3.getBoundingClientRect().height * (1 - FloatImgs.gmi)).toFixed(3) + 'px';
   el.gauge3txt.textContent = 'Max ' + FloatImgs.mi.toFixed(0) + ' image' + (FloatImgs.mi === 1 ? '' : 's');
 }
 
 function updGauge4Knob() {
-  el.gauge4knob0.style.top = '' + ((el.gauge4.getBoundingClientRect().height - el.gauge4knob0.getBoundingClientRect().height) * (1 - FloatImgs.gd0)).toFixed(3) + 'px';
-  el.gauge4knob1.style.top = '' + ((el.gauge4.getBoundingClientRect().height - el.gauge4knob1.getBoundingClientRect().height) * (1 - FloatImgs.gd1)).toFixed(3) + 'px';
+  el.gauge4knob0.style.top = '' + (el.gauge4.getBoundingClientRect().height * (1 - FloatImgs.gd0)).toFixed(3) + 'px';
+  el.gauge4knob1.style.top = '' + (el.gauge4.getBoundingClientRect().height * (1 - FloatImgs.gd1)).toFixed(3) + 'px';
   let t = 'Duration : ' + FloatImgs.d0.toFixed(0);
   if (FloatImgs.d0 !== FloatImgs.d1) {
     t += ' - ' + FloatImgs.d1.toFixed(0);
@@ -284,8 +284,8 @@ function updGauge4Knob() {
 }
 
 function updGauge5Knob() {
-  el.gauge5knob0.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmc0)).toFixed(3) + 'px';
-  el.gauge5knob1.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob1.getBoundingClientRect().height) * (1 - FloatImgs.gmc1)).toFixed(3) + 'px';
+  el.gauge5knob0.style.top = '' + (el.gauge5.getBoundingClientRect().height * (1 - FloatImgs.gmc0)).toFixed(3) + 'px';
+  el.gauge5knob1.style.top = '' + (el.gauge5.getBoundingClientRect().height * (1 - FloatImgs.gmc1)).toFixed(3) + 'px';
   t = 'Motion complexity : ' + FloatImgs.mc0.toFixed(2);
   if (FloatImgs.mc0 !== FloatImgs.mc1) {
     t += ' - ' + FloatImgs.mc1.toFixed(2);
@@ -460,6 +460,32 @@ function gaugeInit(n) {
     }, false);
   }
 
+}
+
+let gaugeknobTTimer = null;
+FloatImgs.tCallback = function() {
+  if (gaugeknobTTimer) {
+    clearTimeout(gaugeknobTTimer);
+  } else {
+    el.gauge1knobin0.classList.add('gaugeknobinblink');
+  }
+  gaugeknobTTimer = setTimeout(function() {
+    gaugeknobTTimer = null;
+    el.gauge1knobin0.classList.remove('gaugeknobinblink');
+  }, 200);
+}
+
+let gaugeknobRTimer = null;
+FloatImgs.rCallback = function() {
+  if (gaugeknobRTimer) {
+    clearTimeout(gaugeknobRTimer);
+  } else {
+    el.gauge2knobin0.classList.add('gaugeknobinblink');
+  }
+  gaugeknobRTimer = setTimeout(function() {
+    gaugeknobRTimer = null;
+    el.gauge2knobin0.classList.remove('gaugeknobinblink');
+  }, 200);
 }
 
 window.onload = function() {
