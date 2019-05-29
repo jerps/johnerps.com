@@ -29,33 +29,38 @@ hr {
   height: 1px;
 }
 
-@keyframes anchorhover {
-  0%{background-position:0% 74%}
-  50%{background-position:100% 27%}
-  100%{background-position:0% 74%}
-}
-
 a {
   text-decoration: none;
-  border-style: solid;
-  border-width: 2px;
-  border-color: rgba(255, 255, 255, 0);
 }
 a:hover {
   text-decoration: none;
-  background: linear-gradient(218deg, #2A8, #555, #8CC);
-  background-size: 600% 600%;
-  animation: anchorhover 15s ease infinite;
-  border-style: solid;
-  border-width: 2px;
-  border-color:#255;
-  border-radius: 50%;
 }
 a:active {
   text-decoration: none;
 }
 a:visited {
   text-decoration: none;
+}
+
+@keyframes hovereffect1 {
+  0%{background-position:0% 74%}
+  50%{background-position:100% 27%}
+  100%{background-position:0% 74%}
+}
+
+.hoverEffect1 {
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0);
+}
+.hoverEffect1:hover {
+  background: linear-gradient(218deg, #2A8, #555, #8CC);
+  background-size: 600% 600%;
+  animation: hovereffect1 15s ease infinite;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#255;
+  border-radius: 50%;
 }
 
 canvas.animatedText {
