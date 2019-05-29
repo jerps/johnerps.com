@@ -237,6 +237,7 @@ canvas.animatedText {
 .gaugeknobsel {
   background-color: rgba(100, 100, 150, 0.5);
   border-color:rgba(200, 0, 100, 0.5);
+  transition: background-color 0.2s ease-out, border-color 0.5s ease-out;
 }
 
 .gaugeknobselx {
@@ -265,6 +266,7 @@ canvas.animatedText {
 .gaugeknobinsel {
   background-color: rgba(180, 180, 250, 0.5);
   border-color:rgba(100, 0, 100, 0.5);
+  transition: background-color 0.2s ease-out, border-color 0.5s ease-out;
 }
 
 .gaugeknobinselx {
@@ -326,6 +328,7 @@ canvas.animatedText {
   background-color: rgba(100, 100, 150, 0.5);
   border-color:rgba(200, 0, 100, 0.5);
   color:rgba(200, 0, 100, 0.4);
+  transition: background-color 0.2s ease-out, border-color 0.5s ease-out, color 0.5s ease-out;
 }
 
 .gaugebtnselx {
