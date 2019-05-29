@@ -55,38 +55,28 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           <div id="gaugeload" class="gaugebtn">L</div>
           <div id="gaugeldft" class="gaugebtn">D</div>
         </div>
-        <div id="gauge1txt" class="gaugetxt" style="margin-left: 2rem"></div>
+        <div id="gauge1txt" class="gaugetxt" style="margin-left: 0rem"></div>
         <div id="gauge1knob0" class="gaugeknob gaugeknob2">
           <div id="gauge1knobin0" class="gaugeknobin"></div>
         </div>
         <div id="gauge1" class="gauge">
           <div id="gauge1in" class="gaugein"></div>
         </div>
-        <div id="gauge2txt" class="gaugetxt" style="margin-left: 3rem"></div>
+        <div id="gauge2txt" class="gaugetxt" style="margin-left: 1rem"></div>
         <div id="gauge2knob0" class="gaugeknob gaugeknob2">
           <div id="gauge2knobin0" class="gaugeknobin"></div>
         </div>
         <div id="gauge2" class="gauge">
           <div id="gauge2in" class="gaugein"></div>
         </div>
-        <div id="gauge7txt" class="gaugetxt" style="margin-left: 4rem"></div>
-        <div id="gauge7knob0" class="gaugeknob gaugeknob2">
-          <div id="gauge7knobin0" class="gaugeknobin"></div>
-        </div>
-        <div id="gauge7" class="gauge">
-          <div id="gauge7in" class="gaugein"></div>
-        </div>
-        <div id="gauge3txt" class="gaugetxt" style="margin-left: 5rem"></div>
-        <div id="gauge3knob0" class="gaugeknob gaugeknob0">
+        <div id="gauge3txt" class="gaugetxt" style="margin-left: 2rem"></div>
+        <div id="gauge3knob0" class="gaugeknob gaugeknob2">
           <div id="gauge3knobin0" class="gaugeknobin"></div>
-        </div>
-        <div id="gauge3knob1" class="gaugeknob gaugeknob1">
-          <div id="gauge3knobin1" class="gaugeknobin"></div>
         </div>
         <div id="gauge3" class="gauge">
           <div id="gauge3in" class="gaugein"></div>
         </div>
-        <div id="gauge4txt" class="gaugetxt" style="margin-left: 6rem"></div>
+        <div id="gauge4txt" class="gaugetxt" style="margin-left: 3rem"></div>
         <div id="gauge4knob0" class="gaugeknob gaugeknob0">
           <div id="gauge4knobin0" class="gaugeknobin"></div>
         </div>
@@ -96,7 +86,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <div id="gauge4" class="gauge">
           <div id="gauge4in" class="gaugein"></div>
         </div>
-        <div id="gauge5txt" class="gaugetxt" style="margin-left: 7rem"></div>
+        <div id="gauge5txt" class="gaugetxt" style="margin-left: 4rem"></div>
         <div id="gauge5knob0" class="gaugeknob gaugeknob0">
           <div id="gauge5knobin0" class="gaugeknobin"></div>
         </div>
@@ -105,16 +95,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </div>
         <div id="gauge5" class="gauge">
           <div id="gauge5in" class="gaugein"></div>
-        </div>
-        <div id="gauge6txt" class="gaugetxt" style="margin-left: 8rem"></div>
-        <div id="gauge6knob0" class="gaugeknob gaugeknob0">
-          <div id="gauge6knobin0" class="gaugeknobin"></div>
-        </div>
-        <div id="gauge6knob1" class="gaugeknob gaugeknob1">
-          <div id="gauge6knobin1" class="gaugeknobin"></div>
-        </div>
-        <div id="gauge6" class="gauge">
-          <div id="gauge6in" class="gaugein"></div>
         </div>
       </div>
       <div>
@@ -220,7 +200,7 @@ var r0a = 0.035, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.4, r2 = 
 
 var ready = false, ak, lmpx, lmpy, lmmt = performance.now(), lmmtd = 50, e;
 
-var oneknob = new Set([1,2,7]);
+var oneknob = new Set([1,2,3]);
 
 function updFloatImgs_gt(y) {
   var x;
@@ -238,76 +218,44 @@ function updFloatImgs_gr(y) {
   updGauge2Knob();
 }
 
-function updFloatImgs_gd0(y) {
+function updFloatImgs_gmi(y) {
   var x;
   if (el.gauge3y0 >= 0) {
-    FloatImgs.fgd0((x = el.gauge3v0 + (el.gauge3y0 - y) / el.gauge3.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+    FloatImgs.fgmi((x = el.gauge3v0 + (el.gauge3y0 - y) / el.gauge3.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
   }
   updGauge3Knob();
+}
+
+function updFloatImgs_gd0(y) {
+  var x;
+  if (el.gauge4y0 >= 0) {
+    FloatImgs.fgd0((x = el.gauge4v0 + (el.gauge4y0 - y) / el.gauge4.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+  }
+  updGauge4Knob();
 }
 
 function updFloatImgs_gd1(y) {
   var x;
-  if (el.gauge3y1 >= 0) {
-    FloatImgs.fgd1((x = el.gauge3v1 + (el.gauge3y1 - y) / el.gauge3.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
-  }
-  updGauge3Knob();
-}
-
-function updFloatImgs_gmr0(y) {
-  var x;
-  if (el.gauge4y0 >= 0) {
-    FloatImgs.fgmr0((x = el.gauge4v0 + (el.gauge4y0 - y) / el.gauge4.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
-  }
-  updGauge4Knob();
-}
-
-function updFloatImgs_gmr1(y) {
-  var x;
   if (el.gauge4y1 >= 0) {
-    FloatImgs.fgmr1((x = el.gauge4v1 + (el.gauge4y1 - y) / el.gauge4.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+    FloatImgs.fgd1((x = el.gauge4v1 + (el.gauge4y1 - y) / el.gauge4.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
   }
   updGauge4Knob();
-}
-
-function updFloatImgs_gmrsl0(y) {
-  var x;
-  if (el.gauge5y0 >= 0) {
-    FloatImgs.fgmrsl0((x = el.gauge5v0 + (el.gauge5y0 - y) / el.gauge5.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
-  }
-  updGauge5Knob();
-}
-
-function updFloatImgs_gmrsl1(y) {
-  var x;
-  if (el.gauge5y1 >= 0) {
-    FloatImgs.fgmrsl1((x = el.gauge5v1 + (el.gauge5y1 - y) / el.gauge5.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
-  }
-  updGauge5Knob();
 }
 
 function updFloatImgs_gmc0(y) {
   var x;
-  if (el.gauge6y0 >= 0) {
-    FloatImgs.fgmc0((x = el.gauge6v0 + (el.gauge6y0 - y) / el.gauge6.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+  if (el.gauge5y0 >= 0) {
+    FloatImgs.fgmc0((x = el.gauge5v0 + (el.gauge5y0 - y) / el.gauge5.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
   }
-  updGauge6Knob();
+  updGauge5Knob();
 }
 
 function updFloatImgs_gmc1(y) {
   var x;
-  if (el.gauge6y1 >= 0) {
-    FloatImgs.fgmc1((x = el.gauge6v1 + (el.gauge6y1 - y) / el.gauge6.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
+  if (el.gauge5y1 >= 0) {
+    FloatImgs.fgmc1((x = el.gauge5v1 + (el.gauge5y1 - y) / el.gauge5.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
   }
-  updGauge6Knob();
-}
-
-function updFloatImgs_gmi(y) {
-  var x;
-  if (el.gauge7y0 >= 0) {
-    FloatImgs.fgmi((x = el.gauge7v0 + (el.gauge7y0 - y) / el.gauge7.getBoundingClientRect().height) < 0 ? 0 : x > 1 ? 1 : x);
-  }
-  updGauge7Knob();
+  updGauge5Knob();
 }
 
 function updGauge1Knob() {
@@ -321,48 +269,28 @@ function updGauge2Knob() {
 }
 
 function updGauge3Knob() {
-  el.gauge3knob0.style.top = '' + ((el.gauge3.getBoundingClientRect().height - el.gauge3knob0.getBoundingClientRect().height) * (1 - FloatImgs.gd0)).toFixed(3) + 'px';
-  el.gauge3knob1.style.top = '' + ((el.gauge3.getBoundingClientRect().height - el.gauge3knob1.getBoundingClientRect().height) * (1 - FloatImgs.gd1)).toFixed(3) + 'px';
+  el.gauge3knob0.style.top = '' + ((el.gauge3.getBoundingClientRect().height - el.gauge3knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmi)).toFixed(3) + 'px';
+  el.gauge3txt.textContent = 'Max ' + FloatImgs.mi.toFixed(0) + ' image' + (FloatImgs.mi === 1 ? '' : 's');
+}
+
+function updGauge4Knob() {
+  el.gauge4knob0.style.top = '' + ((el.gauge4.getBoundingClientRect().height - el.gauge4knob0.getBoundingClientRect().height) * (1 - FloatImgs.gd0)).toFixed(3) + 'px';
+  el.gauge4knob1.style.top = '' + ((el.gauge4.getBoundingClientRect().height - el.gauge4knob1.getBoundingClientRect().height) * (1 - FloatImgs.gd1)).toFixed(3) + 'px';
   let t = 'Duration : ' + FloatImgs.d0.toFixed(0);
   if (FloatImgs.d0 !== FloatImgs.d1) {
     t += ' - ' + FloatImgs.d1.toFixed(0);
   }
-  el.gauge3txt.textContent = t + ' sec' + (FloatImgs.d0 !== FloatImgs.d1 || FloatImgs.d0 !== 1 ? 's' : '');
-}
-
-function updGauge4Knob() {
-  el.gauge4knob0.style.top = '' + ((el.gauge4.getBoundingClientRect().height - el.gauge4knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmr0)).toFixed(3) + 'px';
-  el.gauge4knob1.style.top = '' + ((el.gauge4.getBoundingClientRect().height - el.gauge4knob1.getBoundingClientRect().height) * (1 - FloatImgs.gmr1)).toFixed(3) + 'px';
-  t = 'Motion / recursion : ' + FloatImgs.mr0.toFixed(0);
-  if (FloatImgs.mr0 !== FloatImgs.mr1) {
-    t += ' - ' + FloatImgs.mr1.toFixed(0);
-  }
-  el.gauge4txt.textContent = t + ' time' + (FloatImgs.mr0 !== FloatImgs.mr1 || FloatImgs.mr0 !== 1 ? 's' : '');
+  el.gauge4txt.textContent = t + ' sec' + (FloatImgs.d0 !== FloatImgs.d1 || FloatImgs.d0 !== 1 ? 's' : '');
 }
 
 function updGauge5Knob() {
-  el.gauge5knob0.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmrsl0)).toFixed(3) + 'px';
-  el.gauge5knob1.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob1.getBoundingClientRect().height) * (1 - FloatImgs.gmrsl1)).toFixed(3) + 'px';
-  t = 'Motion / rel step length : ' + FloatImgs.mrsl0.toFixed(2);
-  if (FloatImgs.mrsl0 !== FloatImgs.mrsl1) {
-    t += ' - ' + FloatImgs.mrsl1.toFixed(2);
-  }
-  el.gauge5txt.textContent = t;
-}
-
-function updGauge6Knob() {
-  el.gauge6knob0.style.top = '' + ((el.gauge6.getBoundingClientRect().height - el.gauge6knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmc0)).toFixed(3) + 'px';
-  el.gauge6knob1.style.top = '' + ((el.gauge6.getBoundingClientRect().height - el.gauge6knob1.getBoundingClientRect().height) * (1 - FloatImgs.gmc1)).toFixed(3) + 'px';
-  t = 'Motion / complexity : ' + FloatImgs.mc0.toFixed(2);
+  el.gauge5knob0.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmc0)).toFixed(3) + 'px';
+  el.gauge5knob1.style.top = '' + ((el.gauge5.getBoundingClientRect().height - el.gauge5knob1.getBoundingClientRect().height) * (1 - FloatImgs.gmc1)).toFixed(3) + 'px';
+  t = 'Motion complexity : ' + FloatImgs.mc0.toFixed(2);
   if (FloatImgs.mc0 !== FloatImgs.mc1) {
     t += ' - ' + FloatImgs.mc1.toFixed(2);
   }
-  el.gauge6txt.textContent = t;
-}
-
-function updGauge7Knob() {
-  el.gauge7knob0.style.top = '' + ((el.gauge7.getBoundingClientRect().height - el.gauge7knob0.getBoundingClientRect().height) * (1 - FloatImgs.gmi)).toFixed(3) + 'px';
-  el.gauge7txt.textContent = 'Max ' + FloatImgs.mi.toFixed(0) + ' image' + (FloatImgs.mi === 1 ? '' : 's');
+  el.gauge5txt.textContent = t;
 }
 
 function updGaugeKnobs() {
@@ -371,8 +299,6 @@ function updGaugeKnobs() {
   updGauge3Knob();
   updGauge4Knob();
   updGauge5Knob();
-  updGauge6Knob();
-  updGauge7Knob();
 }
 
 function gaugeSelect(n) {
@@ -762,31 +688,19 @@ window.onload = function() {
       updFloatImgs_gr(e.pageY);
     }
     if (el.gauge3y0 >= 0) {
-      updFloatImgs_gd0(e.pageY);
-    }
-    if (el.gauge3y1 >= 0) {
-      updFloatImgs_gd1(e.pageY);
+      updFloatImgs_gmi(e.pageY);
     }
     if (el.gauge4y0 >= 0) {
-      updFloatImgs_gmr0(e.pageY);
+      updFloatImgs_gd0(e.pageY);
     }
     if (el.gauge4y1 >= 0) {
-      updFloatImgs_gmr1(e.pageY);
+      updFloatImgs_gd1(e.pageY);
     }
     if (el.gauge5y0 >= 0) {
-      updFloatImgs_gmrsl0(e.pageY);
-    }
-    if (el.gauge5y1 >= 0) {
-      updFloatImgs_gmrsl1(e.pageY);
-    }
-    if (el.gauge6y0 >= 0) {
       updFloatImgs_gmc0(e.pageY);
     }
-    if (el.gauge6y1 >= 0) {
+    if (el.gauge5y1 >= 0) {
       updFloatImgs_gmc1(e.pageY);
-    }
-    if (el.gauge7y0 >= 0) {
-      updFloatImgs_gmi(e.pageY);
     }
   }, false);
 
@@ -817,29 +731,23 @@ window.onload = function() {
       gaugeUnselect(2);
     }
     if (el.gauge3y0 >= 0) {
-      updFloatImgs_gd0(e.pageY);
-      el.gauge3y0 = el.gauge3v0 = -1;
-      el.gauge3knob0.classList.remove('gaugeknobsel2');
+      updFloatImgs_gmi(e.pageY);
+      el.gauge3y0 = el.gauge3y1 = el.gauge3v0 = el.gauge3v1 = -1;
+      el.gauge3knob0.classList.remove('gaugeknobsel2')
       el.gauge3knobin0.classList.remove('gaugeknobinsel2');
-    }
-    if (el.gauge3y1 >= 0) {
-      updFloatImgs_gd1(e.pageY);
-      el.gauge3y1 = el.gauge3v1 = -1;
-      el.gauge3knob1.classList.remove('gaugeknobsel2');
-      el.gauge3knobin1.classList.remove('gaugeknobinsel2');
     }
     if (el.gauge3l) {
       el.gauge3l = false;
       gaugeUnselect(3);
     }
     if (el.gauge4y0 >= 0) {
-      updFloatImgs_gmr0(e.pageY);
+      updFloatImgs_gd0(e.pageY);
       el.gauge4y0 = el.gauge4v0 = -1;
       el.gauge4knob0.classList.remove('gaugeknobsel2');
       el.gauge4knobin0.classList.remove('gaugeknobinsel2');
     }
     if (el.gauge4y1 >= 0) {
-      updFloatImgs_gmr1(e.pageY);
+      updFloatImgs_gd1(e.pageY);
       el.gauge4y1 = el.gauge4v1 = -1;
       el.gauge4knob1.classList.remove('gaugeknobsel2');
       el.gauge4knobin1.classList.remove('gaugeknobinsel2');
@@ -849,13 +757,13 @@ window.onload = function() {
       gaugeUnselect(4);
     }
     if (el.gauge5y0 >= 0) {
-      updFloatImgs_gmrsl0(e.pageY);
+      updFloatImgs_gmc00(e.pageY);
       el.gauge5y0 = el.gauge5v0 = -1;
       el.gauge5knob0.classList.remove('gaugeknobsel2');
       el.gauge5knobin0.classList.remove('gaugeknobinsel2');
     }
     if (el.gauge5y1 >= 0) {
-      updFloatImgs_gmrsl1(e.pageY);
+      updFloatImgs_gmc1(e.pageY);
       el.gauge5y1 = el.gauge5v1 = -1;
       el.gauge5knob1.classList.remove('gaugeknobsel2');
       el.gauge5knobin1.classList.remove('gaugeknobinsel2');
@@ -864,33 +772,7 @@ window.onload = function() {
       el.gauge5l = false;
       gaugeUnselect(5);
     }
-    if (el.gauge6y0 >= 0) {
-      updFloatImgs_gmc0(e.pageY);
-      el.gauge6y0 = el.gauge6v0 = -1;
-      el.gauge6knob0.classList.remove('gaugeknobsel2');
-      el.gauge6knobin0.classList.remove('gaugeknobinsel2');
-    }
-    if (el.gauge6y1 >= 0) {
-      updFloatImgs_gmc1(e.pageY);
-      el.gauge6y1 = el.gauge6v1 = -1;
-      el.gauge6knob1.classList.remove('gaugeknobsel2');
-      el.gauge6knobin1.classList.remove('gaugeknobinsel2');
-    }
-    if (el.gauge6l) {
-      el.gauge6l = false;
-      gaugeUnselect(6);
-    }
-    if (el.gauge7y0 >= 0) {
-      updFloatImgs_gmi(e.pageY);
-      el.gauge7y0 = el.gauge7y1 = el.gauge7v0 = el.gauge7v1 = -1;
-      el.gauge7knob0.classList.remove('gaugeknobsel2')
-      el.gauge7knobin0.classList.remove('gaugeknobinsel2');
-    }
-    if (el.gauge7l) {
-      el.gauge7l = false;
-      gaugeUnselect(7);
-    }
-  }, false);
+ }, false);
 
   el.gaugecont.addEventListener('mouseenter', function(e) {
     e.preventDefault();
@@ -911,8 +793,6 @@ window.onload = function() {
     el.gauge3in.classList.add('gaugeinselx');
     el.gauge3knob0.classList.add('gaugeknobselx');
     el.gauge3knobin0.classList.add('gaugeknobinselx');
-    el.gauge3knob1.classList.add('gaugeknobselx');
-    el.gauge3knobin1.classList.add('gaugeknobinselx');
     el.gauge4.classList.add('gaugeselx');
     el.gauge4in.classList.add('gaugeinselx');
     el.gauge4knob0.classList.add('gaugeknobselx');
@@ -925,16 +805,6 @@ window.onload = function() {
     el.gauge5knobin0.classList.add('gaugeknobinselx');
     el.gauge5knob1.classList.add('gaugeknobselx');
     el.gauge5knobin1.classList.add('gaugeknobinselx');
-    el.gauge6.classList.add('gaugeselx');
-    el.gauge6in.classList.add('gaugeinselx');
-    el.gauge6knob0.classList.add('gaugeknobselx');
-    el.gauge6knobin0.classList.add('gaugeknobinselx');
-    el.gauge6knob1.classList.add('gaugeknobselx');
-    el.gauge6knobin1.classList.add('gaugeknobinselx');
-    el.gauge7.classList.add('gaugeselx');
-    el.gauge7in.classList.add('gaugeinselx');
-    el.gauge7knob0.classList.add('gaugeknobselx');
-    el.gauge7knobin0.classList.add('gaugeknobinselx');
   }, false);
 
   el.gaugecont.addEventListener('mouseleave', function(e) {
@@ -944,8 +814,6 @@ window.onload = function() {
     el.gauge3y0 = el.gauge3y1 = el.gauge3v0 = el.gauge3v1 = -1;
     el.gauge4y0 = el.gauge4y1 = el.gauge4v0 = el.gauge4v1 = -1;
     el.gauge5y0 = el.gauge5y1 = el.gauge5v0 = el.gauge5v1 = -1;
-    el.gauge6y0 = el.gauge6y1 = el.gauge6v0 = el.gauge6v1 = -1;
-    el.gauge7y0 = el.gauge7y1 = el.gauge7v0 = el.gauge7v1 = -1;
     el.zapp.classList.remove('gaugebtnsel2');
     el.gaugestore.classList.remove('gaugebtnsel2');
     el.gaugeload.classList.remove('gaugebtnsel2');
@@ -956,8 +824,6 @@ window.onload = function() {
     el.gauge2knobin0.classList.remove('gaugeknobinsel2');
     el.gauge3knob0.classList.remove('gaugeknobsel2');
     el.gauge3knobin0.classList.remove('gaugeknobinsel2');
-    el.gauge3knob1.classList.remove('gaugeknobsel2');
-    el.gauge3knobin1.classList.remove('gaugeknobinsel2');
     el.gauge4knob0.classList.remove('gaugeknobsel2');
     el.gauge4knobin0.classList.remove('gaugeknobinsel2');
     el.gauge4knob1.classList.remove('gaugeknobsel2');
@@ -966,12 +832,6 @@ window.onload = function() {
     el.gauge5knobin0.classList.remove('gaugeknobinsel2');
     el.gauge5knob1.classList.remove('gaugeknobsel2');
     el.gauge5knobin1.classList.remove('gaugeknobinsel2');
-    el.gauge6knob0.classList.remove('gaugeknobsel2');
-    el.gauge6knobin0.classList.remove('gaugeknobinsel2');
-    el.gauge6knob1.classList.remove('gaugeknobsel2');
-    el.gauge6knobin1.classList.remove('gaugeknobinsel2');
-    el.gauge7knob0.classList.remove('gaugeknobsel2');
-    el.gauge7knobin0.classList.remove('gaugeknobinsel2');
     el.zapp.classList.remove('gaugebtnsel');
     el.gaugestore.classList.remove('gaugebtnsel');
     el.gaugeload.classList.remove('gaugebtnsel');
@@ -981,8 +841,6 @@ window.onload = function() {
     gaugeUnselect(3);
     gaugeUnselect(4);
     gaugeUnselect(5);
-    gaugeUnselect(6);
-    gaugeUnselect(7);
     el.gaugecont.classList.remove('gaugecontx');
     el.zapp.classList.remove('gaugebtnselx');
     el.gaugestore.classList.remove('gaugebtnselx');
@@ -1000,8 +858,6 @@ window.onload = function() {
     el.gauge3in.classList.remove('gaugeinselx');
     el.gauge3knob0.classList.remove('gaugeknobselx');
     el.gauge3knobin0.classList.remove('gaugeknobinselx');
-    el.gauge3knob1.classList.remove('gaugeknobselx');
-    el.gauge3knobin1.classList.remove('gaugeknobinselx');
     el.gauge4.classList.remove('gaugeselx');
     el.gauge4in.classList.remove('gaugeinselx');
     el.gauge4knob0.classList.remove('gaugeknobselx');
@@ -1014,16 +870,6 @@ window.onload = function() {
     el.gauge5knobin0.classList.remove('gaugeknobinselx');
     el.gauge5knob1.classList.remove('gaugeknobselx');
     el.gauge5knobin1.classList.remove('gaugeknobinselx');
-    el.gauge6.classList.remove('gaugeselx');
-    el.gauge6in.classList.remove('gaugeinselx');
-    el.gauge6knob0.classList.remove('gaugeknobselx');
-    el.gauge6knobin0.classList.remove('gaugeknobinselx');
-    el.gauge6knob1.classList.remove('gaugeknobselx');
-    el.gauge6knobin1.classList.remove('gaugeknobinselx');
-    el.gauge7.classList.remove('gaugeselx');
-    el.gauge7in.classList.remove('gaugeinselx');
-    el.gauge7knob0.classList.remove('gaugeknobselx');
-    el.gauge7knobin0.classList.remove('gaugeknobinselx');
   }, false);
 
   el.zapp.addEventListener('mouseenter', function(e) {
@@ -1107,15 +953,11 @@ window.onload = function() {
     el.gaugeldft.classList.add('gaugebtnsel2');
     FloatImgs.fgt(FloatImgs.dft.gt);
     FloatImgs.fgr(FloatImgs.dft.gr);
+    FloatImgs.fgmi(FloatImgs.dft.gmi);
     FloatImgs.fgd0(FloatImgs.dft.gd0);
     FloatImgs.fgd1(FloatImgs.dft.gd1);
-    FloatImgs.fgmr0(FloatImgs.dft.gmr0);
-    FloatImgs.fgmr1(FloatImgs.dft.gmr1);
-    FloatImgs.fgmrsl0(FloatImgs.dft.gmrsl0);
-    FloatImgs.fgmrsl1(FloatImgs.dft.gmrsl1);
     FloatImgs.fgmc0(FloatImgs.dft.gmc0);
     FloatImgs.fgmc1(FloatImgs.dft.gmc1);
-    FloatImgs.fgmi(FloatImgs.dft.gmi);
     updGaugeKnobs();
   }, false);
 
@@ -1124,8 +966,6 @@ window.onload = function() {
   gaugeInit(3);
   gaugeInit(4);
   gaugeInit(5);
-  gaugeInit(6);
-  gaugeInit(7);
 
   updGaugeKnobs();
 
@@ -1269,15 +1109,11 @@ function createCookieFloatImgs() {
       'FloatImgs',
       't='     + FloatImgs.gt     + ';' +
       'r='     + FloatImgs.gr     + ';' +
+      'mi='    + FloatImgs.gmi    + ';' +
       'd0='    + FloatImgs.gd0    + ';' +
       'd1='    + FloatImgs.gd1    + ';' +
-      'mr0='   + FloatImgs.gmr0   + ';' +
-      'mr1='   + FloatImgs.gmr1   + ';' +
-      'mrsl0=' + FloatImgs.gmrsl0 + ';' +
-      'mrsl1=' + FloatImgs.gmrsl1 + ';' +
       'mc0='   + FloatImgs.gmc0   + ';' +
-      'mc1='   + FloatImgs.gmc1   + ';' +
-      'mi='    + FloatImgs.gmi,
+      'mc1='   + FloatImgs.gmc1,
       365);
 }
 
@@ -1295,6 +1131,9 @@ function readCookieFloatImgs() {
         break;
       case 'r':
         FloatImgs.fgr(parseFloat(a2[1]));
+        break
+      case 'mi':
+        FloatImgs.fgmi(parseFloat(a2[1]));
         break;
       case 'd0':
         FloatImgs.fgd0(parseFloat(a2[1]));
@@ -1302,26 +1141,11 @@ function readCookieFloatImgs() {
       case 'd1':
         FloatImgs.fgd1(parseFloat(a2[1]));
         break;
-      case 'mr0':
-        FloatImgs.fgmr0(parseFloat(a2[1]));
-        break;
-      case 'mr1':
-        FloatImgs.fgmr1(parseFloat(a2[1]));
-        break;
-      case 'mrsl0':
-        FloatImgs.fgmrsl0(parseFloat(a2[1]));
-        break;
-      case 'mrsl1':
-        FloatImgs.fgmrsl1(parseFloat(a2[1]));
-        break;
       case 'mc0':
         FloatImgs.fgmc0(parseFloat(a2[1]));
         break;
       case 'mc1':
         FloatImgs.fgmc1(parseFloat(a2[1]));
-        break;
-      case 'mi':
-        FloatImgs.fgmi(parseFloat(a2[1]));
         break;
     }
   }

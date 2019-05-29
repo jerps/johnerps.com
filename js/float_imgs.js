@@ -59,15 +59,11 @@ FloatImgs.stop = function() {
 
 FloatImgs.t = FloatImgs.gt = FloatImgs.g10 = FloatImgs.g11 = 0;
 FloatImgs.r = FloatImgs.gr = FloatImgs.g20 = FloatImgs.g21 = 0;
-FloatImgs.d0 = FloatImgs.gd0 = FloatImgs.g30 = 0;
-FloatImgs.d1 = FloatImgs.gd1 = FloatImgs.g31 = 0;
-FloatImgs.mr0 = FloatImgs.gmr0 = FloatImgs.g40 = 0;
-FloatImgs.mr1 = FloatImgs.gmr1 = FloatImgs.g41 = 0;
-FloatImgs.mrsl0 = FloatImgs.gmrsl0 = FloatImgs.g50 = 0;
-FloatImgs.mrsl1 = FloatImgs.gmrsl1 = FloatImgs.g51 = 0;
-FloatImgs.mc0 = FloatImgs.gmc0 = FloatImgs.g60 = 0;
-FloatImgs.mc1 = FloatImgs.gmc1 = FloatImgs.g61 = 0;
-FloatImgs.mi = FloatImgs.gmi = FloatImgs.g70 = FloatImgs.g71 = 0;
+FloatImgs.mi = FloatImgs.gmi = FloatImgs.g30 = FloatImgs.g31 = 0;
+FloatImgs.d0 = FloatImgs.gd0 = FloatImgs.g40 = 0;
+FloatImgs.d1 = FloatImgs.gd1 = FloatImgs.g41 = 0;
+FloatImgs.mc0 = FloatImgs.gmc0 = FloatImgs.g50 = 0;
+FloatImgs.mc1 = FloatImgs.gmc1 = FloatImgs.g51 = 0;
 
 FloatImgs.fgt = function(g) {
   FloatImgs.gt = FloatImgs.g10 = FloatImgs.g11 = g;
@@ -79,8 +75,13 @@ FloatImgs.fgr = function(g) {
   FloatImgs.r = Math.trunc(0.999 * g * 1000) / 1000;
 };
 
+FloatImgs.fgmi = function(g) {
+  FloatImgs.gmi = FloatImgs.g30 = FloatImgs.g31 = g;
+  FloatImgs.mi = 1 + Math.trunc((ZISLOTS - 1) * g);
+};
+
 FloatImgs.fgd0 = function(g) {
-  FloatImgs.gd0 = FloatImgs.g30 = g;
+  FloatImgs.gd0 = FloatImgs.g40 = g;
   FloatImgs.d0 = 1 + Math.trunc(98 * g);
   if (FloatImgs.gd0 > FloatImgs.gd1) {
     FloatImgs.fgd1(g);
@@ -88,47 +89,15 @@ FloatImgs.fgd0 = function(g) {
 };
 
 FloatImgs.fgd1 = function(g) {
-  FloatImgs.gd1 = FloatImgs.g31 = g;
+  FloatImgs.gd1 = FloatImgs.g41 = g;
   FloatImgs.d1 = 1 + Math.trunc(98 * g);
   if (FloatImgs.gd1 < FloatImgs.gd0) {
     FloatImgs.fgd0(g);
   }
 };
 
-FloatImgs.fgmr0 = function(g) {
-  FloatImgs.gmr0 = FloatImgs.g40 = g;
-  FloatImgs.mr0 = Math.trunc(10 * g);
-  if (FloatImgs.gmr0 > FloatImgs.gmr1) {
-    FloatImgs.fgmr1(g);
-  }
-};
-
-FloatImgs.fgmr1 = function(g) {
-  FloatImgs.gmr1 = FloatImgs.g41 = g;
-  FloatImgs.mr1 = Math.trunc(10 * g);
-  if (FloatImgs.gmr1 < FloatImgs.gmr0) {
-    FloatImgs.fgmr0(g);
-  }
-};
-
-FloatImgs.fgmrsl0 = function(g) {
-  FloatImgs.gmrsl0 = FloatImgs.g50 = g;
-  FloatImgs.mrsl0 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
-  if (FloatImgs.gmrsl0 > FloatImgs.gmrsl1) {
-    FloatImgs.fgmrsl1(g);
-  }
-};
-
-FloatImgs.fgmrsl1 = function(g) {
-  FloatImgs.gmrsl1 = FloatImgs.g51 = g;
-  FloatImgs.mrsl1 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
-  if (FloatImgs.gmrsl1 < FloatImgs.grsl0) {
-    FloatImgs.fgmrsl0(g);
-  }
-};
-
 FloatImgs.fgmc0 = function(g) {
-  FloatImgs.gmc0 = FloatImgs.g60 = g;
+  FloatImgs.gmc0 = FloatImgs.g50 = g;
   FloatImgs.mc0 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
   if (FloatImgs.gmc0 > FloatImgs.gmc1) {
     FloatImgs.fgmc1(g);
@@ -136,42 +105,29 @@ FloatImgs.fgmc0 = function(g) {
 };
 
 FloatImgs.fgmc1 = function(g) {
-  FloatImgs.gmc1 = FloatImgs.g61 = g;
+  FloatImgs.gmc1 = FloatImgs.g51 = g;
   FloatImgs.mc1 = 0.01 + Math.trunc(0.98 * g * 100) / 100;
   if (FloatImgs.gmc1 < FloatImgs.gmc0) {
     FloatImgs.fgmc0(g);
   }
 };
 
-FloatImgs.fgmi = function(g) {
-  FloatImgs.gmi = FloatImgs.g70 = FloatImgs.g71 = g;
-  FloatImgs.mi = 1 + Math.trunc((ZISLOTS - 1) * g);
-};
-
 FloatImgs.fgt(0.3);
 FloatImgs.fgr(0.1);
+FloatImgs.fgmi(0.5);
 FloatImgs.fgd0(0.1);
 FloatImgs.fgd1(0.3);
-FloatImgs.fgmr0(0);
-FloatImgs.fgmr1(0);
-FloatImgs.fgmrsl0(0);
-FloatImgs.fgmrsl1(0.5);
 FloatImgs.fgmc0(0);
 FloatImgs.fgmc1(0.5);
-FloatImgs.fgmi(0.5);
 
 FloatImgs.dft = {
   gt:     FloatImgs.gt,
   gr:     FloatImgs.gr,
+  gmi:    FloatImgs.gmi,
   gd0:    FloatImgs.gd0,
   gd1:    FloatImgs.gd1,
-  gmr0:   FloatImgs.gmr0,
-  gmr1:   FloatImgs.gmr1,
-  gmrsl0: FloatImgs.gmrsl0,
-  gmrsl1: FloatImgs.gmrsl1,
   gmc0:   FloatImgs.gmc0,
   gmc1:   FloatImgs.gmc1,
-  gmi:    FloatImgs.gmi
 };
 
 function startfloat() {
@@ -489,37 +445,28 @@ function loadImg(url) {
 }
 
 function sinfun() {
-
-  let n = FloatImgs.mr0 + Math.trunc((FloatImgs.mr1 - FloatImgs.mr0 + 1) * Util.rnd()), f = sinfun0();
-  while (n-- > 0) {f = sinfun0(f);}
-  return f;
-
-  function sinfun0(fun) {
-    let a = [], x = 0, y = 0, r = 0, dx, dy, dr = 0.05 + (1 - (FloatImgs.mc0 + (FloatImgs.mc1 - FloatImgs.mc0 + 0.01) * Util.rnd())) * 0.6, i = 0;
-    while (y < 1) {
-      dx = 1 + (FloatImgs.mrsl0 + (FloatImgs.mrsl1 - FloatImgs.mrsl0 + 0.01) * Util.rnd()) * 10;
-      if (y > 1 - dr) {
-        dy = 1 - y;
-      } else if (y < dr || Util.rnd() > y - r / 4) {
-        dy = Util.rnd() * (1 - y);
-      } else {
-        dy = 0 - Util.rnd() * y;
-      }
-      a.push([x, dx, y, dy]);
-      x += dx;
-      y += dy;
-      r += dr;
+  let a = [], x = 0, y = 0, r = 0, dx, dy, dr = 0.05 + (1 - (FloatImgs.mc0 + (FloatImgs.mc1 - FloatImgs.mc0 + 0.01) * Util.rnd())) * 0.6, i = 0;
+  while (y < 1) {
+    dx = 1 + Util.rnd() * 10;
+    if (y > 1 - dr) {
+      dy = 1 - y;
+    } else if (y < dr || Util.rnd() > y - r / 4) {
+      dy = Util.rnd() * (1 - y);
+    } else {
+      dy = 0 - Util.rnd() * y;
     }
-    return function(t) {
-      t = fun ? fun(t) : t;
-      while (i > 0 && t < a[i][0] / x) {i--;}
-      while (i < a.length - 1 && t > (a[i][0] + a[i][1]) / x) {i++;}
-      return (a[i][3] < 0 ?
-          a[i][2] + a[i][3] * (1 - (Math.sin(Math.PI * (0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2)
-        : a[i][2] + a[i][3] * (Math.sin(Math.PI * (-0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2) / y;
-    };
+    a.push([x, dx, y, dy]);
+    x += dx;
+    y += dy;
+    r += dr;
   }
-
+  return function(t) {
+    while (i > 0 && t < a[i][0] / x) {i--;}
+    while (i < a.length - 1 && t > (a[i][0] + a[i][1]) / x) {i++;}
+    return (a[i][3] < 0 ?
+        a[i][2] + a[i][3] * (1 - (Math.sin(Math.PI * (0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2)
+      : a[i][2] + a[i][3] * (Math.sin(Math.PI * (-0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2) / y;
+  };
 }
 
 
