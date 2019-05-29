@@ -11,6 +11,7 @@
 
 html {
   height: 100%;
+  font-size: 1.2vw;
 }
 
 body {
@@ -339,57 +340,36 @@ canvas.animatedText {
 }
 
 @media all and (max-width: 1200px) {
-  html {
-    font-size: 0.895rem;
-  }
   #container {
     width: 75%;
   }
 }
 @media all and (max-width: 1000px) {
-  html {
-    font-size: 0.790rem;
-  }
   #container {
     width: 80%;
   }
 }
 @media all and (max-width: 800px) {
-  html {
-    font-size: 0.685rem;
-  }
   #container {
     width: 85%;
   }
 }
 @media all and (max-width: 600px) {
-  html {
-    font-size: 0.580rem;
-  }
   #container {
     width: 90%;
   }
 }
 @media all and (max-width: 400px) {
-  html {
-    font-size: 0.475rem;
-  }
   #container {
     width: 95%;
   }
 }
 @media all and (max-width: 200px) {
-  html {
-    font-size: 0.370rem;
-  }
   #container {
     width: 100%;
   }
 }
 @media all and (min-width: 1201px) {
-  html {
-    font-size: 1rem;
-  }
   #container {
     width: 70%;
   }

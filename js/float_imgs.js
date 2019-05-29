@@ -500,7 +500,7 @@ function sinfun() {
       dx = 1 + (FloatImgs.mrsl0 + (FloatImgs.mrsl1 - FloatImgs.mrsl0 + 0.01) * Util.rnd()) * 10;
       if (y > 1 - dr) {
         dy = 1 - y;
-      } else if (y < dr || Util.rnd() > y - r) {
+      } else if (y < dr || Util.rnd() > y - r / 4) {
         dy = Util.rnd() * (1 - y);
       } else {
         dy = 0 - Util.rnd() * y;
@@ -512,11 +512,11 @@ function sinfun() {
     }
     return function(t) {
       t = fun ? fun(t) : t;
-      while (t < a[i][0] / x) {i--;}
-      while (t > (a[i][0] + a[i][1]) / x) {i++;}
-      return a[i][3] < 0 ?
+      while (i > 0 && t < a[i][0] / x) {i--;}
+      while (i < a.length - 1 && t > (a[i][0] + a[i][1]) / x) {i++;}
+      return (a[i][3] < 0 ?
           a[i][2] + a[i][3] * (1 - (Math.sin(Math.PI * (0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2)
-        : a[i][2] + a[i][3] * (Math.sin(Math.PI * (-0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2;
+        : a[i][2] + a[i][3] * (Math.sin(Math.PI * (-0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2) / y;
     };
   }
 
