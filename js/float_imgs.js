@@ -28,7 +28,7 @@ var FloatImgs = {};
 
 (function() {
 
-const IMGPATH = 'images/float/', IMGEXT = '.jpg', IMGCOUNT = 38, ZISLOTS = 20;
+const IMGPATH = 'images/float/', IMGEXT = '.jpg', IMGCOUNT = 74, ZISLOTS = 30;
 
 let sscounter = 0;
 
