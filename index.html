@@ -193,10 +193,10 @@ var mouseoveranimtxtcanvasid = '';
 var wave = 0;
 
 var dw = 10000, dne = 200,
-    d0 = 3000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 3000, d8 = 2000,
+    d0 = 3000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 500,
     d9 = 600, d10 = 3000, d11 = 1200, d12 = 2000, d13 = 1000;
 
-var r0a = 0.035, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.4, r2 = 0.5, r3 = 0.3, r4 = 0.35;
+var r0a = 0.2, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.4, r2 = 0.5, r3 = 0.35;
 
 var ready = false, ak, lmpx, lmpy, lmmt = performance.now(), lmmtd = 50, e;
 
@@ -1013,7 +1013,7 @@ window.onload = function() {
   dowave(d0*1.5);
 
   setInterval(function() {
-    var i, j, s, p;
+    var i, p;
     if (!ready) {
       return;
     }
@@ -1026,7 +1026,7 @@ window.onload = function() {
     } else if (Util.rnd() < r0d) {
       i = Math.trunc(Util.rnd() * ak.length);
       p = { rgbab: [255, 255, 255, 1] };
-      if (Util.rnd() < r4) {
+      if (Util.rnd() < r3) {
         p.rgb0 = [255,0,0];
       };
       animate(ak[i], 5/*fade out*/, d10, p);
@@ -1036,7 +1036,7 @@ window.onload = function() {
     } else if (Util.rnd() < r0e) {
       i = Math.trunc(Util.rnd() * ak.length);
       p = { rgbab: [255, 255, 255, 1] };
-      if (Util.rnd() < r4) {
+      if (Util.rnd() < r3) {
         p.rgb0 = [255,0,0];
       };
       animate(ak[i], 5/*fade out*/, d11, p);
@@ -1044,23 +1044,8 @@ window.onload = function() {
         animate(ak[i], 0/*random effect*/, d12);
       }, d11);
     } else if (Util.rnd() < r0a) {
-      s = '';
       i = Math.trunc(Util.rnd() * ak.length);
-      p = anim[ak[i]][0];
-      if (Util.rnd() < r3) {
-        s = " ".repeat(p.text.length);
-      } else {
-        for (j = 0; j < p.text.length; j++) {
-          s += p.text[j]===' '?' ':Util.rnd()<r1?p.text[j]:Util.rnd()<r2?'\u22C5':'-';
-        }
-      }
-      animate(ak[i], -1/*no effect*/, d7, {rgb1chars: '', text: s});
-      setTimeout(function() {
-        animate(ak[i], 6/*random chars*/, d8);
-      }, d7);
-      setTimeout(function() {
-        animate(ak[i], -1/*no effect*/, dne);
-      }, d7+d8);
+      animate(ak[i], 4/*fade in*/, d7);
     } else if (Util.rnd() < r0b) {
       dowave(0);
     }
