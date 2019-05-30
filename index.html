@@ -995,6 +995,10 @@ window.onload = function() {
 
   updGaugeKnobs();
 
+  window.addEventListener('resize', function() {
+    updGaugeKnobs();
+  });
+
   document.querySelectorAll('canvas.animatedText').forEach(function(e) {
     e.style.display = 'block';
   });

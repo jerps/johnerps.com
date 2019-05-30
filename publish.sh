@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FTPS=ftp.txt
+FTPS=.ftps
 
 HOST=johnerps.com
 USER=john@johnerps.com
