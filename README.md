@@ -4,6 +4,16 @@
 
 ### Changes
 
+* 2019-05-30
+
+  * Tweaked effects and lay-out.
+
+  * Fixed floating images. Added more images; now 74.
+
+  * Added publish.sh.
+
+  * Made release v0.1.0.
+
 * 2019-05-22
 
   * Added widgets to control floating images.

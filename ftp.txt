@@ -1,0 +1,62 @@
+open johnerps.com
+john@johnerps.com
+prompt
+ascii
+mput *
+ascii
+lcd /Users/joe/dev/johnerps.com/git/johnerps.com
+lcd css
+cd /
+mkdir css
+cd css
+mput *
+ascii
+lcd /Users/joe/dev/johnerps.com/git/johnerps.com
+lcd include
+cd /
+mkdir include
+cd include
+mput *
+ascii
+lcd /Users/joe/dev/johnerps.com/git/johnerps.com
+lcd js
+cd /
+mkdir js
+cd js
+mput *
+ascii
+lcd /Users/joe/dev/johnerps.com/git/johnerps.com
+lcd php
+cd /
+mkdir php
+cd php
+mput *
+ascii
+lcd /Users/joe/dev/johnerps.com/git/johnerps.com
+lcd php/priv
+cd /
+mkdir php/priv
+cd php/priv
+mput *
+ascii
+lcd /Users/joe/dev/johnerps.com/git/johnerps.com
+lcd wc
+cd /
+mkdir wc
+cd wc
+mput *
+bin
+lcd /Users/joe/dev/johnerps.com/git/johnerps.com
+lcd images
+cd /
+mkdir images
+cd images
+mput *
+bin
+lcd /Users/joe/dev/johnerps.com/git/johnerps.com
+lcd images/float
+cd /
+mkdir images/float
+cd images/float
+mput *
+quit
