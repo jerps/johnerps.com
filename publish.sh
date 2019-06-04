@@ -14,7 +14,6 @@ DIR_INCLUDE=include
 DIR_JS=js
 DIR_PHP=php
 DIR_PHP_PRIV=php/priv
-DIR_WC=wc
 
 function mputdir {
   case "$2" in
@@ -40,7 +39,6 @@ mputdir $DIR_INCLUDE
 mputdir $DIR_JS
 mputdir $DIR_PHP
 mputdir $DIR_PHP_PRIV
-mputdir $DIR_WC
 
 if [ $1 = I ]
 then

@@ -21,6 +21,7 @@ body {
   font-weight: normal;
   text-shadow: none;
   height: 100%;
+  position: relative;
 }
 
 hr {
@@ -29,16 +30,7 @@ hr {
   height: 1px;
 }
 
-a {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
-a:active {
-  text-decoration: none;
-}
-a:visited {
+a.hoverEffect1 {
   text-decoration: none;
 }
 
@@ -52,7 +44,9 @@ a:visited {
   border-style: solid;
   border-width: 2px;
   border-color: rgba(255, 255, 255, 0);
+  outline: none;
 }
+
 .hoverEffect1:hover {
   background: linear-gradient(218deg, #2A8, #555, #8CC);
   background-size: 600% 600%;

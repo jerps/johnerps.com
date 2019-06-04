@@ -33,7 +33,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <meta name="description" content="Project page of John Erps"/>
   <meta name="author" content="John Erps"/>
   <meta name="keywords" content="john erps projects ibm i as/400 iseries rpg java javascript c python html css programmer programming software developer"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata|Poppins|Open Sans Condensed:Bold">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata|Poppins|Open+Sans+Condensed:Bold|Noto+Sans&display=swap">
   <link rel="shortcut icon" href="images/favicon.ico"/>
   <link rel="stylesheet" href="css/normalize.min.css"/>
   <link rel="stylesheet" href="css/balloon.css"/>
@@ -131,7 +131,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     </div>
     <hr>
-    <rss-ticker id="rss" url="https://johnerps.com/php/getfile.php?url=http://rss.nytimes.com/services/xml/rss/nyt/World.xml"></rss-ticker>
+    <rss-ticker id="rss"></rss-ticker>
     <div id="bottom">
       <a class="hoverEffect1" href="https://linkedin.com/in/john-erps" target="_blank"><canvas id="linkedin" class="animatedText"></canvas></a>
       <a class="hoverEffect1" href="https://github.com/jerps" target="_blank"><canvas id="github" class="animatedText"></canvas></a>
@@ -146,7 +146,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script src="js/float_imgs.js"></script>
 <script src="js/popper.js@1.15.0.min.js"></script>
 <script src="js/tippy.js@4.3.1.min.js"></script>
-<script src="wc/rss_ticker.js"></script>
+<script src="wc/rss_ticker2.js"></script>
 
 <script>
 
@@ -1056,7 +1056,11 @@ window.onload = function() {
   }, 1500);
 
   e = document.getElementById('rss');
+  e.url = 'http://rss.cnn.com/rss/edition.rss'
+  e.proxyUrl = 'https://johnerps.com/php/getfile.php?url=%%_URL_%%';
   e.fetchOpts = { cache: 'no-cache' };
+  e.fontFamily = 'Noto Sans';
+  e.transparency = 0.1;
   e.startTicker();
   window.RSS = e;
   setTimeout(function() {

@@ -4,6 +4,14 @@
 
 ### Changes
 
+* 2019-06-04
+
+  * Use rss-ticker v0.2.0.
+
+  * Misc. changes / bugfixes.
+
+  * Made release v0.2.0.
+
 * 2019-05-30
 
   * Tweaked effects and lay-out.
