@@ -23,10 +23,12 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-var FloatImgs = {};
+import Util from '@js/util.js';
 
 
-(function() {
+let FloatImgs = {};
+export default FloatImgs;
+
 
 const IMGPATH = 'images/float/', IMGEXT = '.jpg', IMGCOUNT = 74, ZISLOTS = 30;
 
@@ -480,6 +482,3 @@ function sinfun() {
       : a[i][2] + a[i][3] * (Math.sin(Math.PI * (-0.5 + (t - a[i][0] / x) / (a[i][1] / x))) + 1) / 2) / y;
   };
 }
-
-
-})();

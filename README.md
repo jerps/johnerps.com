@@ -4,6 +4,12 @@
 
 ### Changes
 
+* 2019-07-01
+
+  * Use rss-ticker v0.2.1.
+
+  * Use webpack to package code.
+
 * 2019-06-04
 
   * Use rss-ticker v0.2.0.

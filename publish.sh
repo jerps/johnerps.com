@@ -10,7 +10,7 @@ LDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 DIR_CSS=css
 DIR_IMAGES=images
 DIR_IMAGES_FLOAT=images/float
-DIR_INCLUDE=include
+DIR_INCLUDE="include"
 DIR_JS=js
 DIR_PHP=php
 DIR_PHP_PRIV=php/priv
@@ -32,6 +32,8 @@ echo "open $HOST"               > $FTPS
 echo "$USER"                   >> $FTPS
 echo "prompt"                  >> $FTPS
 echo "ascii"                   >> $FTPS
+echo "lcd $LDIR"               >> $FTPS
+echo "cd /"                    >> $FTPS
 echo "mput *"                  >> $FTPS
 
 mputdir $DIR_CSS
