@@ -34,7 +34,8 @@ echo "prompt"                  >> $FTPS
 echo "ascii"                   >> $FTPS
 echo "lcd $LDIR"               >> $FTPS
 echo "cd /"                    >> $FTPS
-echo "mput *"                  >> $FTPS
+echo "put index.html"          >> $FTPS
+echo "put php.ini"             >> $FTPS
 
 mputdir $DIR_CSS
 mputdir $DIR_INCLUDE
