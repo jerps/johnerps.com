@@ -4,6 +4,10 @@
 
 ### Changes
 
+* 2019-07-05
+
+  * Use rss-ticker v0.3.0.
+
 * 2019-07-01
 
   * Use rss-ticker v0.2.1.
