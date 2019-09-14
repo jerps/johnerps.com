@@ -36,6 +36,7 @@ body {
   position: relative;
   opacity: 0;
   transition: opacity 8s ease-out 2s;
+  overflow: hidden;
 }
 
 .body-fadein {
@@ -182,7 +183,6 @@ canvas.animatedText {
 }
 #rssText {
   max-height: 15vh;
-  overflow-y: scroll;
   line-height: 1em;
 }
 #rssTitle {
@@ -238,7 +238,7 @@ canvas.animatedText {
 .rts-settings-input {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  row-gap: 0.6em;
+  row-gap: 0.5em;
   column-gap: 1.2em;
   font-size: 90%;
 }
@@ -305,8 +305,8 @@ canvas.animatedText {
 }
 .rts-checkbox {
   display: none;
-  width: 1.6em;
-  height: 1.6em;
+  width: 1.4em;
+  height: 1.4em;
   background-color: #bbb;
   margin: auto auto auto 0;
   border-radius: 100%;
@@ -316,8 +316,8 @@ canvas.animatedText {
 }
 .rts-checkbox div {
   display: block;
-  width: 1.1em;
-  height: 1.1em;
+  width: 0.9em;
+  height: 0.9em;
   border-radius: 100%;
   transition: all .5s ease;
   cursor: pointer;

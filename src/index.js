@@ -950,10 +950,6 @@ window.onload = function() {
     e2.classList.remove('rssDescrShow');
     e1.classList.add('rssTitleHide');
     e2.classList.add('rssDescrHide');
-    setTimeout(() => {
-      e1.innerHTML = '<br>';
-      e2.innerHTML = '';
-    }, 800);
   };
   rssct();
 
@@ -961,8 +957,8 @@ window.onload = function() {
     if (ri.running) {
       let t, d;
       if (ri.errmsg) {
-        t = 'ERROR';
-        d = ri.errmsg || '';
+        t = 'ERROR - ' + ri.errmsg;
+        d = ri.url || '';
       } else {
         t = ri.title ? ri.title.trim() : '';
         t = t || ri.url || '';
