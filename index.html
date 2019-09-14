@@ -2,24 +2,11 @@
 
 <!--
 
+index
+
 (c) 2017-2019 John Erps
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+This software is licensed under the MIT license (see LICENSE)
 
 -->
 
@@ -36,17 +23,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata|Poppins|Open+Sans+Condensed:Bold|Noto+Sans&display=swap">
   <link rel="shortcut icon" href="images/favicon.ico"/>
   <link rel="stylesheet" href="css/normalize.min.css"/>
-  <link rel="stylesheet" href="css/balloon.css"/>
   <link rel="stylesheet" href="css/main.css?v=6"/>
+  <script src="https://kit.fontawesome.com/a8b2f50e68.js"></script>
   <script type="text/javascript" src="https://unpkg.com/@webcomponents/webcomponentsjs@%5E2/webcomponents-bundle.js"></script>
 </head>
 <body>
   <div id="container">
     <div id="top">
       <div>
-        <canvas id="email1" class="animatedText"></canvas>
-        <canvas id="email2" class="animatedText"></canvas>
-        <canvas id="telno" class="animatedText"></canvas>
+        <canvas tabindex="-1" id="email1" class="animatedText"></canvas>
+        <canvas tabindex="-1" id="email2" class="animatedText"></canvas>
+        <canvas tabindex="-1" id="telno" class="animatedText"></canvas>
       </div>
       <div id="gaugecont" class="gaugecont">
         <div id="gaugebtntxt" class="gaugetxt"></div>
@@ -99,13 +86,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </div>
       </div>
       <div>
-        <canvas id="pgml" class="animatedText"></canvas>
-        <canvas id="pgmr" class="animatedText"></canvas>
-        <span id="specl"><canvas id="specla" class="animatedText"></canvas><canvas id="speclb" class="animatedText"></canvas></span>
+        <canvas tabindex="-1" id="pgml" class="animatedText"></canvas>
+        <canvas tabindex="-1" id="pgmr" class="animatedText"></canvas>
+        <span id="specl"><canvas tabindex="-1" id="specla" class="animatedText"></canvas><canvas tabindex="-1" id="speclb" class="animatedText"></canvas></span>
       </div>
     </div>
     <div id="pr">
-      <canvas id="prt" class="animatedText"></canvas>
+      <canvas tabindex="-1" id="prt" class="animatedText"></canvas>
       <hr>
     </div>
     <div id="middle">
@@ -115,32 +102,55 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <!-- --  * RpgMap  -- -->
 
       <div class="item">
-        <a class="hoverEffect1" data-balloon="Latest RpgMap: v1.2.1 (march 2019)" data-balloon-pos="up" href="https://johnerps.com/RpgMap/docs/index.html" target="_blank"><canvas id="nrpgmap" class="animatedText"></canvas></a>&nbsp;&nbsp;<div class="sep">&#10072;</div>&nbsp;&nbsp;&nbsp;
-        <canvas id="drpgmap" class="animatedText"></canvas>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="hoverEffect1" href="https://github.com/jerps/RpgMap/archive/v1.2.1.zip" download>&nbsp;<img id="download-rpgmap" class="img-download" src="images/download.png">&nbsp;</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;<a class="hoverEffect1" href="https://github.com/jerps/RpgMap" target="_blank">&nbsp;<img id="github-rpgmap" class="img-github" src="images/github.png">&nbsp;</a>
+        <a class="pr-link" href="https://johnerps.com/RpgMap/docs/index.html" target="_blank"><canvas tabindex="-1" id="nrpgmap" class="animatedText"></canvas></a>&nbsp;&nbsp;<div class="sep">&#10072;</div>&nbsp;&nbsp;&nbsp;
+        <canvas tabindex="-1" id="drpgmap" class="animatedText"></canvas>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="pr-link" href="https://github.com/jerps/RpgMap/archive/v1.2.1.zip" download>&nbsp;<img id="download-rpgmap" class="img-download" src="images/download.png">&nbsp;</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a class="pr-link" href="https://github.com/jerps/RpgMap" target="_blank">&nbsp;<img id="github-rpgmap" class="img-github" src="images/github.png">&nbsp;</a>
       </div>
 
       <!-- --  * Yagols  -- -->
 
       <div class="item">
-        <a class="hoverEffect1" data-balloon="Latest Yagols: v4.0 (june 2019)" data-balloon-pos="up" href="https://johnerps.com/Yagols.html" target="_blank"><canvas id="nyagols" class="animatedText"></canvas></a>&nbsp;&nbsp;<pre class="sep">&#10072;</pre>&nbsp;&nbsp;&nbsp;
-        <canvas id="dyagols" class="animatedText"></canvas>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="hoverEffect1" href="https://github.com/jerps/Yagols/archive/v4.0.zip" download>&nbsp;<img id="download-yagols" class="img-download" src="images/download.png">&nbsp;</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;<a class="hoverEffect1" href="https://github.com/jerps/Yagols" target="_blank">&nbsp;<img id="github-yagols" class="img-github" src="images/github.png">&nbsp;</a>
+        <a class="pr-link" href="https://johnerps.com/Yagols.html" target="_blank"><canvas tabindex="-1" id="nyagols" class="animatedText"></canvas></a>&nbsp;&nbsp;<pre class="sep">&#10072;</pre>&nbsp;&nbsp;&nbsp;
+        <canvas tabindex="-1" id="dyagols" class="animatedText"></canvas>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="pr-link" href="https://github.com/jerps/Yagols/archive/v4.1.zip" download>&nbsp;<img id="download-yagols" class="img-download" src="images/download.png">&nbsp;</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a class="pr-link" href="https://github.com/jerps/Yagols" target="_blank">&nbsp;<img id="github-yagols" class="img-github" src="images/github.png">&nbsp;</a>
       </div>
 
     </div>
     <hr>
+    <div id="rssInfo">
+      <div id="rssText">
+        <span id="rssTitle"></span>
+        <span id="rssDescr"></span>
+      </div>
+    <img id="rssIcon" tabindex="-1" src="images/rss-icon.png">
+    </div>
     <rss-ticker id="rss"></rss-ticker>
     <div id="bottom">
-      <a class="hoverEffect1" href="https://linkedin.com/in/john-erps" target="_blank"><canvas id="linkedin" class="animatedText"></canvas></a>
-      <a class="hoverEffect1" href="https://github.com/jerps" target="_blank"><canvas id="github" class="animatedText"></canvas></a>
-      <a class="hoverEffect1" href="https://www.ibm.com/it-infrastructure/power/os/ibm-i" target="_blank"><canvas id="ibmi" class="animatedText"></canvas></a>
-      <a class="hoverEffect1" href="https://github.com/jerps/johnerps.com" target="_blank"><canvas id="cpyr" class="animatedText" style="float: right;"></canvas></a>
+      <a class="pr-link" href="https://linkedin.com/in/john-erps" target="_blank"><canvas tabindex="-1" id="linkedin" class="animatedText"></canvas></a>
+      <a class="pr-link" href="https://github.com/jerps" target="_blank"><canvas tabindex="-1" id="github" class="animatedText"></canvas></a>
+      <a class="pr-link" href="https://www.ibm.com/it-infrastructure/power/os/ibm-i" target="_blank"><canvas tabindex="-1" id="ibmi" class="animatedText"></canvas></a>
+      <a class="pr-link" href="https://github.com/jerps/johnerps.com" target="_blank"><canvas tabindex="-1" id="cpyr" class="animatedText" style="float: right;"></canvas></a>
     </div>
   </div>
-  <script type="text/javascript" src="js/index.bundle.js"></script>
+  <div class="rts-settings-container">
+    <div class="rts-settings-input">
+    </div>
+    <div class="rts-settings-bottom">
+      <div class="rts-settings-busy">
+        <div class="rts-busy-ind">
+        </div>
+      </div>
+      <div class="rts-settings-buttons">
+      </div>
+    </div>
+  </div>
+  <div class="rts-checkbox">
+    <input type="checkbox" name=""/>
+    <div></div>
+  </div>
+  <script type="text/javascript" src="dist/index.min.js"></script>
 </body>
 </html>
 

@@ -1,3 +1,11 @@
+/*
+
+(c) 2017-2019 John Erps
+
+This software is licensed under the MIT license (see LICENSE)
+
+*/
+
 ::selection {
   background-color: rgba(200, 200, 70, 0.7);
 }
@@ -7,6 +15,10 @@
   padding: 0;
   border: 0;
   color: black;
+}
+
+*:focus {
+  outline: none;
 }
 
 html {
@@ -22,6 +34,12 @@ body {
   text-shadow: none;
   height: 100%;
   position: relative;
+  opacity: 0;
+  transition: opacity 8s ease-out 2s;
+}
+
+.body-fadein {
+  opacity: 1;
 }
 
 hr {
@@ -30,31 +48,28 @@ hr {
   height: 1px;
 }
 
-a.hoverEffect1 {
+a.pr-link {
   text-decoration: none;
 }
 
-@keyframes hovereffect1 {
+@keyframes prLink {
   0%{background-position:0% 74%}
   50%{background-position:100% 27%}
   100%{background-position:0% 74%}
 }
 
-.hoverEffect1 {
+.pr-link {
   border-style: solid;
   border-width: 2px;
   border-color: rgba(255, 255, 255, 0);
   outline: none;
 }
 
-.hoverEffect1:hover {
-  background: linear-gradient(218deg, #2A8, #555, #8CC);
+.pr-link:hover {
+  background: linear-gradient(218deg, rgba(250, 250, 120, 0.7), #fff, rgba(250, 250, 60, 1));
   background-size: 600% 600%;
-  animation: hovereffect1 15s ease infinite;
-  border-style: solid;
-  border-width: 2px;
-  border-color:#255;
-  border-radius: 50%;
+  animation: prLink 6s ease infinite;
+  border-radius: 100%;
 }
 
 canvas.animatedText {
@@ -116,6 +131,7 @@ canvas.animatedText {
   flex-direction: column;
   position: relative;
   top: -12%;
+  margin: 1rem 0 0 0;
 }
 
 #prt {
@@ -143,6 +159,198 @@ canvas.animatedText {
   margin-top: auto;
 }
 
+#rssInfo {
+  display: flex;
+  justify-content: space-between;
+  font-family: Arial;
+  font-size: 0.8em;
+  width: 50%;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+#rssIcon {
+  width: 2em;
+  margin: 0 0 auto 0.4em;
+  cursor: pointer;
+  transition: background-color 0.5s ease-out;
+}
+#rssIcon:focus, #rssIcon:hover {
+  background-color: rgba(240, 240, 160, 0.7);
+}
+.rssIconEffect {
+  animation: rssIconEffect 0.5s ease;
+}
+#rssText {
+  max-height: 15vh;
+  overflow-y: scroll;
+  line-height: 1em;
+}
+#rssTitle {
+  line-height: 1.2em;
+  font-size: 110%;
+  transition: opacity 0.8s ease-out;
+}
+.rssTitleShow {
+  opacity: 0.83;
+}
+.rssTitleHide {
+  opacity: 0;
+}
+#rssDescr {
+  line-height: 1em;
+  transition: opacity 0.8s ease-out;
+}
+.rssDescrShow {
+  opacity: 0.73;
+}
+.rssDescrHide {
+  opacity: 0;
+}
+@keyframes rssIconEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.rts-settings-container {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease-out, width 1s ease-out, height 1s ease-out;
+  box-shadow: -1px 7px 24px 3px rgba(0,0,0,0.75);
+  font-family: Arial;
+  background-color: rgba(160, 90, 100, 0.9);
+  border-width: 2px;
+  border-color: black;
+  border-style: ridge;
+  border-radius: 1em;
+  padding: 1.6em 1.2em 1.1em 1.2em;
+}
+.rts-settings-input {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  row-gap: 0.6em;
+  column-gap: 1.2em;
+  font-size: 90%;
+}
+.rts-settings-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 110%;
+}
+.rts-settings-busy {
+  display: flex;
+  justify-content: flex-start;
+}
+.rts-settings-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 0 auto;
+  border-width: 1px;
+}
+.rts-busy-ind {
+  width: 1.8em;
+  height: 0.7em;
+  border-color: black;
+  border-width: 2px;
+  border-style: inset;
+  border-radius: 0.4em;
+  transition: background-color 0.5s ease-out;
+  margin: auto 1em auto 0.5em;
+}
+.rts-busy-ind-busy {
+  background-color: #26ca28;
+}
+.rts-busy-ind-stopped {
+  background-color: #333;
+}
+.rts-label {
+  margin: auto 0 auto auto;
+}
+.rts-button {
+  width: 2.8em;
+  height: 1.9em;
+  background-color: #bbb;
+  transition: background-color 0.5s ease-out, border-width 0.5s ease-out;
+  border-color: black;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 0.6em;
+  margin: auto 0 auto 0.5rem;
+}
+.rts-input {
+  border-width: 1px;
+  border-style: inset;
+  border-radius: 1em;
+  background-color: rgba(240, 220, 200, 0.9);
+  margin: auto auto auto 0;
+  height: 0.6em;
+  padding: 0.5em 0.3em 0.4em 0.5em;
+}
+.rts-input-url {
+  width: 25em;
+  height: 1.5em;
+}
+.rts-checkbox input[type=checkbox] {
+  visibility: hidden;
+}
+.rts-checkbox {
+  display: none;
+  width: 1.6em;
+  height: 1.6em;
+  background-color: #bbb;
+  margin: auto auto auto 0;
+  border-radius: 100%;
+  position: relative;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+  transition: background-color 0.5s ease;
+}
+.rts-checkbox div {
+  display: block;
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 100%;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 0.25em;
+  left: 0.25em;
+  background-color: #333;
+  box-shadow:inset 0px 2px 6px rgba(0,0,0,0.5);
+}
+.rts-checkbox input[type=checkbox]:checked + div {
+  background-color: #26ca28;
+}
+.rts-settings-container *:focus {
+  box-shadow: 0 0 3pt 2pt yellow;
+  transition: box-shadow 0.4s ease-out;
+}
+.rts-button:hover, .rts-button:focus, .rts-checkbox:hover, .rts-checkbox:focus, .rts-busy-button:hover, .rts-busy-button:focus {
+  background-color: rgba(240, 240, 160, 0.7);
+}
+@keyframes rtsButtonClickEffect {
+  0% {
+    background-color:rgba(240, 240, 160, 0.7);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  100% {
+    background-color: rgba(240, 240, 160, 0.7);
+  }
+}
+.rts-button-clickeffect {
+  animation: rtsButtonClickEffect 0.5s ease-out;
+}
 .gaugecont {
   display: flex;
   flex-direction: row;

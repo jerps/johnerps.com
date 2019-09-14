@@ -1,8 +1,19 @@
+/*
+
+index
+
+(c) 2019 John Erps
+
+This software is licensed under the MIT license (see LICENSE)
+
+*/
+
 import animateText from '@js/animate-text.js';
 import FloatImgs from '@js/floating-imgs.js';
 import Util from '@js/util.js';
 import tippy from '@nm/tippy.js';
-import RssTicker from '@em/rss-ticker';
+import RssTicker from '@m/rss-ticker';
+import RtSettings from '@js/rt-settings.js'
 
 var el = {};
 
@@ -44,8 +55,8 @@ var resizet = null;
 var mouseoveranimtxtcanvasid = '';
 var wave = 0;
 
-var dw = 10000, dne = 200,
-    d0 = 3000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 500,
+var dw = 15000, dne = 200,
+    d0 = 10000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 500,
     d9 = 600, d10 = 3000, d11 = 1200, d12 = 2000, d13 = 1000;
 
 var r0a = 0.2, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.4, r2 = 0.5, r3 = 0.35;
@@ -53,6 +64,8 @@ var r0a = 0.2, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.4, r2 = 0.
 var ready = false, ak, lmpx, lmpy, lmmt = performance.now(), lmmtd = 50, e;
 
 var gaugenum = 5, oneknob = new Set([1,2,3]);
+
+var rss = null, rsss = null, rssrl = null, rssct = null;
 
 function updFloatImgs_gt(y) {
   var x;
@@ -342,10 +355,21 @@ FloatImgs.rCallback = function() {
 
 window.onload = function() {
 
+  tippy.setDefaults({
+    animation: 'shift-away',
+    arrow: true,
+    inertia: true,
+    touchHold: true
+  });
+
+  tip('#nrpgmap', 'Latest: v1.2.1 (march 2019)');
+  tip('#nyagols', 'Latest: v4.1 (august 2019)');
+
   tip('#download-rpgmap', 'Download RpgMap from Github');
   tip('#github-rpgmap', 'Go to RpgMap Repository on GitHub');
   tip('#download-yagols', 'Download Yagols from Github');
   tip('#github-yagols', 'Go to Yagols Repository on GitHub');
+  tip('#rssIcon', 'Edit rss-ticker attributes');
 
   reganim('email1', {
     text: t[11],
@@ -522,6 +546,7 @@ window.onload = function() {
     if (!ready) {
       return;
     }
+    RtSettings.removeAll();
     animateAll(6/*random chars*/, d5);
     if (resizet) {
       clearTimeout(resizet);
@@ -905,21 +930,86 @@ window.onload = function() {
     } else if (Util.rnd() < r0b) {
       dowave(0);
     }
-  }, 1500);
+  }, d0*2);
 
-  e = document.getElementById('rss');
-  e.url = 'http://rss.cnn.com/rss/edition.rss'
-  e.proxyUrl = 'https://johnerps.com/php/getfile.php?url=%%_URL_%%';
-  e.fetchOpts = { cache: 'no-cache' };
-  e.fontFamily = 'Noto Sans';
-  e.transparency = 0.1;
-  e.startTicker();
-  window.RSS = e;
   setTimeout(function() {
     ready = true;
     FloatImgs.start();
   }, dw);
 
+  rss = document.getElementById('rss');
+  rss.url = 'http://rss.cnn.com/rss/edition.rss'
+  rss.proxyUrl = 'https://johnerps.com/php/getfile.php?url=%%_URL_%%';
+  rss.fetchOpts = { cache: 'no-cache' };
+  rss.fontFamily = 'Noto Sans';
+  rss.transparency = 0.1;
+
+  rssct = () => {
+    let e1 = document.querySelector('#rssTitle'), e2 = document.querySelector('#rssDescr');
+    e1.classList.remove('rssTitleShow');
+    e2.classList.remove('rssDescrShow');
+    e1.classList.add('rssTitleHide');
+    e2.classList.add('rssDescrHide');
+    setTimeout(() => {
+      e1.innerHTML = '<br>';
+      e2.innerHTML = '';
+    }, 800);
+  };
+  rssct();
+
+  rssrl = ri => {
+    if (ri.running) {
+      let t, d;
+      if (ri.errmsg) {
+        t = 'ERROR';
+        d = ri.errmsg || '';
+      } else {
+        t = ri.title ? ri.title.trim() : '';
+        t = t || ri.url || '';
+        d = ri.description ? ri.description.trim() : '';
+        d = !d || d === t ? ri.url : d;
+        if (d === t) {
+          d = '';
+        }
+      }
+      let e1 = document.querySelector('#rssTitle'), e2 = document.querySelector('#rssDescr');
+      e1.classList.remove('rssTitleShow');
+      e2.classList.remove('rssDescrShow');
+      e1.classList.add('rssTitleHide');
+      e2.classList.add('rssDescrHide');
+      setTimeout(() => {
+        e1.innerHTML = t + '<br>';
+        e2.innerHTML = d;
+        e1.classList.remove('rssTitleHide');
+        e1.classList.add('rssTitleShow');
+        setTimeout(() => {
+          e2.classList.remove('rssDescrHide');
+          e2.classList.add('rssDescrShow');
+        }, 400);
+      }, 800);
+    } else {
+      rssct();
+    }
+  };
+  rss.addRunningListener(rssrl);
+
+  rss.startTicker();
+
+  let rssIcon = document.querySelector('#rssIcon');
+  rssIcon.addEventListener('click', e => {
+    e.preventDefault();
+    rssIcon.classList.add('rssIconEffect');
+    setTimeout(() => {
+      rssIcon.classList.remove('rssIconEffect');
+    }, 500);
+    if (!rsss || rsss.isRemoved) {
+      rsss = new RtSettings(rss);
+    } else {
+      rsss.remove();
+    }
+  }, false);
+
+  document.querySelector('body').classList.add('body-fadein');
 };
 
 function dowave(d) {

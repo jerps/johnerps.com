@@ -8,10 +8,10 @@ USER=john@johnerps.com
 LDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 DIR_CSS=css
+DIR_DIST=dist
 DIR_IMAGES=images
 DIR_IMAGES_FLOAT=images/float
 DIR_INCLUDE="include"
-DIR_JS=js
 DIR_PHP=php
 DIR_PHP_PRIV=php/priv
 
@@ -28,8 +28,7 @@ function mputdir {
   echo "mput *"                >> $FTPS
 }
 
-echo "open $HOST"               > $FTPS
-echo "$USER"                   >> $FTPS
+echo "$USER"                    > $FTPS
 echo "prompt"                  >> $FTPS
 echo "ascii"                   >> $FTPS
 echo "lcd $LDIR"               >> $FTPS
@@ -38,8 +37,8 @@ echo "put index.html"          >> $FTPS
 echo "put php.ini"             >> $FTPS
 
 mputdir $DIR_CSS
+mputdir $DIR_DIST
 mputdir $DIR_INCLUDE
-mputdir $DIR_JS
 mputdir $DIR_PHP
 mputdir $DIR_PHP_PRIV
 
@@ -51,4 +50,4 @@ fi
 
 echo "quit"                    >> $FTPS
 
-ftp --verbose < $FTPS
+ftp $HOST --verbose < $FTPS

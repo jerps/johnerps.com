@@ -1,27 +1,44 @@
+/*
+
+Webpack configuration file
+
+(c) 2019 John Erps
+
+This software is licensed under the MIT license (see LICENSE)
+
+*/
+
 const path = require('path');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
+const fs = require('fs');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = env => {
 
   env = env ? env : {};
 
-  conf = {
+  let conf = {
     mode: env.prod ? 'production' : 'development',
     context: path.resolve(__dirname),
     entry: {
-      index: path.resolve(__dirname, 'js/index.js')
+      index: path.resolve(__dirname, 'src/index.js')
     },
     output: {
-      filename: 'js/[name].bundle.js',
-      path: path.resolve(__dirname)
+      filename: '[name].min.js',
+      path: path.resolve(__dirname, 'dist')
     },
     resolve: {
       alias: {
-        '@js': path.resolve(__dirname, 'js'),
+        '@js': path.resolve(__dirname, 'src'),
         '@nm': path.resolve(__dirname, 'node_modules'),
-        '@em': path.resolve(__dirname, 'extra_modules')
+        '@m': path.resolve(__dirname, 'modules')
       }
-    }
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new webpack.BannerPlugin(fs.readFileSync(path.resolve(__dirname, 'LICENSE.txt'), 'utf8'))
+    ]
   };
 
   if (env.prod) {conf=merge(conf, {
@@ -30,7 +47,7 @@ module.exports = env => {
       rules: [
         {
           test: /\.js$/,
-          exclude: [/node_modules/, /extra_modules/],
+          exclude: [/modules/],
           use: {
             loader: 'babel-loader',
             options: {

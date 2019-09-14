@@ -4,31 +4,14 @@ Floating Images
 
 (c) 2019 John Erps
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
+This software is licensed under the MIT license (see LICENSE)
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-
 
 import Util from '@js/util.js';
 
-
 let FloatImgs = {};
 export default FloatImgs;
-
 
 const IMGPATH = 'images/float/', IMGEXT = '.jpg', IMGCOUNT = 74, ZISLOTS = 30;
 
@@ -42,10 +25,8 @@ let ilist = [];
 let zset = new Set();
 let iset = new Set();
 
-
 FloatImgs.tCallback = null;
 FloatImgs.rCallback = null;
-
 
 FloatImgs.start = function() {
   if (!rszlset) {
@@ -118,8 +99,8 @@ FloatImgs.fgmc1 = function(g) {
   }
 };
 
-FloatImgs.fgt(0.1);
-FloatImgs.fgr(0.3);
+FloatImgs.fgt(0.03);
+FloatImgs.fgr(0.2);
 FloatImgs.fgmi(0.1);
 FloatImgs.fgd0(0.1);
 FloatImgs.fgd1(0.4);
