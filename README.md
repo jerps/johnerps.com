@@ -4,6 +4,10 @@
 
 ### Changes
 
+* v0.3.2 (2019-09-14)
+
+  * Upgraded node modules. Use rss-ticker v0.3.2.
+
 * 2019-09-14
 
   * Fixes, misc changes. Use rss-ticker v0.3.1.
