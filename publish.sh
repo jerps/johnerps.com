@@ -58,8 +58,8 @@ then
   mputdir $DIR_FONTS_FONTAWESOME
   mputdir $DIR_FONTS_FONTAWESOME_CSS
   mputdir $DIR_FONTS_FONTAWESOME_JS
-  mputdir $DIR_FONTS_FONTAWESOME_WEBFONTS
-  mputdir $DIR_FONTS_GOOGLE
+  mputdir $DIR_FONTS_FONTAWESOME_WEBFONTS b
+  mputdir $DIR_FONTS_GOOGLE b
 fi
 
 if [[ $1 == *I* ]]
