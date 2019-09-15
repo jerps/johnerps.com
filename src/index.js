@@ -8,12 +8,12 @@ This software is licensed under the MIT license (see LICENSE)
 
 */
 
-import animateText from '@js/animate-text.js';
-import FloatImgs from '@js/floating-imgs.js';
-import Util from '@js/util.js';
-import tippy from '@nm/tippy.js';
-import RssTicker from '@m/rss-ticker';
-import RtSettings from '@js/rt-settings.js'
+import animateText from 'src/animate-text.js';
+import FloatImgs from 'src/floating-imgs.js';
+import Util from 'src/util.js';
+import RssTicker from 'src/rss-ticker';
+import RtSettings from 'src/rt-settings.js'
+import tippy from 'tippy.js';
 
 var el = {};
 
@@ -55,15 +55,15 @@ var resizet = null;
 var mouseoveranimtxtcanvasid = '';
 var wave = 0;
 
-var dw = 15000, dne = 200,
-    d0 = 10000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 500,
-    d9 = 600, d10 = 3000, d11 = 1200, d12 = 2000, d13 = 1000;
+var dw = 10000, dne = 200,
+    d0 = 4000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 500,
+    d9 = 600, d10 = 3000, d11 = 1200, d12 = 2000;
 
-var r0a = 0.2, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.4, r2 = 0.5, r3 = 0.35;
+var r0a = 0.2, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.35, r2 = 0.7;
 
-var ready = false, ak, lmpx, lmpy, lmmt = performance.now(), lmmtd = 50, e;
+var ready = false, ak;
 
-var gaugenum = 5, oneknob = new Set([1,2,3]);
+var oneknob = new Set([1,2,3]);
 
 var rss = null, rsss = null, rssrl = null, rssct = null;
 
@@ -363,7 +363,7 @@ window.onload = function() {
   });
 
   tip('#nrpgmap', 'Latest: v1.2.1 (march 2019)');
-  tip('#nyagols', 'Latest: v4.1 (august 2019)');
+  tip('#nyagols', 'Latest: v4.2 (september 2019)');
 
   tip('#download-rpgmap', 'Download RpgMap from Github');
   tip('#github-rpgmap', 'Go to RpgMap Repository on GitHub');
@@ -456,7 +456,7 @@ window.onload = function() {
     text: t[15],
     border: [0, 0, 0, 0],
     fontSize: 1.1,
-    yp: 0,
+    yp: 0.09,
     rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: dfontFamily, fontProps: fontProps, letterSpacing: letterSpacing2
@@ -465,7 +465,7 @@ window.onload = function() {
     text: t[17],
     border: [0, 0, 0, 0],
     fontSize: 1.1,
-    yp: 0,
+    yp: 0.09,
     rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: dfontFamily, fontProps: fontProps, letterSpacing: letterSpacing2
@@ -551,28 +551,11 @@ window.onload = function() {
     if (resizet) {
       clearTimeout(resizet);
       resizet = null;
-    };
+    }
     resizet = setTimeout(function() {
       resizet = null;
       animateAll(4/*fade in*/, d6);
     }, d5);
-  }, false);
-
-  window.addEventListener('mousemove', function(e) {
-    var x = performance.now();
-    if (!ready || x - lmmt < d13) {
-      return;
-    }
-    lmmt = x;
-    if (lmpx && lmpy) {
-      lmmtd = ((lmmtd = d13*(Math.abs(lmpx-e.pageX)/screen.width+Math.abs(lmpy-e.pageY)/screen.height)/2) < 50 ? 50 : lmmtd) * 2;
-      animateAll(5/*fade out*/, d13);
-      setTimeout(function() {
-        animateAll(-1/*no effect*/, dne);
-      }, lmmtd);
-    }
-    lmpx = e.pageX;
-    lmpy = e.pageY;
   }, false);
 
   el.gaugecont = document.querySelector('#gaugecont');
@@ -835,25 +818,51 @@ window.onload = function() {
 
   el.zapp.addEventListener('mousedown', function(e) {
     e.preventDefault();
-    el.zapp.classList.add('gaugebtnsel2');
     if (FloatImgs.zapp) {
       FloatImgs.zapp();
     }
+    el.zapp.classList.add('gaugebtnsel2');
+  }, false);
+  el.zapp.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (FloatImgs.zapp) {
+      FloatImgs.zapp();
+    }
+    el.zapp.classList.add('gaugebtnsel2');
+    setTimeout(() => {
+      el.zapp.classList.remove('gaugebtnsel2');
+    }, 500);
   }, false);
   el.gaugestore.addEventListener('mousedown', function(e) {
     e.preventDefault();
-    el.gaugestore.classList.add('gaugebtnsel2');
     createCookieFloatImgs();
+    el.gaugestore.classList.add('gaugebtnsel2');
+  }, false);
+  el.gaugestore.addEventListener('click', function(e) {
+    e.preventDefault();
+    createCookieFloatImgs();
+    el.gaugestore.classList.add('gaugebtnsel2');
+    setTimeout(() => {
+      el.gaugestore.classList.remove('gaugebtnsel2');
+    }, 500);
   }, false);
   el.gaugeload.addEventListener('mousedown', function(e) {
     e.preventDefault();
-    el.gaugeload.classList.add('gaugebtnsel2');
     readCookieFloatImgs();
     updGaugeKnobs();
+    el.gaugeload.classList.add('gaugebtnsel2');
+  }, false);
+  el.gaugeload.addEventListener('click', function(e) {
+    e.preventDefault();
+    readCookieFloatImgs();
+    updGaugeKnobs();
+    el.gaugeload.classList.add('gaugebtnsel2');
+    setTimeout(() => {
+      el.gaugeload.classList.remove('gaugebtnsel2');
+    }, 500);
   }, false);
   el.gaugeldft.addEventListener('mousedown', function(e) {
     e.preventDefault();
-    el.gaugeldft.classList.add('gaugebtnsel2');
     FloatImgs.fgt(FloatImgs.dft.gt);
     FloatImgs.fgr(FloatImgs.dft.gr);
     FloatImgs.fgmi(FloatImgs.dft.gmi);
@@ -862,6 +871,22 @@ window.onload = function() {
     FloatImgs.fgmc0(FloatImgs.dft.gmc0);
     FloatImgs.fgmc1(FloatImgs.dft.gmc1);
     updGaugeKnobs();
+    el.gaugeldft.classList.add('gaugebtnsel2');
+  }, false);
+  el.gaugeldft.addEventListener('click', function(e) {
+    e.preventDefault();
+    FloatImgs.fgt(FloatImgs.dft.gt);
+    FloatImgs.fgr(FloatImgs.dft.gr);
+    FloatImgs.fgmi(FloatImgs.dft.gmi);
+    FloatImgs.fgd0(FloatImgs.dft.gd0);
+    FloatImgs.fgd1(FloatImgs.dft.gd1);
+    FloatImgs.fgmc0(FloatImgs.dft.gmc0);
+    FloatImgs.fgmc1(FloatImgs.dft.gmc1);
+    updGaugeKnobs();
+    el.gaugeldft.classList.add('gaugebtnsel2');
+    setTimeout(() => {
+      el.gaugeldft.classList.remove('gaugebtnsel2');
+    }, 500);
   }, false);
 
   gaugeInit(1);
@@ -907,9 +932,9 @@ window.onload = function() {
     } else if (Util.rnd() < r0d) {
       i = Math.trunc(Util.rnd() * ak.length);
       p = { rgbab: [255, 255, 255, 1] };
-      if (Util.rnd() < r3) {
+      if (Util.rnd() < r1) {
         p.rgb0 = [255,0,0];
-      };
+      }
       animate(ak[i], 5/*fade out*/, d10, p);
       setTimeout(function() {
         animate(ak[i], -1/*no effect*/, dne);
@@ -917,9 +942,9 @@ window.onload = function() {
     } else if (Util.rnd() < r0e) {
       i = Math.trunc(Util.rnd() * ak.length);
       p = { rgbab: [255, 255, 255, 1] };
-      if (Util.rnd() < r3) {
+      if (Util.rnd() < r1) {
         p.rgb0 = [255,0,0];
-      };
+      }
       animate(ak[i], 5/*fade out*/, d11, p);
       setTimeout(function() {
         animate(ak[i], 0/*random effect*/, d12);
@@ -942,7 +967,6 @@ window.onload = function() {
   rss.proxyUrl = 'https://johnerps.com/php/getfile.php?url=%%_URL_%%';
   rss.fetchOpts = { cache: 'no-cache' };
   rss.fontFamily = 'Noto Sans';
-  rss.transparency = 0.1;
 
   rssct = () => {
     let e1 = document.querySelector('#rssTitle'), e2 = document.querySelector('#rssDescr');
@@ -989,7 +1013,11 @@ window.onload = function() {
   };
   rss.addRunningListener(rssrl);
 
-  rss.startTicker();
+  let dfts = {};
+  let apn = RssTicker.apNames;
+  for (let i = 0; i < apn.length - 1; i += 2) {
+    dfts[apn[i]] = rss[apn[i+1]];
+  }
 
   let rssIcon = document.querySelector('#rssIcon');
   rssIcon.addEventListener('click', e => {
@@ -999,11 +1027,15 @@ window.onload = function() {
       rssIcon.classList.remove('rssIconEffect');
     }, 500);
     if (!rsss || rsss.isRemoved) {
-      rsss = new RtSettings(rss);
+      rsss = new RtSettings(rss, dfts);
     } else {
       rsss.remove();
     }
   }, false);
+
+  this.setTimeout(() => {
+    rss.startTicker();
+  }, d0 * 2);
 
   document.querySelector('body').classList.add('body-fadein');
 };
@@ -1063,7 +1095,7 @@ function tip(sel, text) {
 
 function createCookieFloatImgs() {
   Util.createCookie(
-      'FloatImgs',
+      'SettingsFloatImgs',
       't='     + FloatImgs.gt     + ';' +
       'r='     + FloatImgs.gr     + ';' +
       'mi='    + FloatImgs.gmi    + ';' +
@@ -1075,7 +1107,7 @@ function createCookieFloatImgs() {
 }
 
 function readCookieFloatImgs() {
-  var c = Util.readCookie('FloatImgs');
+  var c = Util.readCookie('SettingsFloatImgs');
   if (!c) {
     return;
   }

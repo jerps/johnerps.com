@@ -8,7 +8,7 @@ This software is licensed under the MIT license (see LICENSE)
 
 */
 
-import Util from '@js/util.js';
+import Util from 'src/util.js';
 
 let FloatImgs = {};
 export default FloatImgs;
@@ -100,10 +100,10 @@ FloatImgs.fgmc1 = function(g) {
 };
 
 FloatImgs.fgt(0.03);
-FloatImgs.fgr(0.2);
+FloatImgs.fgr(0.1);
 FloatImgs.fgmi(0.1);
-FloatImgs.fgd0(0.1);
-FloatImgs.fgd1(0.4);
+FloatImgs.fgd0(0.05);
+FloatImgs.fgd1(0.3);
 FloatImgs.fgmc0(0.1);
 FloatImgs.fgmc1(0.4);
 
@@ -431,7 +431,7 @@ function floatImgs(ssc) {
 }
 
 function loadImg(url) {
-  return new Promise((res, rej) => {
+  return new Promise((res) => {
     let i = new Image();
     i.src = url;
     i.onload = () => res(i);

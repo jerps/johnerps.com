@@ -27,7 +27,7 @@ html {
 }
 
 body {
-  background-color: #F9F9F9;
+  background-color: black;
   line-height: 1;
   font-family: 'Arial';
   font-weight: normal;
@@ -35,12 +35,14 @@ body {
   height: 100%;
   position: relative;
   opacity: 0;
-  transition: opacity 8s ease-out 2s;
+  transition: opacity 6s ease-out, background-color 6s ease-out;
   overflow: hidden;
+  user-select: none;
 }
 
 .body-fadein {
   opacity: 1;
+  background-color: #F9F9F9;
 }
 
 hr {
@@ -63,7 +65,6 @@ a.pr-link {
   border-style: solid;
   border-width: 2px;
   border-color: rgba(255, 255, 255, 0);
-  outline: none;
 }
 
 .pr-link:hover {
@@ -150,10 +151,9 @@ canvas.animatedText {
   margin-top: 0.16em;
 }
 
-.img-github, .img-download {
-  width: 1.6em;
-  height: 1.6em;
-  margin-top: 0.35em;
+.icon-github, .icon-download {
+  font-size: 170%;
+  margin: 0.15em 0 0 0;
 }
 
 #cpyr {
@@ -236,6 +236,16 @@ canvas.animatedText {
   padding: 1.6em 1.2em 1.1em 1.2em;
 }
 .rts-settings-input {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.rts-settings-input-top {
+  display: flex;
+  margin: 0 0.5em 1.5em 0.5em;
+  font-size: 105%;
+}
+.rts-settings-input-bottom {
   display: grid;
   grid-template-columns: auto auto auto auto;
   row-gap: 0.5em;
@@ -255,11 +265,10 @@ canvas.animatedText {
   display: flex;
   justify-content: flex-end;
   margin: 0 0 0 auto;
-  border-width: 1px;
 }
 .rts-busy-ind {
-  width: 1.8em;
-  height: 0.7em;
+  width: 2em;
+  height: 0.8em;
   border-color: black;
   border-width: 2px;
   border-style: inset;
@@ -274,11 +283,17 @@ canvas.animatedText {
   background-color: #333;
 }
 .rts-label {
-  margin: auto 0 auto auto;
+  margin: auto 0 auto 0;
+  text-align: right;
+}
+.rts-label-url {
+  width: 4.5em;
+  text-align: right;
+  margin: auto 0 auto 0;
 }
 .rts-button {
-  width: 2.8em;
-  height: 1.9em;
+  width: 3.1em;
+  height: 2.1em;
   background-color: #bbb;
   transition: background-color 0.5s ease-out, border-width 0.5s ease-out;
   border-color: black;
@@ -286,19 +301,26 @@ canvas.animatedText {
   border-style: outset;
   border-radius: 0.6em;
   margin: auto 0 auto 0.5rem;
+  font-weight: bold;
 }
 .rts-input {
+  border-color: black;
   border-width: 1px;
   border-style: inset;
   border-radius: 1em;
   background-color: rgba(240, 220, 200, 0.9);
   margin: auto auto auto 0;
+  width: 5em;
   height: 0.6em;
   padding: 0.5em 0.3em 0.4em 0.5em;
 }
 .rts-input-url {
   width: 25em;
-  height: 1.5em;
+  height: 0.9em;
+  margin: auto 0.6em auto 1em;
+}
+.rts-urlswitch {
+  margin: auto 0 auto 0;
 }
 .rts-checkbox input[type=checkbox] {
   visibility: hidden;
@@ -312,14 +334,14 @@ canvas.animatedText {
   border-radius: 100%;
   position: relative;
   box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
-  transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease-out;
 }
 .rts-checkbox div {
   display: block;
   width: 0.9em;
   height: 0.9em;
   border-radius: 100%;
-  transition: all .5s ease;
+  transition: all .5s ease-out;
   cursor: pointer;
   position: absolute;
   top: 0.25em;
@@ -330,11 +352,33 @@ canvas.animatedText {
 .rts-checkbox input[type=checkbox]:checked + div {
   background-color: #26ca28;
 }
-.rts-settings-container *:focus {
-  box-shadow: 0 0 3pt 2pt yellow;
+.rts-color {
+  display: none;
+  margin: auto auto auto 0;
+}
+.rts-color input[type=text] {
+  width: 5em;
+}
+.rts-color input[type=color] {
+  width: 1em;
+  margin-left: 5px;
+  border-width: 2px;
+  height: 0.4em;
+  transition: background-color 0.4s ease-out;
+}
+.rts-settings-container * {
   transition: box-shadow 0.4s ease-out;
 }
-.rts-button:hover, .rts-button:focus, .rts-checkbox:hover, .rts-checkbox:focus, .rts-busy-button:hover, .rts-busy-button:focus {
+.rts-settings-container *:focus {
+  box-shadow: 0 0 2pt 1pt yellow;
+}
+.rts-button:focus {
+  box-shadow: 0 0 2pt 1pt yellow;
+}
+.rts-settings-container label:focus {
+  box-shadow: none;
+}
+.rts-button:hover, .rts-button:focus {
   background-color: rgba(240, 240, 160, 0.7);
 }
 @keyframes rtsButtonClickEffect {
@@ -497,7 +541,6 @@ canvas.animatedText {
   margin: 0 0 0 auto;
   padding: 0;
   position: absolute;
-  user-select: none;
   top: 0.4rem;
 }
 
@@ -531,7 +574,6 @@ canvas.animatedText {
   font-style: 'bold';
   text-align: center;
   line-height: 1.1rem;
-  user-select: none;
 }
 
 .gaugebtnsel {

@@ -1,7 +1,12 @@
 {
   "scripts": {
-    "build:index:dev": "webpack --config webpack.index.js",
-    "build:index:prod": "webpack --config webpack.index.js --env.prod"
+    "build:index:dev": "node build.index.dev.js",
+    "build:index:prod": "node build.index.prod.js"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jerps/johnerps.com.git"
   },
   "dependencies": {
     "tippy.js": "^4.3.5"

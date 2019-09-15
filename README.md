@@ -4,6 +4,14 @@
 
 ### Changes
 
+* v0.5.0 (2019-09-15)
+
+  * Bugfixes. Misc changes.
+  * Updated modules. Added node-modules to repository.
+  * All assets are now off-line.
+  * Use rss-ticker v0.5.0.
+  * The settings window is now fully functional.
+
 * v0.3.3 (2019-09-14)
 
   * Bugfixes. Use rss-ticker v0.3.3.

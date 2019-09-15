@@ -29,7 +29,7 @@ This software is licensed under the MIT license (see LICENSE)
 
 */
 
-import Util from '@js/util.js';
+import Util from 'src/util.js';
 
 var effects = [
 

@@ -10,7 +10,6 @@ This software is licensed under the MIT license (see LICENSE)
 
 let acl = new Map(); // attribute change listeners
 let rts = new Set(); // RtSettings instances
-
 export default class RtSettings {
 
   static areSettingsOpenFor(ticker) {
@@ -23,16 +22,17 @@ export default class RtSettings {
     }
   }
 
-  constructor(ticker) {
+  constructor(ticker, dfts) {
     rts.add(this);
     this._ticker = ticker;
     this._inputs = new Map();
     this._removed = false;
     this._tbl = null;
+    this._dfts = dfts || {};
     let ti = 0;
-    const self = this;
+    let self = this;
     function attrChanged(a1, a2, e) {
-      if (e.type && e.type === 'checkbox') {
+      if (e.type === 'checkbox') {
         ticker[a2] = e.checked;
       } else {
         ticker[a2] = e.value;
@@ -47,36 +47,63 @@ export default class RtSettings {
         }
       }
     }
-    function initValue(a, e) {
-      if (e.type && e.type === 'checkbox') {
+    function initValue(a, e, c) {
+      if (e.type === 'checkbox') {
         e.checked = !!ticker[a];
       } else {
         e.value = String(ticker[a]);
       }
+      if (c) {
+        if (e.value) {
+          if (c.value !== e.value) {
+            let s = e.value;
+            if (s.length === 4) {
+              s = s.substring(0, 3);
+            } else if (s.length === 8) {
+              s = s.substring(0, 6);
+            }
+            c.value = s;
+          }
+          c.style.backgroundColor = e.value;
+          c.style.opacity = '1';
+        } else {
+          c.style.backgroundColor = '#777';
+          c.style.opacity = '0.4';
+        }
+      }
     }
     function initInput(a1, a2, r, c, t) {
-      let e0, e1, e = t === 'checkbox' ? document.querySelector('.rts-checkbox').cloneNode(true) : document.createElement(t ? 'input' : 'textarea');
+      let e0, e1, e = t === 'checkbox' ? document.querySelector('.rts-checkbox-sel').cloneNode(true) : t === 'color' ? document.querySelector('.rts-color-sel').cloneNode(true) : document.createElement(t === 'textarea' ? 'textarea' : 'input');
+      if (a1 !== 'url' && a1 !== 'proxy-url') {
+        if (r) {
+          e.style.gridRowStart = '' + r;
+        }
+        if (c) {
+          e.style.gridColumnStart = '' + c;
+        }
+      }
+      if (t === 'color') {
+        e0 = e;
+        e = e0.querySelector('input[type=text]');
+        e1 = e0.querySelector('input[type=color]');
+        e0.classList.remove('rts-color-sel');
+        e0.style.display = 'flex';
+        e1.addEventListener('change', () => {
+          e.value = e1.value;
+          attrChanged(a1, a2, e);
+        }, false);
+      }
       ti++;
-      if (r) {
-        e.style.gridRowStart = '' + r;
-      }
-      if (c) {
-        e.style.gridColumnStart = '' + c;
-      }
       e.tabIndex = '' + ti;
       if (t === 'checkbox') {
         e.style.display = 'block';
         e0 = e;
+        e0.classList.remove('rts-checkbox-sel');
         e = e0.querySelector('input');
-        e.tabIndex = '-1';
         e1 = e0.querySelector('div');
         e1.addEventListener('click', ev => {
           ev.preventDefault();
           e.checked = !e.checked;
-          e0.style.outlineColor = 'white';
-          setTimeout(() => {
-            e0.style.outlineColor = '';
-          }, 500);
           if (a1) {
             attrChanged(a1, a2, e);
           } else if (a2) {
@@ -87,10 +114,6 @@ export default class RtSettings {
           if (ev.keyCode === 32) {
             ev.preventDefault();
             e.checked = !e.checked;
-            e0.style.outlineColor = 'white';
-            setTimeout(() => {
-              e0.style.outlineColor = '';
-            }, 500);
             if (a1) {
               attrChanged(a1, a2, e);
             } else if (a2) {
@@ -98,7 +121,7 @@ export default class RtSettings {
             }
           }
         }, false);
-      } else {
+      } else if (t !== 'color') {
         e.classList.add('rts-input');
         if (a1 === 'url' || a1 === 'proxy-url') {
           e.classList.add('rts-input-url');
@@ -120,7 +143,7 @@ export default class RtSettings {
             }
           }, false);
         }
-        if (t) {
+        if (t && t !== 'textarea') {
           e.type = t;
         }
       }
@@ -130,14 +153,10 @@ export default class RtSettings {
           e.addEventListener('change', ev => {
             ev.preventDefault();
             attrChanged(a1, a2, e);
-            e.style.outlineColor = 'white';
-            setTimeout(() => {
-              e.style.outlineColor = '';
-            }, 500);
           });
         }
-        initValue(a2, e);
-        let h = () => initValue(a2, e);
+        initValue(a2, e, t === 'color' ? e1 : null);
+        let h = () => initValue(a2, e, t === 'color' ? e1 : null);
         self._inputs.set(a1, [a2, e, h]);
         let x1 = acl.get(ticker);
         if (!x1) {
@@ -160,23 +179,21 @@ export default class RtSettings {
           }, 500);
         });
       }
-      return t === 'checkbox' ? e0 : e;
+      return t === 'checkbox' || t === 'color' ? e0 : e;
     }
     function initLabel(a, r, c) {
       let e = document.createElement('label');
       if (a === 'url' || a === 'proxy-url') {
-        e.style.width = '4.5em';
-        e.style.margin = 'auto';
+        e.classList.add('rts-label-url');
       } else {
         e.classList.add('rts-label');
+        if (r) {
+          e.style.gridRowStart = '' + r;
+        }
+        if (c) {
+          e.style.gridColumnStart = '' + c;
+        }
       }
-      if (r) {
-        e.style.gridRowStart = '' + r;
-      }
-      if (c) {
-        e.style.gridColumnStart = '' + c;
-      }
-      e.style.textAlign = 'right';
       e.tabIndex = '-1';
       e.innerHTML = a;
       return e;
@@ -201,59 +218,116 @@ export default class RtSettings {
       });
       return e;
     }
-    let e, e0, e1, fe, iurl, ipurl, lurl, urlswitch, bplay, bstop, bimport, bexport, bcancel;
-    this._e = document.querySelector('.rts-settings-container').cloneNode(true);
+    let e, e0, fe, iurl, ipurl, lurl, urlswitch, bplay, bstop, bstore, bload, bdefaults, bcancel;
+    this._e = document.querySelector('.rts-settings-container-sel').cloneNode(true);
+    this._e.classList.remove('rts-settings-container-sel');
     this._e.style.display = 'flex';
     document.body.appendChild(this._e);
-    e0 = this._e.querySelector('.rts-settings-input');
+    e0 = this._e.querySelector('.rts-settings-input-top');
+    lurl = initLabel('url');
+    e0.appendChild(lurl);
+    iurl = initInput('url', 'url');
+    fe = iurl; // focus element
+    e0.appendChild(iurl);
+    ipurl = initInput('proxy-url', 'proxyUrl');
+    ipurl.style.display = 'none';
+    e0.appendChild(ipurl);
     urlswitch = initInput(null, (e) => {
       if (e.checked) {
         lurl.innerHTML = 'proxy-url';
         iurl.style.display = 'none';
         ipurl.style.display = 'inline';
         ipurl.focus();
-        ipurl.style.outlineColor = 'white';
-        setTimeout(() => {
-          ipurl.style.outlineColor = '';
-        }, 500);
       } else {
         lurl.innerHTML = 'url';
         iurl.style.display = 'inline';
         ipurl.style.display = 'none';
         iurl.focus();
-        iurl.style.outlineColor = 'white';
-        setTimeout(() => {
-          iurl.style.outlineColor = '';
-        }, 500);
       }
     }, null, null, 'checkbox');
     urlswitch.classList.add('rts-urlswitch');
-    urlswitch.style.transform = 'scale(0.8)';
-    iurl = initInput('url', 'url', 1, 2);
-    fe = iurl; // focus element
-    e0.appendChild(iurl);
-    ipurl = initInput('proxy-url', 'proxyUrl', 1, 2);
-    ipurl.style.display = 'none';
-    e0.appendChild(ipurl);
-    lurl = initLabel('url');
-    e1 = document.createElement('div');
-    e1.classList.add('rts-label');
-    e1.style.display = 'flex';
-    e1.style.gridRowStart = '1';
-    e1.style.gridColumnStart = '1';
-    e1.appendChild(urlswitch);
-    e1.appendChild(lurl);
-    e0.appendChild(e1);
-    e = initLabel('speed', 2, 1);
+    urlswitch.style.transform = 'scale(0.65)';
+    e0.appendChild(urlswitch);
+    e0 = this._e.querySelector('.rts-settings-input-bottom');
+    e = initLabel('speed', 1, 1);
     e0.appendChild(e);
-    e = initInput('speed', 'speed', 2, 2, 'number');
-    e.style.width ='3em';
+    e = initInput('speed', 'speed', 1, 2, 'number');
     e.min = 1;
     e.max = 10;
+    e0.appendChild(e);
+    e = initLabel('font-size', 2, 1);
+    e0.appendChild(e);
+    e = initInput('font-size', 'fontSize', 2, 2, 'number');
+    e.min = 0.000001;
+    e.max = 999999;
+    e0.appendChild(e);
+    e = initLabel('img-size', 3, 1);
+    e0.appendChild(e);
+    e = initInput('img-size', 'imgSize', 3, 2, 'number');
+    e.min = 0.000001;
+    e.max = 999999;
+    e0.appendChild(e);
+    e = initLabel('item-gap', 4, 1);
+    e0.appendChild(e);
+    e = initInput('item-gap', 'itemGap', 4, 2, 'number');
+    e.min = 0.000001;
+    e.max = 999999;
+    e0.appendChild(e);
+    e = initLabel('transparency', 5, 1);
+    e0.appendChild(e);
+    e = initInput('transparency', 'transparency', 5, 2, 'number');
+    e.min = 0.000001;
+    e.max = 999999;
+    e0.appendChild(e);
+    e = initLabel('refetch-mins', 6, 1);
+    e0.appendChild(e);
+    e = initInput('refetch-mins', 'refetchMins', 6, 2, 'number');
+    e.min = 0;
+    e.max = 999999;
+    e0.appendChild(e);
+    e = initLabel('infobox-link-color', 7, 1);
+    e0.appendChild(e);
+    e = initInput('infobox-link-color', 'infoboxLinkColor', 7, 2, 'color');
+    e0.appendChild(e);
+    e = initLabel('infobox-link-bgcolor', 8, 1);
+    e0.appendChild(e);
+    e = initInput('infobox-link-bgcolor', 'infoboxLinkBgColor', 8, 2, 'color');
     e0.appendChild(e);
     e = initLabel('cont-run', 1, 3);
     e0.appendChild(e);
     e = initInput('cont-run', 'contRun', 1, 4, 'checkbox');
+    e0.appendChild(e);
+    e = initLabel('keep-url', 2, 3);
+    e0.appendChild(e);
+    e = initInput('keep-url', 'keepUrl', 2, 4, 'checkbox');
+    e0.appendChild(e);
+    e = initLabel('no-imgs', 3, 3);
+    e0.appendChild(e);
+    e = initInput('no-imgs', 'noImgs', 3, 4, 'checkbox');
+    e0.appendChild(e);
+    e = initLabel('moveright', 4, 3);
+    e0.appendChild(e);
+    e = initInput('moveright', 'moveright', 4, 4, 'checkbox');
+    e0.appendChild(e);
+    e = initLabel('hrs-new', 5, 3);
+    e0.appendChild(e);
+    e = initInput('hrs-new', 'hrsNew', 5, 4, 'number');
+    e.min = 0.000001;
+    e.max = 999999;
+    e0.appendChild(e);
+    e = initLabel('hrs-old', 6, 3);
+    e0.appendChild(e);
+    e = initInput('hrs-old', 'hrsOld', 6, 4, 'number');
+    e.min = 0.000001;
+    e.max = 999999;
+    e0.appendChild(e);
+    e = initLabel('color-new', 7, 3);
+    e0.appendChild(e);
+    e = initInput('color-new', 'colorNew', 7, 4, 'color');
+    e0.appendChild(e);
+    e = initLabel('color-old', 8, 3);
+    e0.appendChild(e);
+    e = initInput('color-old', 'colorOld', 8, 4, 'color');
     e0.appendChild(e);
     e0 = this._e.querySelector('.rts-settings-busy');
     bplay = initButton('<i class="fas fa-play"></i>', () => {
@@ -267,17 +341,61 @@ export default class RtSettings {
     this._tbl = b => {
       this.updBusyInd(b);
     };
-    this._ticker.addBusyListener(this._tbl);
+    ticker.addBusyListener(this._tbl);
     this.updBusyInd();
     e0 = this._e.querySelector('.rts-settings-buttons');
-    bimport = initButton('<i class="fas fa-file-import"></i>', () => {
+    bstore = initButton('S', () => {
+      let d = '';
+      for (const [a1, v] of this._inputs) {
+        if (d.length > 0) {
+          d += ';';
+        }
+        d += a1 + '=' + encodeURI(String(v[1].type === 'checkbox' ? v[1].checked : v[1].value ? v[1].value : ''));
+      }
+      Util.createCookie('SettingsRssTicker', d, 365);
     });
-    e0.appendChild(bimport);
-    bexport = initButton('<i class="fas fa-file-export"></i>', () => {
+    e0.appendChild(bstore);
+    bload = initButton('L', () => {
+      let c = Util.readCookie('SettingsRssTicker');
+      if (!c) {
+        return;
+      }
+      let a = c.split(';');
+      for (let i = 0; i < a.length; i++) {
+        let a2 = a[i].split('=');
+        let v = this._inputs.get(a2[0]);
+        if (v) {
+          let d = decodeURI(a2[1]);
+          if (v[1].type == 'checkbox') {
+            v[1].checked = d === 'true';
+          } else {
+            v[1].value = d;
+          }
+          attrChanged(a2[0], v[0], v[1]);
+        }
+      }
     });
-    e0.appendChild(bexport);
-    bcancel = initButton('<i class="fas fa-times"></i>', () => {
-      self.remove();
+    e0.appendChild(bload);
+    bdefaults = initButton('D', () => {
+      let ap = ticker.constructor.apNames;
+      for (let i = 0; i < ap.length - 1; i += 2) {
+        let d = this._dfts[ap[i]];
+        if (d !== undefined && d !== null) {
+          let v = this._inputs.get(ap[i]);
+          if (v) {
+            if (v[1].type == 'checkbox') {
+              v[1].checked = Boolean(d);
+            } else {
+              v[1].value = d;
+            }
+            attrChanged(ap[i], v[0], v[1]);
+          }
+        }
+      }
+    });
+    e0.appendChild(bdefaults);
+    bcancel = initButton('<i class="fas fa-window-close"></i>', () => {
+      this.remove();
     });
     e0.appendChild(bcancel);
     this._e.addEventListener('keyup', ev => {
@@ -312,8 +430,8 @@ export default class RtSettings {
     this._e.style.height = '' + h + 'px';
     this._e.style.opacity = 0;
     setTimeout(() => {
-      if (!self._removed) {
-        self._e.style.opacity = 0.95;
+      if (!this._removed) {
+        this._e.style.opacity = 0.95;
         fe.focus();
       }
     }, 300);
@@ -339,15 +457,15 @@ export default class RtSettings {
       rts.delete(this);
       let m = acl.get(this._ticker);
       if (m) {
-        for (const [k, v] of this._inputs) {
-          let a = m.get(v[0]);
-          if (a) {
-            let i = a.indexOf(v[2]);
+        for (const [a1, v] of this._inputs) {
+          let l = m.get(a1);
+          if (l) {
+            let i = l.indexOf(v[2]);
             if (i >= 0) {
-              a.splice(i, 1);
+              l.splice(i, 1);
             }
-            if (a.length === 0) {
-              m.delete(v[0]);
+            if (l.length === 0) {
+              m.delete(a1);
             }
           }
         }
