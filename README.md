@@ -4,6 +4,10 @@
 
 ### Changes
 
+* v0.7.1 (2019-09-29)
+
+  * Use rss-ticker 0.7.1.
+
 * v0.7.0 (2019-09-29)
 
   * Several bugfixes / layout changes.
