@@ -27,22 +27,14 @@ html {
 }
 
 body {
-  background-color: black;
+  background-color: #F9F9F9;
   line-height: 1;
-  font-family: 'Arial';
-  font-weight: normal;
+  font-family: Arial;
   text-shadow: none;
   height: 100%;
   position: relative;
-  opacity: 0;
-  transition: opacity 6s ease-out, background-color 6s ease-out;
   overflow: hidden;
   user-select: none;
-}
-
-.body-fadein {
-  opacity: 1;
-  background-color: #F9F9F9;
 }
 
 hr {
@@ -51,7 +43,7 @@ hr {
   height: 1px;
 }
 
-a.pr-link {
+.pr-link {
   text-decoration: none;
 }
 
@@ -61,12 +53,6 @@ a.pr-link {
   100%{background-position:0% 74%}
 }
 
-.pr-link {
-  border-style: solid;
-  border-width: 2px;
-  border-color: rgba(255, 255, 255, 0);
-}
-
 .pr-link:hover {
   background: linear-gradient(218deg, rgba(250, 250, 120, 0.7), #fff, rgba(250, 250, 60, 1));
   background-size: 600% 600%;
@@ -74,7 +60,7 @@ a.pr-link {
   border-radius: 100%;
 }
 
-canvas.animatedText {
+.animatedText {
   width: 1;
   height: 1;
   display: none;
@@ -92,27 +78,110 @@ canvas.animatedText {
 #top {
   display: flex;
   justify-content: space-between;
-  margin: 3% 0 3% 0;
+  margin: 3% 0 1.5em 0;
+  flex-grow: 0.2;
 }
 
 #middle {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
   top: -6%;
+  flex-grow: 1;
+}
+
+#middlebottom {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 0.1;
+}
+
+#rss {
+  display: none;
+  font-family: Noto Sans;
+  min-height: 5.5em;
 }
 
 #bottom {
   display: flex;
   justify-content: space-between;
-  margin: 3% 0 3% 0;
+  margin: 0.5em 0 3% 0;
+  height: 1.2em;
 }
-  #bottom * {
-    margin: auto 0 0 0;
-  }
+
+#ns-name {
+  font-family: Armata;
+  font-size: 110%;
+}
+#ns-pgml {
+  font-family: Open Sans Condensed;
+  font-size: 90%;
+  margin-left: auto;
+  font-weight: bold;
+}
+#ns-pgmr {
+  font-family: Armata;
+  font-style: italic;
+  font-size: 110%;
+  margin-left: auto;
+}
+#ns-specla, #ns-speclb {
+  font-family: Armata;
+  font-style: italic;
+  font-size: 100%;
+  float: left;
+}
+#ns-specla {
+  margin-right: 0.5em;
+}
+#ns-prt {
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 160%;
+  margin: 0 auto 0 auto;
+}
+#ns-nrpgmap {
+  font-family: Poppins;
+  font-size: 110%;
+}
+#ns-drpgmap {
+  font-family: Poppins;
+  font-size: 110%;
+  color: rgb(120, 20, 20);
+}
+#ns-nyagols {
+  font-family: Poppins;
+  font-size: 110%;
+}
+#ns-dyagols {
+  font-family: Poppins;
+  font-size: 110%;
+  color: rgb(120, 20, 20);
+}
+#ns-linkedin {
+  font-family: Armata;
+}
+#ns-github {
+  font-family: Armata;
+}
+#ns-ibmi {
+  font-family: Armata;
+}
+#ns-cpyr {
+  font-size: 70%;
+  margin-top: 0.8em;
+}
+
+#cpyr {
+  margin-top: 0.7em;
+}
 
 #email2, #telno {
+  margin-left: auto;
+}
+
+#pgml {
   margin-left: auto;
 }
 
@@ -121,11 +190,17 @@ canvas.animatedText {
 }
 
 #specl {
-  float: right;
+  margin-left: auto;
 }
 
 #specla, #speclb {
   float: left;
+}
+
+#pgmsp {
+  display: flex;
+  flex-direction: column;
+  float: right;
 }
 
 #pr {
@@ -142,53 +217,62 @@ canvas.animatedText {
 
 .item {
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  vertical-align: middle;
 }
 
 .sep {
+  font-size: 140%;
   color: red;
-  margin-top: 0.16em;
+  margin: 0.05em 0.4em auto 0.3em;
 }
 
-.icon-github, .icon-download {
-  font-size: 170%;
-  margin: 0.15em 0 0 0;
+.prname {
+  margin: auto 0 auto 0;
+  font-size: 120%;
 }
 
-#cpyr {
-  margin-top: auto;
+.prdescr {
+  margin: 0.4em 1em auto 0;
+}
+
+.icon-download {
+  font-size: 160%;
+  margin: 0.4em 0.3em 0 0.3em;
+}
+
+.icon-github {
+  font-size: 160%;
+  margin: 0.4em 0.3em 0 0.3em;
+}
+
+.switch {
+  display: none;
+  font-family: Amatic SC;
+  font-size: 125%;
+  transition: opacity 3s ease-in;
+  opacity: 0;
+  margin: auto 0 auto 0;
 }
 
 #rssInfo {
-  display: flex;
-  justify-content: space-between;
+  display: none;
+  justify-content: flex-end;
   font-family: Arial;
   font-size: 0.8em;
   width: 50%;
-  margin: 0 0 0 auto;
-  padding: 0;
-}
-#rssIcon {
-  width: 2em;
-  margin: 0 0 auto 0.4em;
-  cursor: pointer;
-  transition: background-color 0.5s ease-out;
-}
-#rssIcon:focus, #rssIcon:hover {
-  background-color: rgba(240, 240, 160, 0.7);
-}
-.rssIconEffect {
-  animation: rssIconEffect 0.5s ease;
+  margin: auto 0 0.3em 0;
+  min-height: 4em;
 }
 #rssText {
+  display: flex;
+  flex-direction: column;
   max-height: 15vh;
-  line-height: 1em;
 }
 #rssTitle {
-  line-height: 1.2em;
   font-size: 110%;
   transition: opacity 0.8s ease-out;
+  line-height: 1.2em;
 }
 .rssTitleShow {
   opacity: 0.83;
@@ -197,14 +281,32 @@ canvas.animatedText {
   opacity: 0;
 }
 #rssDescr {
-  line-height: 1em;
   transition: opacity 0.8s ease-out;
+  line-height: 1em;
+  margin-top: 0.1em;
 }
 .rssDescrShow {
   opacity: 0.73;
 }
 .rssDescrHide {
   opacity: 0;
+}
+#rssIconCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#rssIcon {
+  width: 1.7em;
+  margin: 0 0 0 0.4em;
+  cursor: pointer;
+  transition: background-color 0.5s ease-out;
+}
+#rssIcon:hover {
+  background-color: rgba(240, 240, 160, 0.7);
+}
+.rssIconEffect {
+  animation: rssIconEffect 0.5s ease;
 }
 @keyframes rssIconEffect {
   0% {
@@ -216,6 +318,21 @@ canvas.animatedText {
   100% {
     transform: scale(1);
   }
+}
+#rssInum {
+  font-family: Open Sans Condensed;
+  font-size: 140%;
+  color: red;
+  margin: 0 auto auto auto;
+  content: '00';
+  transition: opacity 1s ease-out 0.2s;
+  line-height: 100%;
+}
+.rssInumShow {
+  opacity: 0.65;
+}
+.rssInumHide {
+  opacity: 0;
 }
 
 .rts-settings-container {
@@ -301,6 +418,7 @@ canvas.animatedText {
   border-style: outset;
   border-radius: 0.6em;
   margin: auto 0 auto 0.5rem;
+  font-family: Noto Sans;
   font-weight: bold;
 }
 .rts-input {
@@ -395,14 +513,16 @@ canvas.animatedText {
 .rts-button-clickeffect {
   animation: rtsButtonClickEffect 0.5s ease-out;
 }
+
 .gaugecont {
-  display: flex;
+  display: none;
   flex-direction: row;
   margin: 0;
   padding: 0;
   border-radius: 1rem;
-  padding: 0.4rem 1rem 0.6rem 0.8rem;
+  padding: 0.4em 1em 0.6em 0.8em;
   transition: background-color 1s ease-out;
+  height: 5em;
 }
 
 .gaugecontx {
@@ -410,15 +530,17 @@ canvas.animatedText {
 }
 
 .gauge {
-  width: 0.25rem;
-  height: 5rem;
+  position: relative;
+  width: 0.3em;
+  height: 4em;
   background-color: rgba(250, 100, 100, 0.025);
   border-style: solid;
   border-color: rgba(100, 100, 250, 0.025);
   border-width: 1px;
-  border-radius: 10px;
+  border-radius: 4px;
+  box-shadow: solid 2px 2px 2px rgba(0,0,0,0.07);
   transition: background-color 0.5s ease-out, border-color 0.7s ease-out;
-  margin: 0.5rem 0 0 0;
+  margin: 0.5em 0.8em 0.5em 0.8em;
   padding: 0;
 }
 
@@ -433,14 +555,16 @@ canvas.animatedText {
 }
 
 .gaugein {
+  position: absolute;
   background-color: rgba(180, 180, 250, 0.025);
   border-style: solid;
   border-color:rgba(200, 0, 100, 0.025);
   border-width: 1px;
-  margin: auto;
-  border-radius: 10px;
+  margin: 0 auto 0 auto;
+  border-radius: 4px;
   transition: background-color 0.5s ease-out, border-color 0.7s ease-out;
-  padding: 0;
+  width: 30%;
+  height: 100%;
 }
 
 .gaugeinsel {
@@ -454,35 +578,36 @@ canvas.animatedText {
 }
 
 .gaugeknob {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  position: absolute;
   background-color: rgba(100, 100, 150, 0.035);
   border-style: solid;
   border-color:rgba(200, 0, 100, 0.035);
   border-width: 2px;
+  box-shadow: solid 1px 1px 1px rgba(0,0,0,0.07);
   transition: background-color 0.5s ease-out, border-color 0.5s ease-out;
-  margin: 0 0 0 0;
   padding: 1px;
 }
 
 .gaugeknob0 {
-  width: 0.6rem;
-  height: 0.4rem;
-  border-radius: 0.5rem 0 0 0.5rem;
-  left: 1.12rem;
+  width: 0.6em;
+  height: 0.4em;
+  border-radius: 0.5em 0 0 0.5em;
+  right: 0px;
 }
 
 .gaugeknob1 {
-  width: 0.6rem;
-  height: 0.4rem;
-  border-radius: 0 0.5rem 0.5rem 0;
-  left: 1.22rem;
+  width: 0.6em;
+  height: 0.4em;
+  border-radius: 0 0.5em 0.5em 0;
+  left: 0px;
 }
 
 .gaugeknob2 {
-  width: 1rem;
-  height: 0.5rem;
-  border-radius: 0.4rem;
-  left: 0.87rem;
+  width: 1em;
+  height: 0.5em;
+  border-radius: 0.4em;
 }
 
 .gaugeknobsel {
@@ -501,16 +626,16 @@ canvas.animatedText {
 }
 
 .gaugeknobin {
+  position: absolute;
+  margin: auto;
   width: 40%;
   height: 40%;
   background-color: rgba(180, 180, 250, 0.035);
   border-style: solid;
   border-color:rgba(200, 0, 100, 0.035);
   border-width: 2px;
-  margin: auto;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
   transition: background-color 0.5s ease-out, border-color 0.5s ease-out;
-  padding: 0;
 }
 
 .gaugeknobinsel {
@@ -534,32 +659,33 @@ canvas.animatedText {
 }
 
 .gaugetxt {
-  font-family: 'Open Sans Condensed, Bold';
+  font-family: Open Sans Condensed;
+  font-weight: bold;
   color: rgba(255, 255, 255, 0);
-  font-size: 0.1rem;
+  font-size: 0.1em;
   transition: color 1s ease-out, font-size 1s ease-out;
   margin: 0 0 0 auto;
   padding: 0;
   position: absolute;
-  top: 0.4rem;
+  top: 0.4em;
 }
 
 .gaugetxtsel {
   color: rgba(0, 0, 0, 1);
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 .gaugebtns {
   display: flex;
   flex-direction: column;
-  margin: 0 0.4rem 0 0;
-  padding: 0.2rem 0 0 0;
+  margin: 0 0.4em 0 0;
+  padding: 0.2em 0 0 0;
 }
 
 .gaugebtn {
-  width: 1.1rem;
-  height: 1.1rem;
-  border-radius: 0.4rem;
+  width: 1em;
+  height: 1em;
+  border-radius: 0.3em;
   background-color: rgba(100, 100, 150, 0.035);
   border-style: solid;
   border-color:rgba(200, 0, 100, 0.06);
@@ -567,13 +693,13 @@ canvas.animatedText {
   border-width: 2px;
   color:rgba(200, 0, 100, 0.05);
   transition: background-color 0.5s ease-out, border-color 0.5s ease-out, color 0.5s ease-out;
-  margin: 0.1rem 0.2rem 0 0;
+  margin: 0.1em 0.2em 0 0;
   padding: 0;
-  font-family: 'Verdana';
-  font-size: '1.1rem';
-  font-style: 'bold';
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 0.9em;
   text-align: center;
-  line-height: 1.1rem;
+  line-height: 1em;
 }
 
 .gaugebtnsel {
@@ -597,34 +723,55 @@ canvas.animatedText {
   #container {
     width: 75%;
   }
+  .gaugecont {
+    display: flex;
+  }
 }
 @media all and (max-width: 1000px) {
   #container {
     width: 80%;
+  }
+  .gaugecont {
+    display: flex;
   }
 }
 @media all and (max-width: 800px) {
   #container {
     width: 85%;
   }
+  #gaugecont {
+    display: none;
+  }
 }
 @media all and (max-width: 600px) {
   #container {
     width: 90%;
+  }
+  #gaugecont {
+    display: none;
   }
 }
 @media all and (max-width: 400px) {
   #container {
     width: 95%;
   }
+  #gaugecont {
+    display: none;
+  }
 }
 @media all and (max-width: 200px) {
   #container {
     width: 100%;
   }
+  #gaugecont {
+    display: none;
+  }
 }
 @media all and (min-width: 1201px) {
   #container {
     width: 70%;
+  }
+  .gaugecont {
+    display: flex;
   }
 }

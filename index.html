@@ -55,6 +55,20 @@ This software is licensed under the MIT license (see LICENSE)
           url('fonts/google-webfonts/noto-sans-v9-latin-regular.svg#NotoSans') format('svg'); /* Legacy iOS */
     }
 
+    /* noto-sans-700 - latin */
+    @font-face {
+      font-family: 'Noto Sans';
+      font-style: normal;
+      font-weight: 700;
+      src: url('fonts/google-webfonts/noto-sans-v9-latin-700.eot'); /* IE9 Compat Modes */
+      src: local('Noto Sans Bold'), local('NotoSans-Bold'),
+          url('fonts/google-webfonts/noto-sans-v9-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+          url('fonts/google-webfonts/noto-sans-v9-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+          url('fonts/google-webfonts/noto-sans-v9-latin-700.woff') format('woff'), /* Modern Browsers */
+          url('fonts/google-webfonts/noto-sans-v9-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+          url('fonts/google-webfonts/noto-sans-v9-latin-700.svg#NotoSans') format('svg'); /* Legacy iOS */
+    }
+
     /* open-sans-condensed-700 - latin */
     @font-face {
       font-family: 'Open Sans Condensed';
@@ -82,12 +96,56 @@ This software is licensed under the MIT license (see LICENSE)
           url('fonts/google-webfonts/poppins-v8-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
           url('fonts/google-webfonts/poppins-v8-latin-regular.svg#Poppins') format('svg'); /* Legacy iOS */
     }
+
+    /* poppins-700 - latin */
+    @font-face {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 700;
+      src: url('fonts/google-webfonts/poppins-v8-latin-700.eot'); /* IE9 Compat Modes */
+      src: local('Poppins Bold'), local('Poppins-Bold'),
+          url('fonts/google-webfonts/poppins-v8-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+          url('fonts/google-webfonts/poppins-v8-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+          url('fonts/google-webfonts/poppins-v8-latin-700.woff') format('woff'), /* Modern Browsers */
+          url('fonts/google-webfonts/poppins-v8-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+          url('fonts/google-webfonts/poppins-v8-latin-700.svg#Poppins') format('svg'); /* Legacy iOS */
+    }
+
+    /* amatic-sc-regular - latin */
+    @font-face {
+      font-family: 'Amatic SC';
+      font-style: normal;
+      font-weight: 400;
+      src: url('fonts/google-webfonts/amatic-sc-v13-latin-regular.eot'); /* IE9 Compat Modes */
+      src: local('Amatic SC Regular'), local('AmaticSC-Regular'),
+          url('fonts/google-webfonts/amatic-sc-v13-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+          url('fonts/google-webfonts/amatic-sc-v13-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+          url('fonts/google-webfonts/amatic-sc-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+          url('fonts/google-webfonts/amatic-sc-v13-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+          url('fonts/google-webfonts/amatic-sc-v13-latin-regular.svg#AmaticSC') format('svg'); /* Legacy iOS */
+    }
+
+    /* amatic-sc-700 - latin */
+    @font-face {
+      font-family: 'Amatic SC';
+      font-style: normal;
+      font-weight: 700;
+      src: url('fonts/google-webfonts/amatic-sc-v13-latin-700.eot'); /* IE9 Compat Modes */
+      src: local('Amatic SC Bold'), local('AmaticSC-Bold'),
+          url('fonts/google-webfonts/amatic-sc-v13-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+          url('fonts/google-webfonts/amatic-sc-v13-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+          url('fonts/google-webfonts/amatic-sc-v13-latin-700.woff') format('woff'), /* Modern Browsers */
+          url('fonts/google-webfonts/amatic-sc-v13-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+          url('fonts/google-webfonts/amatic-sc-v13-latin-700.svg#AmaticSC') format('svg'); /* Legacy iOS */
+    }
   </style>
 </head>
 <body>
+  <script>document.body.style.opacity = '0';</script>
   <div id="container">
     <div id="top">
       <div>
+        <span id="ns-name" class="ns">john erps</span>
         <canvas tabindex="-1" id="email1" class="animatedText"></canvas>
         <canvas tabindex="-1" id="email2" class="animatedText"></canvas>
         <canvas tabindex="-1" id="telno" class="animatedText"></canvas>
@@ -95,100 +153,125 @@ This software is licensed under the MIT license (see LICENSE)
       <div id="gaugecont" class="gaugecont">
         <div id="gaugebtntxt" class="gaugetxt"></div>
         <div class="gaugebtns">
-          <div id="zapp" class="gaugebtn">Z</div>
+          <div id="gaugezapp" class="gaugebtn">Z</div>
           <div id="gaugestore" class="gaugebtn">S</div>
           <div id="gaugeload" class="gaugebtn">L</div>
           <div id="gaugeldft" class="gaugebtn">D</div>
         </div>
-        <div id="gauge1txt" class="gaugetxt" style="margin-left: 0rem"></div>
-        <div id="gauge1knob0" class="gaugeknob gaugeknob2">
-          <div id="gauge1knobin0" class="gaugeknobin"></div>
-        </div>
+        <div id="gauge1txt" class="gaugetxt" style="margin-left: 0em"></div>
         <div id="gauge1" class="gauge">
           <div id="gauge1in" class="gaugein"></div>
+          <div id="gauge1knob0" class="gaugeknob gaugeknob2">
+            <div id="gauge1knobin0" class="gaugeknobin"></div>
+          </div>
         </div>
-        <div id="gauge2txt" class="gaugetxt" style="margin-left: 1rem"></div>
-        <div id="gauge2knob0" class="gaugeknob gaugeknob2">
-          <div id="gauge2knobin0" class="gaugeknobin"></div>
-        </div>
+        <div id="gauge2txt" class="gaugetxt" style="margin-left: 1em"></div>
         <div id="gauge2" class="gauge">
           <div id="gauge2in" class="gaugein"></div>
+          <div id="gauge2knob0" class="gaugeknob gaugeknob2">
+            <div id="gauge2knobin0" class="gaugeknobin"></div>
+          </div>
         </div>
-        <div id="gauge3txt" class="gaugetxt" style="margin-left: 2rem"></div>
-        <div id="gauge3knob0" class="gaugeknob gaugeknob2">
-          <div id="gauge3knobin0" class="gaugeknobin"></div>
-        </div>
+        <div id="gauge3txt" class="gaugetxt" style="margin-left: 2em"></div>
         <div id="gauge3" class="gauge">
           <div id="gauge3in" class="gaugein"></div>
+          <div id="gauge3knob0" class="gaugeknob gaugeknob2">
+            <div id="gauge3knobin0" class="gaugeknobin"></div>
+          </div>
         </div>
-        <div id="gauge4txt" class="gaugetxt" style="margin-left: 3rem"></div>
-        <div id="gauge4knob0" class="gaugeknob gaugeknob0">
-          <div id="gauge4knobin0" class="gaugeknobin"></div>
-        </div>
-        <div id="gauge4knob1" class="gaugeknob gaugeknob1">
-          <div id="gauge4knobin1" class="gaugeknobin"></div>
-        </div>
+        <div id="gauge4txt" class="gaugetxt" style="margin-left: 3em"></div>
         <div id="gauge4" class="gauge">
           <div id="gauge4in" class="gaugein"></div>
+          <div id="gauge4knob0" class="gaugeknob gaugeknob0">
+            <div id="gauge4knobin0" class="gaugeknobin"></div>
+          </div>
+          <div id="gauge4knob1" class="gaugeknob gaugeknob1">
+            <div id="gauge4knobin1" class="gaugeknobin"></div>
+          </div>
         </div>
-        <div id="gauge5txt" class="gaugetxt" style="margin-left: 4rem"></div>
-        <div id="gauge5knob0" class="gaugeknob gaugeknob0">
-          <div id="gauge5knobin0" class="gaugeknobin"></div>
-        </div>
-        <div id="gauge5knob1" class="gaugeknob gaugeknob1">
-          <div id="gauge5knobin1" class="gaugeknobin"></div>
-        </div>
+        <div id="gauge5txt" class="gaugetxt" style="margin-left: 4em"></div>
         <div id="gauge5" class="gauge">
           <div id="gauge5in" class="gaugein"></div>
+          <div id="gauge5knob0" class="gaugeknob gaugeknob0">
+            <div id="gauge5knobin0" class="gaugeknobin"></div>
+          </div>
+          <div id="gauge5knob1" class="gaugeknob gaugeknob1">
+            <div id="gauge5knobin1" class="gaugeknobin"></div>
+          </div>
         </div>
       </div>
-      <div>
-        <canvas tabindex="-1" id="pgml" class="animatedText"></canvas>
-        <canvas tabindex="-1" id="pgmr" class="animatedText"></canvas>
-        <span id="specl"><canvas tabindex="-1" id="specla" class="animatedText"></canvas><canvas tabindex="-1" id="speclb" class="animatedText"></canvas></span>
+      <div id="pgmsp">
+        <span id="ns-pgml" class="ns">RPG⋅Java⋅Javascript⋅Smalltalk⋅Python⋅C⋅SQL⋅HTML⋅CSS</span><canvas tabindex="-1" id="pgml" class="animatedText"></canvas>
+        <span id="ns-pgmr" class="ns">⦢  all-round programmer</span><canvas tabindex="-1" id="pgmr" class="animatedText"></canvas>
+        <div id="specl">
+          <span id="ns-specla" class="ns">⦢  IBM i (AS/400)</span><canvas tabindex="-1" id="specla" class="animatedText"></canvas>
+          <span id="ns-speclb" class="ns">specialist</span><canvas tabindex="-1" id="speclb" class="animatedText"></canvas>
+        </div>
       </div>
     </div>
     <div id="pr">
-      <canvas tabindex="-1" id="prt" class="animatedText"></canvas>
+      <span id="ns-prt" class="ns">⋅ ⋅ ⋅  Projects  ⋅ ⋅ ⋅</span><canvas tabindex="-1" id="prt" class="animatedText"></canvas>
       <hr>
     </div>
     <div id="middle">
+
+      <div id="tippies" style="display: none;">
+        <span class="nrpgmap">Latest: v1.2.1 (march 2019)</span>
+        <span class="ns-nrpgmap">Latest: v1.2.1 (march 2019)</span>
+        <span class="nyagols">Latest: v4.2.1 (september 2019)</span>
+        <span class="ns-nyagols">Latest: v4.2.1 (september 2019)</span>
+        <span class="download-rpgmap">Download RpgMap from Github</span>
+        <span class="github-rpgmap">Go to RpgMap Repository on GitHub</span>
+        <span class="download-yagols">Download Yagols from Github</span>
+        <span class="github-yagols">Go to Yagols Repository on GitHub</span>
+        <span class="rssIcon">Edit rss-ticker attributes</span>
+      </div>
 
       <!-- --  Projects  -- -->
 
       <!-- --  * RpgMap  -- -->
 
       <div class="item">
-        <a class="pr-link" href="https://johnerps.com/RpgMap/docs/index.html" target="_blank"><canvas tabindex="-1" id="nrpgmap" class="animatedText"></canvas></a>&nbsp;&nbsp;<div class="sep">&#10072;</div>&nbsp;&nbsp;&nbsp;
-        <canvas tabindex="-1" id="drpgmap" class="animatedText"></canvas>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="download-rpgmap" class="pr-link" href="https://github.com/jerps/RpgMap/archive/v1.2.1.zip" download>&nbsp;<i class="fas fa-cloud-download-alt icon-download"></i>&nbsp;</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;<a id="github-rpgmap" class="pr-link" href="https://github.com/jerps/RpgMap#readme" target="_blank">&nbsp;<i class="fab fa-github icon-github"></i>&nbsp;</a>
+        <a class="pr-link" href="https://johnerps.com/RpgMap/docs/index.html" target="_blank"><span class="prname"><span id="ns-nrpgmap" class="ns">RpgMap</span><canvas id="nrpgmap" tabindex="-1" class="animatedText"></canvas></span></a>
+        <div class="sep">&#10072;</div>
+        <span class="prdescr"><span id="ns-drpgmap" class="ns">A versatile in-memory key/value store for RPG</span><canvas id="drpgmap" tabindex="-1" class="animatedText"></canvas></span>
+        <a id="download-rpgmap" class="pr-link" href="https://github.com/jerps/RpgMap/archive/v1.2.1.zip" download><i class="fas fa-cloud-download-alt icon-download"></i></a>
+        <a id="github-rpgmap" class="pr-link" href="https://github.com/jerps/RpgMap#readme" target="_blank"><i class="fab fa-github icon-github"></i></a>
       </div>
 
       <!-- --  * Yagols  -- -->
 
       <div class="item">
-        <a class="pr-link" href="https://johnerps.com/Yagols.html" target="_blank"><canvas tabindex="-1" id="nyagols" class="animatedText"></canvas></a>&nbsp;&nbsp;<pre class="sep">&#10072;</pre>&nbsp;&nbsp;&nbsp;
-        <canvas tabindex="-1" id="dyagols" class="animatedText"></canvas>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="download-yagols" class="pr-link" href="https://github.com/jerps/Yagols/archive/v4.2.zip" download>&nbsp;<i class="fas fa-cloud-download-alt icon-github"></i>&nbsp;</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;<a id="github-yagols" class="pr-link" href="https://github.com/jerps/Yagols#readme" target="_blank">&nbsp;<i class="fab fa-github icon-github"></i>&nbsp;</a>
+        <a class="pr-link" href="https://johnerps.com/Yagols.html" target="_blank"><span class="prname"><span id="ns-nyagols" class="ns">Yagols</span><canvas id="nyagols" tabindex="-1" class="animatedText"></canvas></span></a>
+        <div class="sep">&#10072;</div>
+        <span class="prdescr"><span id="ns-dyagols" class="ns">Yet another Game of Life simulator</span><canvas id="dyagols" tabindex="-1" class="animatedText"></canvas></span>
+        <a id="download-yagols" class="pr-link" href="https://github.com/jerps/Yagols/archive/v4.2.1.zip" download>&nbsp;<i class="fas fa-cloud-download-alt icon-download"></i></a>
+        <a id="github-yagols" class="pr-link" href="https://github.com/jerps/Yagols#readme" target="_blank"><i class="fab fa-github icon-github"></i></a>
       </div>
 
     </div>
     <hr>
-    <div id="rssInfo">
-      <div id="rssText">
-        <span id="rssTitle"></span>
-        <span id="rssDescr"></span>
+    <div id="middlebottom">
+      <span id="switch1" class="switch pr-link">⊳ to #dynamic page</span>
+      <span id="switch2" class="switch pr-link">⊳ to static page</span>
+      <div id="rssInfo">
+        <div id="rssText">
+          <span id="rssTitle"></span>
+          <span id="rssDescr">slksslksls ks s slk s</span>
+        </div>
+        <div id="rssIconCont">
+          <img id="rssIcon" tabindex="-1" src="images/rss-icon.png">
+          <div id="rssInum"></div>
+        </div>
       </div>
-    <img id="rssIcon" tabindex="-1" src="images/rss-icon.png">
     </div>
-    <rss-ticker id="rss"></rss-ticker>
+    <script>document.querySelector('#switch1').style.display = 'inline';document.querySelector('#switch2').style.display = 'inline';</script>
+    <rss-ticker id="rss" proxy-url="https://johnerps.com/php/getfile.php?url=%%_URL_%%"></rss-ticker>
     <div id="bottom">
-      <a class="pr-link" href="https://linkedin.com/in/john-erps" target="_blank"><canvas tabindex="-1" id="linkedin" class="animatedText"></canvas></a>
-      <a class="pr-link" href="https://github.com/jerps" target="_blank"><canvas tabindex="-1" id="github" class="animatedText"></canvas></a>
-      <a class="pr-link" href="https://www.ibm.com/it-infrastructure/power/os/ibm-i" target="_blank"><canvas tabindex="-1" id="ibmi" class="animatedText"></canvas></a>
-      <a class="pr-link" href="https://github.com/jerps/johnerps.com" target="_blank"><canvas tabindex="-1" id="cpyr" class="animatedText" style="float: right;"></canvas></a>
+      <a class="pr-link" href="https://linkedin.com/in/john-erps" target="_blank"><span id="ns-linkedin" class="ns">LinkedIn</span><canvas tabindex="-1" id="linkedin" class="animatedText"></canvas></a>
+      <a class="pr-link" href="https://github.com/jerps" target="_blank"><span id="ns-github" class="ns">GitHub</span><canvas tabindex="-1" id="github" class="animatedText"></canvas></a>
+      <a class="pr-link" href="https://www.ibm.com/it-infrastructure/power/os/ibm-i" target="_blank"><span id="ns-ibmi" class="ns">IBM i on Power Systems</span><canvas tabindex="-1" id="ibmi" class="animatedText"></canvas></a>
+      <a class="pr-link" href="https://github.com/jerps/johnerps.com#readme" target="_blank"><span id="ns-cpyr" class="ns">© 2017-2019 John Erps</span><canvas tabindex="-1" id="cpyr" class="animatedText"></canvas></a>
     </div>
   </div>
   <div class="rts-settings-container rts-settings-container-sel">

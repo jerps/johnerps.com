@@ -35,7 +35,7 @@ module.exports = env => {
     },
     plugins: [
       new CleanWebpackPlugin(),
-      new webpack.BannerPlugin(fs.readFileSync(path.resolve(__dirname, 'LICENSE.txt'), 'utf8'))
+      new webpack.BannerPlugin(fs.readFileSync(path.resolve(__dirname, 'LICENSE'), 'utf8'))
     ]
   };
 

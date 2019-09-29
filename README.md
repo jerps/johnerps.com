@@ -4,6 +4,18 @@
 
 ### Changes
 
+* v0.7.0 (2019-09-29)
+
+  * Several bugfixes / layout changes.
+  * Now the number of items is shown together with title and description.
+  * Use rss-ticker v0.7.0.
+
+* v0.6.0 (2019-09-28)
+
+  * Some Bugfixes.
+  * Switch between "static" page and "dynamic" page. No JS is also supported.
+  * Use rss-ticker v0.6.0.
+
 * v0.5.0 (2019-09-15)
 
   * Bugfixes. Misc changes.
