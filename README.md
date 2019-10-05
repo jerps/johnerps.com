@@ -4,6 +4,18 @@
 
 ### Changes
 
+* v0.7.2 (2019-10-05)
+
+  * Added tips to form for editing rss-ticker attributes.
+
+  * Use rss-ticker 0.7.2.
+
+  * Misc. changes.
+
+* v0.7.1 (2019-09-29)
+
+  * Use rss-ticker 0.7.1.
+
 * v0.7.1 (2019-09-29)
 
   * Use rss-ticker 0.7.1.
@@ -11,22 +23,31 @@
 * v0.7.0 (2019-09-29)
 
   * Several bugfixes / layout changes.
+
   * Now the number of items is shown together with title and description.
+
   * Use rss-ticker v0.7.0.
 
 * v0.6.0 (2019-09-28)
 
   * Some Bugfixes.
+
   * Switch between "static" page and "dynamic" page. No JS is also supported.
+
   * Use rss-ticker v0.6.0.
 
 * v0.5.0 (2019-09-15)
 
   * Bugfixes. Misc changes.
+
   * Updated modules. Added node-modules to repository.
+
   * All assets are now off-line.
+
   * Use rss-ticker v0.5.0.
+
   * The settings window is now fully functional.
+
 
 * v0.3.3 (2019-09-14)
 

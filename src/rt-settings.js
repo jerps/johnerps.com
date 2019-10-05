@@ -8,6 +8,15 @@ This software is licensed under the MIT license (see LICENSE)
 
 */
 
+import tippy from 'tippy.js';
+
+tippy.setDefaults({
+  animation: 'shift-away',
+  arrow: true,
+  inertia: true,
+  touchHold: true
+});
+
 let acl = new Map(); // attribute change listeners
 let rts = new Set(); // RtSettings instances
 export default class RtSettings {
@@ -183,9 +192,8 @@ export default class RtSettings {
     }
     function initLabel(a, r, c) {
       let e = document.createElement('label');
-      if (a === 'url' || a === 'proxy-url') {
-        e.classList.add('rts-label-url');
-      } else {
+      e.classList.add('rts-label-' + a);
+      if (a !== 'url') {
         e.classList.add('rts-label');
         if (r) {
           e.style.gridRowStart = '' + r;
@@ -198,9 +206,10 @@ export default class RtSettings {
       e.innerHTML = a;
       return e;
     }
-    function initButton(t, h) {
+    function initButton(n, t, h) {
       let e = document.createElement('button');
       e.classList.add('rts-button');
+      e.classList.add('rts-button-' + n);
       ti++;
       e.tabIndex = '' + ti;
       e.innerHTML = t;
@@ -218,7 +227,7 @@ export default class RtSettings {
       });
       return e;
     }
-    let e, e0, fe, iurl, ipurl, lurl, urlswitch, bplay, bstop, bstore, bload, bdefaults, bcancel;
+    let e, e0, fe, iurl, ipurl, lurl, urlswitch, bplay, bstop, bstore, bload, bdefaults, bclose;
     this._e = document.querySelector('.rts-settings-container-sel').cloneNode(true);
     this._e.classList.remove('rts-settings-container-sel');
     this._e.style.display = 'flex';
@@ -254,36 +263,42 @@ export default class RtSettings {
     e = initInput('speed', 'speed', 1, 2, 'number');
     e.min = 1;
     e.max = 10;
+    e.step = 0.1;
     e0.appendChild(e);
     e = initLabel('font-size', 2, 1);
     e0.appendChild(e);
     e = initInput('font-size', 'fontSize', 2, 2, 'number');
-    e.min = 0.000001;
-    e.max = 999999;
+    e.min = 0;
+    e.max = 999;
+    e.step = 0.1;
     e0.appendChild(e);
     e = initLabel('img-size', 3, 1);
     e0.appendChild(e);
     e = initInput('img-size', 'imgSize', 3, 2, 'number');
-    e.min = 0.000001;
-    e.max = 999999;
+    e.min = 0;
+    e.max = 999;
+    e.step = 0.1;
     e0.appendChild(e);
     e = initLabel('item-gap', 4, 1);
     e0.appendChild(e);
     e = initInput('item-gap', 'itemGap', 4, 2, 'number');
-    e.min = 0.000001;
-    e.max = 999999;
+    e.min = 0;
+    e.max = 999;
+    e.step = 0.1;
     e0.appendChild(e);
     e = initLabel('transparency', 5, 1);
     e0.appendChild(e);
     e = initInput('transparency', 'transparency', 5, 2, 'number');
-    e.min = 0.000001;
-    e.max = 999999;
+    e.min = 0;
+    e.max = 999;
+    e.step = 0.1;
     e0.appendChild(e);
     e = initLabel('refetch-mins', 6, 1);
     e0.appendChild(e);
     e = initInput('refetch-mins', 'refetchMins', 6, 2, 'number');
     e.min = 0;
-    e.max = 999999;
+    e.max = 999;
+    e.step = 1;
     e0.appendChild(e);
     e = initLabel('infobox-link-color', 7, 1);
     e0.appendChild(e);
@@ -312,14 +327,16 @@ export default class RtSettings {
     e = initLabel('hrs-new', 5, 3);
     e0.appendChild(e);
     e = initInput('hrs-new', 'hrsNew', 5, 4, 'number');
-    e.min = 0.000001;
-    e.max = 999999;
+    e.min = 0;
+    e.max = 999;
+    e.step = 1;
     e0.appendChild(e);
     e = initLabel('hrs-old', 6, 3);
     e0.appendChild(e);
     e = initInput('hrs-old', 'hrsOld', 6, 4, 'number');
-    e.min = 0.000001;
-    e.max = 999999;
+    e.min = 0;
+    e.max = 999;
+    e.step = 1;
     e0.appendChild(e);
     e = initLabel('color-new', 7, 3);
     e0.appendChild(e);
@@ -330,11 +347,11 @@ export default class RtSettings {
     e = initInput('color-old', 'colorOld', 8, 4, 'color');
     e0.appendChild(e);
     e0 = this._e.querySelector('.rts-settings-busy');
-    bplay = initButton('<i class="fas fa-play"></i>', () => {
+    bplay = initButton('play', '<i class="fas fa-play"></i>', () => {
       ticker.startTicker();
     });
     e0.appendChild(bplay);
-    bstop = initButton('<i class="fas fa-stop"></i>', () => {
+    bstop = initButton('stop', '<i class="fas fa-stop"></i>', () => {
       ticker.stopTicker();
     });
     e0.appendChild(bstop);
@@ -344,7 +361,7 @@ export default class RtSettings {
     ticker.addBusyListener(this._tbl);
     this.updBusyInd();
     e0 = this._e.querySelector('.rts-settings-buttons');
-    bstore = initButton('S', () => {
+    bstore = initButton('store', 'S', () => {
       let d = '';
       for (const [a1, v] of this._inputs) {
         if (d.length > 0) {
@@ -355,7 +372,7 @@ export default class RtSettings {
       Util.createCookie('SettingsRssTicker', d, 365);
     });
     e0.appendChild(bstore);
-    bload = initButton('L', () => {
+    bload = initButton('load', 'L', () => {
       let c = Util.readCookie('SettingsRssTicker');
       if (!c) {
         return;
@@ -376,7 +393,7 @@ export default class RtSettings {
       }
     });
     e0.appendChild(bload);
-    bdefaults = initButton('D', () => {
+    bdefaults = initButton('defaults', 'D', () => {
       let ap = ticker.constructor.apNames;
       for (let i = 0; i < ap.length - 1; i += 2) {
         let d = this._dfts[ap[i]];
@@ -394,14 +411,14 @@ export default class RtSettings {
       }
     });
     e0.appendChild(bdefaults);
-    bcancel = initButton('<i class="fas fa-window-close"></i>', () => {
+    bclose = initButton('close', '<i class="fas fa-window-close"></i>', () => {
       this.remove();
     });
-    e0.appendChild(bcancel);
+    e0.appendChild(bclose);
     this._e.addEventListener('keyup', ev => {
       if (ev.keyCode === 27) {
         ev.preventDefault();
-        bcancel.click();
+        bclose.click();
       }
     }, false);
     let r1 = ticker.getBoundingClientRect(), r2 = this._e.getBoundingClientRect();
@@ -435,6 +452,38 @@ export default class RtSettings {
         fe.focus();
       }
     }, 300);
+
+    [
+
+      ['rts-urlswitch', 'Switch to (proxy) url'],
+      ['rts-label-url', 'RSS/Atom feed url (enter/restart for immediate effect)'],
+      ['rts-label-speed', 'Ticker speed (1-10)'],
+      ['rts-label-font-size', 'Relative font size (1=normal)'],
+      ['rts-label-img-size', 'Vertical image size in em'],
+      ['rts-label-item-gap', 'Relative size of gap between items (1=normal)'],
+      ['rts-label-transparency', 'Transparency of items and info-box (0=opaque..1=transparent)'],
+      ['rts-label-refetch-mins', 'Minimum number of minutes to have passed before the RSS/Atom feed is refetched'],
+      ['rts-label-infobox-link-color', 'Foreground (text) color of info-box links (#rrggbbaa; empty means info-box/item background color)'],
+      ['rts-label-infobox-link-bgcolor', 'Background color of info-box link (#rrggbb)'],
+      ['rts-label-cont-run', 'When restarted keep running until end of run'],
+      ['rts-label-keep-url', 'If the url changed then do not fetch feed with new url at end of run'],
+      ['rts-label-no-imgs', 'Show items without images; effective when at the end of a run'],
+      ['rts-label-moveright', 'Move ticker to the right instead of left'],
+      ['rts-label-hrs-new', 'An item younger than this number of hours is considered "new"'],
+      ['rts-label-hrs-old', 'An item older than this number of hours is considered "old"'],
+      ['rts-label-color-new', 'Color of a "new" item'],
+      ['rts-label-color-old', 'Color of an "old" item'],
+      ['rts-button-play', '(Re)start ticker'],
+      ['rts-button-stop', 'Stop ticker'],
+      ['rts-button-store', 'Store attributes into cookie'],
+      ['rts-button-load', 'Load attributes from cookie'],
+      ['rts-button-defaults', 'Load default attributes'],
+      ['rts-button-close', 'Close'],
+
+    ].forEach(a => {
+      tip(this._e.querySelector('.' + a[0]), a[1]);
+    });
+
   }
 
   updBusyInd(b) {
@@ -487,4 +536,8 @@ export default class RtSettings {
     return this._removed;
   }
 
+}
+
+function tip(e, text) {
+  tippy(e, {content: '<span style="color: white; font-size: 0.9em;">'+text+'</span>'});
 }

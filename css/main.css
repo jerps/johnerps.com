@@ -249,7 +249,7 @@ hr {
 .switch {
   display: none;
   font-family: Amatic SC;
-  font-size: 125%;
+  font-size: 110%;
   transition: opacity 3s ease-in;
   opacity: 0;
   margin: auto 0 auto 0;
