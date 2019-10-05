@@ -100,7 +100,7 @@ FloatImgs.fgmc1 = function(g) {
 };
 
 FloatImgs.fgt(0.03);
-FloatImgs.fgr(0.1);
+FloatImgs.fgr(0.2);
 FloatImgs.fgmi(0.1);
 FloatImgs.fgd0(0.05);
 FloatImgs.fgd1(0.3);

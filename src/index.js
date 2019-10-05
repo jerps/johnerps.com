@@ -71,7 +71,8 @@ var dynapg = false, eiv = null;
 window.onload = function() {
 
   tippy.setDefaults({
-    animation: 'shift-away',
+    theme: 'translucent',
+    animation: 'perspective',
     arrow: true,
     inertia: true,
     touchHold: true
@@ -79,10 +80,6 @@ window.onload = function() {
 
   Array.from(this.document.querySelector('#tippies').children).forEach(e => {
     tip('#' + e.classList[0], e.textContent);
-  });
-
-  document.querySelectorAll('a, img').forEach(function(e) {
-    e.setAttribute('tabindex', '-1');
   });
 
   this.document.querySelector('#switch1').addEventListener('click', e => {
@@ -844,7 +841,9 @@ function initdyna() {
   let dfts = {};
   let apn = RssTicker.apNames;
   for (let i = 0; i < apn.length - 1; i += 2) {
-    dfts[apn[i]] = rss[apn[i+1]];
+    if (apn[i] !== 'autostart') {
+      dfts[apn[i]] = rss[apn[i+1]];
+    }
   }
 
   let rssIcon = document.querySelector('#rssIcon');

@@ -11,10 +11,12 @@ This software is licensed under the MIT license (see LICENSE)
 import tippy from 'tippy.js';
 
 tippy.setDefaults({
-  animation: 'shift-away',
+  theme: 'translucent',
+  animation: 'perspective',
   arrow: true,
   inertia: true,
-  touchHold: true
+  touchHold: true,
+  placement: 'top-end'
 });
 
 let acl = new Map(); // attribute change listeners
@@ -320,9 +322,9 @@ export default class RtSettings {
     e0.appendChild(e);
     e = initInput('no-imgs', 'noImgs', 3, 4, 'checkbox');
     e0.appendChild(e);
-    e = initLabel('moveright', 4, 3);
+    e = initLabel('scrollright', 4, 3);
     e0.appendChild(e);
-    e = initInput('moveright', 'moveright', 4, 4, 'checkbox');
+    e = initInput('scrollright', 'scrollright', 4, 4, 'checkbox');
     e0.appendChild(e);
     e = initLabel('hrs-new', 5, 3);
     e0.appendChild(e);
@@ -396,16 +398,18 @@ export default class RtSettings {
     bdefaults = initButton('defaults', 'D', () => {
       let ap = ticker.constructor.apNames;
       for (let i = 0; i < ap.length - 1; i += 2) {
-        let d = this._dfts[ap[i]];
-        if (d !== undefined && d !== null) {
-          let v = this._inputs.get(ap[i]);
-          if (v) {
-            if (v[1].type == 'checkbox') {
-              v[1].checked = Boolean(d);
-            } else {
-              v[1].value = d;
+        if (ap[i] !== 'autostart') {
+          let d = this._dfts[ap[i]];
+          if (d !== undefined && d !== null) {
+            let v = this._inputs.get(ap[i]);
+            if (v) {
+              if (v[1].type == 'checkbox') {
+                v[1].checked = Boolean(d);
+              } else {
+                v[1].value = d;
+              }
+              attrChanged(ap[i], v[0], v[1]);
             }
-            attrChanged(ap[i], v[0], v[1]);
           }
         }
       }
@@ -423,10 +427,10 @@ export default class RtSettings {
     }, false);
     let r1 = ticker.getBoundingClientRect(), r2 = this._e.getBoundingClientRect();
     let w = r2.width, h = r2.height;
-    if (r1.bottom - r1.height / 2 > document.body.clientHeight / 2) {
-      let b = document.body.clientHeight - r1.bottom + r1.height + 10;
-      if (document.body.clientHeight - b < h) {
-        b -= h - document.body.clientHeight + b;
+    if (r1.bottom - r1.height / 2 > window.innerHeight / 2) {
+      let b = window.innerHeight - r1.bottom + r1.height + 10;
+      if (window.innerHeight - b < h) {
+        b -= h - window.innerHeight + b;
       }
       if (b < 0) {
         b = 0;
@@ -434,8 +438,8 @@ export default class RtSettings {
       this._e.style.bottom = '' + b + 'px';
     } else {
       let t = r1.bottom + 10;
-      if (t + h > document.body.clientHeight) {
-        t -= t + h - document.body.clientHeight;
+      if (t + h > window.innerHeight) {
+        t -= t + h - window.innerHeight;
       }
       if (t < 0) {
         t = 0;
@@ -468,7 +472,7 @@ export default class RtSettings {
       ['rts-label-cont-run', 'When restarted keep running until end of run'],
       ['rts-label-keep-url', 'If the url changed then do not fetch feed with new url at end of run'],
       ['rts-label-no-imgs', 'Show items without images; effective when at the end of a run'],
-      ['rts-label-moveright', 'Move ticker to the right instead of left'],
+      ['rts-label-scrollright', 'Ticker scrolls to the right instead of to the left'],
       ['rts-label-hrs-new', 'An item younger than this number of hours is considered "new"'],
       ['rts-label-hrs-old', 'An item older than this number of hours is considered "old"'],
       ['rts-label-color-new', 'Color of a "new" item (#rrggbb)'],

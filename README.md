@@ -4,6 +4,12 @@
 
 ### Changes
 
+* v0.8.0 (2019-10-06)
+
+  * Bugfixes. Misc. layout changes.
+
+  * Use rss-ticker 0.8.0.
+
 * v0.7.2 (2019-10-05)
 
   * Added tips to form for editing rss-ticker attributes.
