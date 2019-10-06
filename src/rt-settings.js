@@ -281,72 +281,79 @@ export default class RtSettings {
     e.max = 999;
     e.step = 0.1;
     e0.appendChild(e);
-    e = initLabel('item-gap', 4, 1);
+    e = initLabel('transparency', 4, 1);
     e0.appendChild(e);
-    e = initInput('item-gap', 'itemGap', 4, 2, 'number');
+    e = initInput('transparency', 'transparency', 4, 2, 'number');
     e.min = 0;
     e.max = 999;
     e.step = 0.1;
     e0.appendChild(e);
-    e = initLabel('transparency', 5, 1);
+    e = initLabel('item-gap', 5, 1);
     e0.appendChild(e);
-    e = initInput('transparency', 'transparency', 5, 2, 'number');
+    e = initInput('item-gap', 'itemGap', 5, 2, 'number');
     e.min = 0;
     e.max = 999;
     e.step = 0.1;
     e0.appendChild(e);
-    e = initLabel('refetch-mins', 6, 1);
+    e = initLabel('hrs-new', 6, 1);
     e0.appendChild(e);
-    e = initInput('refetch-mins', 'refetchMins', 6, 2, 'number');
+    e = initInput('hrs-new', 'hrsNew', 6, 2, 'number');
     e.min = 0;
     e.max = 999;
     e.step = 1;
     e0.appendChild(e);
-    e = initLabel('infobox-link-color', 7, 1);
+    e = initLabel('hrs-old', 7, 1);
     e0.appendChild(e);
-    e = initInput('infobox-link-color', 'infoboxLinkColor', 7, 2, 'color');
-    e0.appendChild(e);
-    e = initLabel('infobox-link-bgcolor', 8, 1);
-    e0.appendChild(e);
-    e = initInput('infobox-link-bgcolor', 'infoboxLinkBgColor', 8, 2, 'color');
-    e0.appendChild(e);
-    e = initLabel('cont-run', 1, 3);
-    e0.appendChild(e);
-    e = initInput('cont-run', 'contRun', 1, 4, 'checkbox');
-    e0.appendChild(e);
-    e = initLabel('keep-url', 2, 3);
-    e0.appendChild(e);
-    e = initInput('keep-url', 'keepUrl', 2, 4, 'checkbox');
-    e0.appendChild(e);
-    e = initLabel('no-imgs', 3, 3);
-    e0.appendChild(e);
-    e = initInput('no-imgs', 'noImgs', 3, 4, 'checkbox');
-    e0.appendChild(e);
-    e = initLabel('scrollright', 4, 3);
-    e0.appendChild(e);
-    e = initInput('scrollright', 'scrollright', 4, 4, 'checkbox');
-    e0.appendChild(e);
-    e = initLabel('hrs-new', 5, 3);
-    e0.appendChild(e);
-    e = initInput('hrs-new', 'hrsNew', 5, 4, 'number');
+    e = initInput('hrs-old', 'hrsOld', 7, 2, 'number');
     e.min = 0;
     e.max = 999;
     e.step = 1;
     e0.appendChild(e);
-    e = initLabel('hrs-old', 6, 3);
+    e = initLabel('infobox-img-size', 8, 1);
     e0.appendChild(e);
-    e = initInput('hrs-old', 'hrsOld', 6, 4, 'number');
+    e = initInput('infobox-img-size', 'infoboxImgSize', 8, 2, 'number');
+    e.min = 0;
+    e.max = 999;
+    e.step = 0.1;
+    e0.appendChild(e);
+    e = initLabel('refetch-mins', 9, 1);
+    e0.appendChild(e);
+    e = initInput('refetch-mins', 'refetchMins', 9, 2, 'number');
     e.min = 0;
     e.max = 999;
     e.step = 1;
     e0.appendChild(e);
-    e = initLabel('color-new', 7, 3);
+    e = initLabel('color-new', 1, 3);
     e0.appendChild(e);
-    e = initInput('color-new', 'colorNew', 7, 4, 'color');
+    e = initInput('color-new', 'colorNew', 1, 4, 'color');
     e0.appendChild(e);
-    e = initLabel('color-old', 8, 3);
+    e = initLabel('color-old', 2, 3);
     e0.appendChild(e);
-    e = initInput('color-old', 'colorOld', 8, 4, 'color');
+    e = initInput('color-old', 'colorOld', 2, 4, 'color');
+    e0.appendChild(e);
+    e = initLabel('infobox-link-color', 3, 3);
+    e0.appendChild(e);
+    e = initInput('infobox-link-color', 'infoboxLinkColor', 3, 4, 'color');
+    e0.appendChild(e);
+    e = initLabel('infobox-link-bgcolor', 4, 3);
+    e0.appendChild(e);
+    e = initInput('infobox-link-bgcolor', 'infoboxLinkBgColor', 4, 4, 'color');
+    e0.appendChild(e);
+    e = initLabel('cont-run', 5, 3);
+    e0.appendChild(e);
+    e = initInput('cont-run', 'contRun', 5, 4, 'checkbox');
+    e0.appendChild(e);
+    e = initLabel('keep-url', 6, 3);
+    e0.appendChild(e);
+    e = initInput('keep-url', 'keepUrl', 6, 4, 'checkbox');
+    e0.appendChild(e);
+    e = initLabel('no-imgs', 7, 3);
+    e0.appendChild(e);
+    e = initInput('no-imgs', 'noImgs', 7, 4, 'checkbox');
+    e0.appendChild(e);
+    e = initLabel('scrollright', 8, 3);
+    e0.appendChild(e);
+    e = initInput('scrollright', 'scrollright', 8, 4, 'checkbox');
     e0.appendChild(e);
     e0 = this._e.querySelector('.rts-settings-busy');
     bplay = initButton('play', '<i class="fas fa-play"></i>', () => {
@@ -369,7 +376,7 @@ export default class RtSettings {
         if (d.length > 0) {
           d += ';';
         }
-        d += a1 + '=' + encodeURI(String(v[1].type === 'checkbox' ? v[1].checked : v[1].value ? v[1].value : ''));
+        d += a1 + '=' + encodeURIComponent(String(v[1].type === 'checkbox' ? v[1].checked : v[1].value ? v[1].value : ''));
       }
       Util.createCookie('SettingsRssTicker', d, 365);
     });
@@ -384,7 +391,7 @@ export default class RtSettings {
         let a2 = a[i].split('=');
         let v = this._inputs.get(a2[0]);
         if (v) {
-          let d = decodeURI(a2[1]);
+          let d = decodeURIComponent(a2[1]);
           if (v[1].type == 'checkbox') {
             v[1].checked = d === 'true';
           } else {
@@ -461,22 +468,23 @@ export default class RtSettings {
 
       ['rts-urlswitch', 'Switch to (proxy) url'],
       ['rts-label-url', 'RSS/Atom feed url (enter/restart for immediate effect)'],
-      ['rts-label-speed', 'Ticker speed (1-10)'],
-      ['rts-label-font-size', 'Relative font size (1=normal)'],
+      ['rts-label-speed', 'Ticker speed (1 - 10)'],
+      ['rts-label-font-size', 'Relative font size (1 = normal)'],
       ['rts-label-img-size', 'Vertical image size in em'],
-      ['rts-label-item-gap', 'Relative size of gap between items (1=normal)'],
-      ['rts-label-transparency', 'Transparency of items and info-box (0=opaque..1=transparent)'],
+      ['rts-label-transparency', 'Transparency of items and info-box (0 = opaque .. 1 = transparent)'],
+      ['rts-label-item-gap', 'Relative size of gap between items (1 = normal)'],
+      ['rts-label-hrs-new', 'An item younger than this number of hours is considered "new"'],
+      ['rts-label-hrs-old', 'An item older than this number of hours is considered "old"'],
+      ['rts-label-infobox-img-size', 'Relative size of info-box image (1 = size of item image)'],
       ['rts-label-refetch-mins', 'Minimum number of minutes that must be passed after fetching an RSS/Atom feed before the feed is refetched'],
+      ['rts-label-color-new', 'Color of a "new" item (#rrggbb)'],
+      ['rts-label-color-old', 'Color of an "old" item (#rrggbb)'],
       ['rts-label-infobox-link-color', 'Foreground (text) color of info-box links (#rrggbbaa; empty means info-box/item background color)'],
       ['rts-label-infobox-link-bgcolor', 'Background color of info-box link (#rrggbb)'],
       ['rts-label-cont-run', 'When restarted keep running until end of run'],
       ['rts-label-keep-url', 'If the url changed then do not fetch feed with new url at end of run'],
       ['rts-label-no-imgs', 'Show items without images; effective when at the end of a run'],
       ['rts-label-scrollright', 'Ticker scrolls to the right instead of to the left'],
-      ['rts-label-hrs-new', 'An item younger than this number of hours is considered "new"'],
-      ['rts-label-hrs-old', 'An item older than this number of hours is considered "old"'],
-      ['rts-label-color-new', 'Color of a "new" item (#rrggbb)'],
-      ['rts-label-color-old', 'Color of an "old" item (#rrggbb)'],
       ['rts-button-play', '(Re)start ticker'],
       ['rts-button-stop', 'Stop ticker'],
       ['rts-button-store', 'Store attributes into cookie'],

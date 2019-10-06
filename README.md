@@ -4,6 +4,14 @@
 
 ### Changes
 
+* v0.8.1 (2019-10-06)
+
+  * Misc. bugfixes.
+
+  * Add support for new rss-ticker attribute `infobox-img-size`.
+
+  * Use rss-ticker 0.8.1.
+
 * v0.8.0 (2019-10-06)
 
   * Bugfixes. Misc. layout changes.

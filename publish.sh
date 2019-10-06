@@ -44,6 +44,7 @@ echo "ascii"                   >> $FTPS
 echo "lcd $LDIR"               >> $FTPS
 echo "cd /"                    >> $FTPS
 echo "put index.html"          >> $FTPS
+echo "put LICENSE"             >> $FTPS
 echo "put php.ini"             >> $FTPS
 
 mputdir $DIR_CSS
