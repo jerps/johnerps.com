@@ -475,7 +475,7 @@ export default class RtSettings {
       ['rts-label-item-gap', 'Relative size of gap between items (1 = normal)'],
       ['rts-label-hrs-new', 'An item younger than this number of hours is considered "new"'],
       ['rts-label-hrs-old', 'An item older than this number of hours is considered "old"'],
-      ['rts-label-infobox-img-size', 'Relative size of info-box image (1 = size of item image)'],
+      ['rts-label-infobox-img-size', 'Minimum size of info-box image (relative: 1 = size of item image)'],
       ['rts-label-refetch-mins', 'Minimum number of minutes that must be passed after fetching an RSS/Atom feed before the feed is refetched'],
       ['rts-label-color-new', 'Color of a "new" item (#rrggbb)'],
       ['rts-label-color-old', 'Color of an "old" item (#rrggbb)'],
