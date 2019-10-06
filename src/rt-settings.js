@@ -371,33 +371,21 @@ export default class RtSettings {
     this.updBusyInd();
     e0 = this._e.querySelector('.rts-settings-buttons');
     bstore = initButton('store', 'S', () => {
-      let d = '';
-      for (const [a1, v] of this._inputs) {
-        if (d.length > 0) {
-          d += ';';
-        }
-        d += a1 + '=' + encodeURIComponent(String(v[1].type === 'checkbox' ? v[1].checked : v[1].value ? v[1].value : ''));
+      for (const [a1, e] of this._inputs) {
+        localStorage.setItem('SettingsRssTicker-' + a1, e[1].type === 'checkbox' ? e[1].checked : e[1].value ? e[1].value : '');
       }
-      Util.createCookie('SettingsRssTicker', d, 365);
     });
     e0.appendChild(bstore);
     bload = initButton('load', 'L', () => {
-      let c = Util.readCookie('SettingsRssTicker');
-      if (!c) {
-        return;
-      }
-      let a = c.split(';');
-      for (let i = 0; i < a.length; i++) {
-        let a2 = a[i].split('=');
-        let v = this._inputs.get(a2[0]);
-        if (v) {
-          let d = decodeURIComponent(a2[1]);
-          if (v[1].type == 'checkbox') {
-            v[1].checked = d === 'true';
+      for (const [a1, e] of this._inputs) {
+        let v = localStorage.getItem('SettingsRssTicker-' + a1);
+        if (v !== null) {
+          if (e[1].type == 'checkbox') {
+            e[1].checked = v === 'true';
           } else {
-            v[1].value = d;
+            e[1].value = v;
           }
-          attrChanged(a2[0], v[0], v[1]);
+          attrChanged(a1, e[0], e[1]);
         }
       }
     });
@@ -487,8 +475,8 @@ export default class RtSettings {
       ['rts-label-scrollright', 'Ticker scrolls to the right instead of to the left'],
       ['rts-button-play', '(Re)start ticker'],
       ['rts-button-stop', 'Stop ticker'],
-      ['rts-button-store', 'Store attributes into cookie'],
-      ['rts-button-load', 'Load attributes from cookie'],
+      ['rts-button-store', 'Store attributes into web storage'],
+      ['rts-button-load', 'Load attributes from web storage'],
       ['rts-button-defaults', 'Load default attributes'],
       ['rts-button-close', 'Close'],
 

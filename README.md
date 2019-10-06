@@ -4,9 +4,13 @@
 
 ### Changes
 
-* v0.9.0 (2019-10-06)
+* v0.9.0 (2019-10-07)
 
-  * Yagols v4.4
+  * Changed color scheme to "dark mode".
+
+  * Use web storage instead of cookie to store settings.
+
+  * Use rss-ticker 0.8.2.
 
 * v0.8.1 (2019-10-06)
 

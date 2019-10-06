@@ -79,29 +79,3 @@ function mulberry32(a) {
     return ((t ^ t >>> 14) >>> 0) / 4294967296;
   };
 }
-
-Util.createCookie = function(name, value, days) {
-  var expires = '';
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime()+(days*24*60*60*1000));
-    expires = '; expires=' + date.toGMTString();
-  }
-  document.cookie = name.trim() + '=' + encodeURIComponent(value.trim()) + expires + '; path=/';
-};
-
-Util.readCookie = function(name) {
-  var nameEQ = name.trim() + '=';
-  var a = document.cookie.split(';');
-  for (var i = 0; i < a.length; i++) {
-    var c = a[i].trim();
-    if (c.indexOf(nameEQ) === 0) {
-      return decodeURIComponent(c.substring(nameEQ.length));
-    }
-  }
-  return null;
-};
-
-Util.eraseCookie = function(name) {
-  Util.createCookie(name, '', -1);
-};

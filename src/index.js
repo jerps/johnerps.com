@@ -40,9 +40,9 @@ var t = [
   document.querySelector('#ns-dyagols').textContent,
 ];
 
-var rgb0 = [0, 0, 0], nrgb0 = [0, 0, 0], drgb0 = [120, 20, 20],
-    rgb1 = [120, 20, 20], nrgb1 = [0, 0, 0], drgb1 = [120, 20, 20],
-    rgbab = [120, 20, 20, 1],
+var rgb0 = [224, 224, 224], nrgb0 = [224, 224, 224], drgb0 = [150, 25, 25],
+    rgb1 = [150, 25, 25], nrgb1 = [224, 224, 224], drgb1 = [150, 25, 25],
+    rgbab = [150, 25, 25, 1],
     fontFamily = 'Armata', nfontFamily = 'Poppins', dfontFamily = 'Poppins',
     letterSpacing = 6.4, letterSpacing2 = 10,
     borderw = 1;
@@ -654,14 +654,14 @@ function initdyna() {
     e.preventDefault();
     el.gaugestore.classList.remove('gaugebtnselx');
     el.gaugestore.classList.add('gaugebtnsel');
-    el.gaugebtntxt.textContent = 'Store settings into cookie';
+    el.gaugebtntxt.textContent = 'Store settings into web storage';
     el.gaugebtntxt.classList.add('gaugetxtsel');
   }, false);
   el.gaugeload.addEventListener('mouseenter', function(e) {
     e.preventDefault();
     el.gaugeload.classList.remove('gaugebtnselx');
     el.gaugeload.classList.add('gaugebtnsel');
-    el.gaugebtntxt.textContent = 'Load settings from cookie';
+    el.gaugebtntxt.textContent = 'Load settings from web storage';
     el.gaugebtntxt.classList.add('gaugetxtsel');
   }, false);
   el.gaugeldft.addEventListener('mouseenter', function(e) {
@@ -720,12 +720,12 @@ function initdyna() {
   }, false);
   el.gaugestore.addEventListener('mousedown', function(e) {
     e.preventDefault();
-    createCookieFloatImgs();
+    storeSettingsFloatImgs();
     el.gaugestore.classList.add('gaugebtnsel2');
   }, false);
   el.gaugestore.addEventListener('click', function(e) {
     e.preventDefault();
-    createCookieFloatImgs();
+    storeSettingsFloatImgs();
     el.gaugestore.classList.add('gaugebtnsel2');
     setTimeout(() => {
       el.gaugestore.classList.remove('gaugebtnsel2');
@@ -733,13 +733,13 @@ function initdyna() {
   }, false);
   el.gaugeload.addEventListener('mousedown', function(e) {
     e.preventDefault();
-    readCookieFloatImgs();
+    loadSettingsFloatImgs();
     updGaugeKnobs();
     el.gaugeload.classList.add('gaugebtnsel2');
   }, false);
   el.gaugeload.addEventListener('click', function(e) {
     e.preventDefault();
-    readCookieFloatImgs();
+    loadSettingsFloatImgs();
     updGaugeKnobs();
     el.gaugeload.classList.add('gaugebtnsel2');
     setTimeout(() => {
@@ -915,51 +915,51 @@ function tip(sel, text) {
   tippy(sel, {content: '<span style="color: white; font-size: 0.8rem;">'+text+'</span>'});
 }
 
-function createCookieFloatImgs() {
-  Util.createCookie(
-      'SettingsFloatImgs',
-      't='     + FloatImgs.gt     + ';' +
-      'r='     + FloatImgs.gr     + ';' +
-      'mi='    + FloatImgs.gmi    + ';' +
-      'd0='    + FloatImgs.gd0    + ';' +
-      'd1='    + FloatImgs.gd1    + ';' +
-      'mc0='   + FloatImgs.gmc0   + ';' +
-      'mc1='   + FloatImgs.gmc1,
-      365);
+function storeSettingsFloatImgs() {
+  [ ['t',   FloatImgs.gt],
+    ['r',   FloatImgs.gr],
+    ['mi',  FloatImgs.gmi],
+    ['d0',  FloatImgs.gd0],
+    ['d1',  FloatImgs.gd1],
+    ['mc0', FloatImgs.gmc0],
+    ['mc1', FloatImgs.gmc1]
+  ].forEach(a => {
+    localStorage.setItem('SettingsFloatImgs-' + a[0], a[1]);
+  });
 }
 
-function readCookieFloatImgs() {
-  var c = Util.readCookie('SettingsFloatImgs');
-  if (!c) {
-    return;
-  }
-  var a = c.split(';');
-  for (var i = 0; i < a.length; i++) {
-    var a2 = a[i].split('=');
-    switch (a2[0]) {
-      case 't':
-        FloatImgs.fgt(parseFloat(a2[1]));
-        break;
-      case 'r':
-        FloatImgs.fgr(parseFloat(a2[1]));
-        break
-      case 'mi':
-        FloatImgs.fgmi(parseFloat(a2[1]));
-        break;
-      case 'd0':
-        FloatImgs.fgd0(parseFloat(a2[1]));
-        break;
-      case 'd1':
-        FloatImgs.fgd1(parseFloat(a2[1]));
-        break;
-      case 'mc0':
-        FloatImgs.fgmc0(parseFloat(a2[1]));
-        break;
-      case 'mc1':
-        FloatImgs.fgmc1(parseFloat(a2[1]));
-        break;
+function loadSettingsFloatImgs() {
+  ['t', 'r', 'mi', 'd0', 'd1', 'mc0', 'mc1'].forEach(s => {
+    let v = localStorage.getItem('SettingsFloatImgs-' + s);
+    if (v !== null) {
+      let n = Number(v);
+      if (!isNaN(n)) {
+        switch (s) {
+          case 't':
+            FloatImgs.fgt(n);
+            break;
+          case 'r':
+            FloatImgs.fgr(n);
+            break
+          case 'mi':
+            FloatImgs.fgmi(n);
+            break;
+          case 'd0':
+            FloatImgs.fgd0(n);
+            break;
+          case 'd1':
+            FloatImgs.fgd1(n);
+            break;
+          case 'mc0':
+            FloatImgs.fgmc0(n);
+            break;
+          case 'mc1':
+            FloatImgs.fgmc1(n);
+            break;
+        }
+      }
     }
-  }
+  });
 }
 
 function updFloatImgs_gt(y) {
