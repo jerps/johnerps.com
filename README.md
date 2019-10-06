@@ -4,6 +4,10 @@
 
 ### Changes
 
+* v0.9.0 (2019-10-06)
+
+  * Yagols v4.4
+
 * v0.8.1 (2019-10-06)
 
   * Misc. bugfixes.
