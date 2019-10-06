@@ -743,7 +743,7 @@ hr {
 
 @media all and (max-width: 1200px) {
   #container {
-    width: 75%;
+    width: 83%;
   }
   .gaugecont {
     display: flex;
@@ -751,7 +751,7 @@ hr {
 }
 @media all and (max-width: 1000px) {
   #container {
-    width: 80%;
+    width: 87%;
   }
   .gaugecont {
     display: flex;
@@ -759,7 +759,7 @@ hr {
 }
 @media all and (max-width: 800px) {
   #container {
-    width: 85%;
+    width: 90%;
   }
   #gaugecont {
     display: none;
@@ -767,7 +767,7 @@ hr {
 }
 @media all and (max-width: 600px) {
   #container {
-    width: 90%;
+    width: 93%;
   }
   #gaugecont {
     display: none;
@@ -783,7 +783,7 @@ hr {
 }
 @media all and (max-width: 200px) {
   #container {
-    width: 100%;
+    width: 99%;
   }
   #gaugecont {
     display: none;
@@ -791,7 +791,7 @@ hr {
 }
 @media all and (min-width: 1201px) {
   #container {
-    width: 70%;
+    width: 80%;
   }
   .gaugecont {
     display: flex;
