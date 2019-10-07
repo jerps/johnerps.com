@@ -4,19 +4,11 @@
 
 ### Changes
 
-* v0.9.2 (2019-10-07)
+* v0.9.1 (2019-10-07)
 
   * Support rss-ticker attribute `descr-or-content`.
 
   * Use rss-ticker v0.9.0.
-
-* v0.9.1 (2019-10-07)
-
-  * Bugfixes / misc. lay-out changes.
-
-  * Added attribute `descr-or-content`.
-
-  * Pre-load info-box images.
 
 * v0.9.0 (2019-10-07)
 
