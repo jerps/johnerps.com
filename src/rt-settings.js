@@ -339,21 +339,28 @@ export default class RtSettings {
     e0.appendChild(e);
     e = initInput('infobox-link-bgcolor', 'infoboxLinkBgColor', 4, 4, 'color');
     e0.appendChild(e);
-    e = initLabel('cont-run', 5, 3);
+    e = initLabel('descr-or-content', 5, 3);
     e0.appendChild(e);
-    e = initInput('cont-run', 'contRun', 5, 4, 'checkbox');
+    e = initInput('descr-or-content', 'descrOrContent', 5, 4, 'number');
+    e.min = 0;
+    e.max = 3;
+    e.step = 1;
     e0.appendChild(e);
-    e = initLabel('keep-url', 6, 3);
+    e = initLabel('cont-run', 6, 3);
     e0.appendChild(e);
-    e = initInput('keep-url', 'keepUrl', 6, 4, 'checkbox');
+    e = initInput('cont-run', 'contRun', 6, 4, 'checkbox');
     e0.appendChild(e);
-    e = initLabel('no-imgs', 7, 3);
+    e = initLabel('keep-url', 7, 3);
     e0.appendChild(e);
-    e = initInput('no-imgs', 'noImgs', 7, 4, 'checkbox');
+    e = initInput('keep-url', 'keepUrl', 7, 4, 'checkbox');
     e0.appendChild(e);
-    e = initLabel('scrollright', 8, 3);
+    e = initLabel('no-imgs', 8, 3);
     e0.appendChild(e);
-    e = initInput('scrollright', 'scrollright', 8, 4, 'checkbox');
+    e = initInput('no-imgs', 'noImgs', 8, 4, 'checkbox');
+    e0.appendChild(e);
+    e = initLabel('scrollright', 9, 3);
+    e0.appendChild(e);
+    e = initInput('scrollright', 'scrollright', 9, 4, 'checkbox');
     e0.appendChild(e);
     e0 = this._e.querySelector('.rts-settings-busy');
     bplay = initButton('play', '<i class="fas fa-play"></i>', () => {
@@ -469,6 +476,7 @@ export default class RtSettings {
       ['rts-label-color-old', 'Color of an "old" item (#rrggbb)'],
       ['rts-label-infobox-link-color', 'Foreground (text) color of info-box links (#rrggbbaa; empty means info-box/item background color)'],
       ['rts-label-infobox-link-bgcolor', 'Background color of info-box link (#rrggbb)'],
+      ['rts-label-descr-or-content', '0 = show both the description and the content in the info-box of an item, 1 = description, 2 = content, 3 = description *or* content whichever is the longest'],
       ['rts-label-cont-run', 'When restarted keep running until end of run'],
       ['rts-label-keep-url', 'If the url changed then do not fetch feed with new url at end of run'],
       ['rts-label-no-imgs', 'Show items without images; effective when at the end of a run'],
