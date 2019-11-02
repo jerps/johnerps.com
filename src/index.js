@@ -11,7 +11,6 @@ This software is licensed under the MIT license (see LICENSE)
 import animateText from 'src/animate-text.js';
 import FloatImgs from 'src/floating-imgs.js';
 import Util from 'src/util.js';
-import RssTicker from 'src/rss-ticker';
 import RtSettings from 'src/rt-settings.js'
 import tippy from 'tippy.js';
 
@@ -38,10 +37,12 @@ var t = [
   document.querySelector('#ns-drpgmap').textContent,
   ' ' + document.querySelector('#ns-nyagols').textContent + ' ',
   document.querySelector('#ns-dyagols').textContent,
+  ' ' + document.querySelector('#ns-nrssticker').textContent + ' ',
+  document.querySelector('#ns-drssticker').textContent
 ];
 
-var rgb0 = [224, 224, 224], nrgb0 = [224, 224, 224], drgb0 = [150, 25, 25],
-    rgb1 = [150, 25, 25], nrgb1 = [224, 224, 224], drgb1 = [150, 25, 25],
+var rgb0 = [208, 208, 208], nrgb0 = [208, 208, 208], drgb0 = [150, 25, 25],
+    rgb1 = [150, 25, 25], nrgb1 = [208, 208, 208], drgb1 = [150, 25, 25],
     rgbab = [150, 25, 25, 1],
     fontFamily = 'Armata', nfontFamily = 'Poppins', dfontFamily = 'Poppins',
     letterSpacing = 6.4, letterSpacing2 = 10,
@@ -68,6 +69,8 @@ var rss = null, rsss = null, rssrl = null, rssct = null;
 
 var dynapg = false, eiv = null;
 
+var swefft = 0, sweffdp = false, sweffca = true;
+
 window.onload = function() {
 
   tippy.setDefaults({
@@ -78,17 +81,17 @@ window.onload = function() {
     touchHold: true
   });
 
-  Array.from(this.document.querySelector('#tippies').children).forEach(e => {
+  Array.from(document.querySelector('#tippies').children).forEach(e => {
     tip('#' + e.classList[0], e.textContent);
   });
 
-  this.document.querySelector('#switch1').addEventListener('click', e => {
+  document.querySelector('#switch1').addEventListener('click', e => {
     if (!dynapg && e.target && e.target.style.opacity === '1') {
       dynapg = true;
       todyna();
     }
   }, false);
-  this.document.querySelector('#switch2').addEventListener('click', e => {
+  document.querySelector('#switch2').addEventListener('click', e => {
     if (dynapg && e.target && e.target.style.opacity === '1') {
       dynapg = false;
       tostat();
@@ -101,6 +104,38 @@ window.onload = function() {
   } else {
     startstat();
   }
+
+  setInterval(() => {
+    if (swefft > 0) {
+      swefft -= 400;
+    } else if (!sweffca) {
+      sweffca = true;
+      if (sweffdp) {
+        document.querySelector('#switch2').style.animation = '';
+      } else {
+        document.querySelector('#switch1').style.animation = '';
+      }
+    } else if (Util.rnd() < 0.05) {
+      swefft = 1000 + 2000 * Util.rnd();
+      sweffdp = dynapg;
+      sweffca = false;
+      let s = 'switchEffect';
+      let r = Util.rnd();
+      if (r < 0.333) {
+        s += '1';
+      } else if (r < 0.666) {
+        s += '2';
+      } else {
+        s += '3';
+      }
+      s += ' ' + (swefft / 1000) + 's ease';
+      if (sweffdp) {
+        document.querySelector('#switch2').style.animation = s;
+      } else {
+        document.querySelector('#switch1').style.animation = s;
+      }
+    }
+  }, 400);
 }
 
 function tostat() {
@@ -362,14 +397,23 @@ function initdyna() {
     rgb1chars: '',
     fontFamily: dfontFamily, fontProps: '', letterSpacing: letterSpacing2
   });
-  reganim('dyagols', {
-    text: t[17],
+  reganim('drssticker', {
+    text: t[19],
     border: [0, 0, 0, 0],
     fontSize: 1.1,
     yp: -0.05,
     rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: dfontFamily, fontProps: '', letterSpacing: letterSpacing2
+  });
+  reganim('nrssticker', {
+    text: t[18],
+    border: [0, 0, 0, 0],
+    fontSize: 1.2,
+    yp: 0.1,
+    rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: nfontFamily, fontProps: '', letterSpacing: letterSpacing2
   });
   reganim('nyagols', {
     text: t[16],
@@ -379,6 +423,15 @@ function initdyna() {
     rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: nfontFamily, fontProps: '', letterSpacing: letterSpacing2
+  });
+  reganim('dyagols', {
+    text: t[17],
+    border: [0, 0, 0, 0],
+    fontSize: 1.1,
+    yp: -0.05,
+    rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: dfontFamily, fontProps: '', letterSpacing: letterSpacing2
   });
   reganim('linkedin', {
     text: t[2],
@@ -839,7 +892,7 @@ function initdyna() {
   rss.addRunningListener(rssrl);
 
   let dfts = {};
-  let apn = RssTicker.apNames;
+  let apn = RssTicker.default.apNames;
   for (let i = 0; i < apn.length - 1; i += 2) {
     if (apn[i] !== 'autostart') {
       dfts[apn[i]] = rss[apn[i+1]];

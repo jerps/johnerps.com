@@ -2,7 +2,23 @@
 
 ***
 
+### How To Build
+
+````shell
+$ npm run build:index:prod
+# for development:
+$ npm run build:index:dev
+````
+
+***
+
 ### Changes
+
+* v1.0.0 (2019-11-02)
+
+  * Misc. changes.
+
+  * Use rss-ticker v1.1.0.
 
 * v0.9.1 (2019-10-07)
 
@@ -75,7 +91,6 @@
   * Use rss-ticker v0.5.0.
 
   * The settings window is now fully functional.
-
 
 * v0.3.3 (2019-09-14)
 

@@ -24,6 +24,7 @@ DIR_FONTS_FONTAWESOME_CSS=fonts/fontawesome-free-5.10.2-web/css
 DIR_FONTS_FONTAWESOME_JS=fonts/fontawesome-free-5.10.2-web/js
 DIR_FONTS_FONTAWESOME_WEBFONTS=fonts/fontawesome-free-5.10.2-web/webfonts
 DIR_FONTS_GOOGLE=fonts/google-webfonts
+DIR_RSSTICKER=rss-ticker
 
 function mputdir {
   case "$2" in
@@ -52,6 +53,7 @@ mputdir $DIR_JS
 mputdir $DIR_INCLUDE
 mputdir $DIR_PHP
 mputdir $DIR_PHP_PRIV
+mputdir $DIR_RSSTICKER
 
 if [[ $1 == *F* ]]
 then

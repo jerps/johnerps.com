@@ -25,7 +25,8 @@ This software is licensed under the MIT license (see LICENSE)
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="shortcut icon" href="images/favicon.ico"/>
   <script defer src="fonts/fontawesome-free-5.10.2-web/js/all.js"></script>
-  <script src="js/webcomponentsjs@2.2.10.js"></script>
+  <script src="js/webcomponents@2.2.10.js"></script>
+  <script src="js/rss-ticker@1.1.0.js"></script>
   <style>
     /* armata-regular - latin */
     @font-face {
@@ -216,15 +217,19 @@ This software is licensed under the MIT license (see LICENSE)
     <div id="middle">
 
       <div id="tippies" style="display: none;">
+        <span class="rssIcon">Edit rss-ticker attributes</span>
         <span class="nrpgmap">Latest: v1.2.1 (march 2019)</span>
         <span class="ns-nrpgmap">Latest: v1.2.1 (march 2019)</span>
-        <span class="nyagols">Latest: v4.4 (october 2019)</span>
-        <span class="ns-nyagols">Latest: v4.4 (october 2019)</span>
         <span class="download-rpgmap">Download RpgMap from Github</span>
         <span class="github-rpgmap">Go to RpgMap Repository on GitHub</span>
+        <span class="nrssticker">Latest: v1.1.0 (november 2019)</span>
+        <span class="ns-nrssticker">Latest: v1.1.0 (november 2019)</span>
+        <span class="download-rssticker">Download rss-ticker from Github</span>
+        <span class="github-rssticker">Go to rss-ticker Repository on GitHub</span>
+        <span class="nyagols">Latest: v4.4.1 (november 2019)</span>
+        <span class="ns-nyagols">Latest: v4.4.1 (november 2019)</span>
         <span class="download-yagols">Download Yagols from Github</span>
         <span class="github-yagols">Go to Yagols Repository on GitHub</span>
-        <span class="rssIcon">Edit rss-ticker attributes</span>
       </div>
 
       <!-- --  Projects  -- -->
@@ -232,20 +237,30 @@ This software is licensed under the MIT license (see LICENSE)
       <!-- --  * RpgMap  -- -->
 
       <div class="item">
-        <a tabindex="-1" class="pr-link" href="https://johnerps.com/RpgMap/docs/index.html" target="_blank"><span tabindex="-1" class="prname"><span tabindex="-1" id="ns-nrpgmap" class="ns">RpgMap</span><canvas tabindex="-1" id="nrpgmap" class="animatedText"></canvas></span></a>
+        <a tabindex="-1" class="pr-link" href="RpgMap/docs/index.html" target="_blank"><span tabindex="-1" class="prname"><span tabindex="-1" id="ns-nrpgmap" class="ns ns-n">RpgMap</span><canvas tabindex="-1" id="nrpgmap" class="animatedText"></canvas></span></a>
         <div class="sep">&#10072;</div>
-        <span class="prdescr"><span id="ns-drpgmap" class="ns">A versatile in-memory key/value store for RPG</span><canvas id="drpgmap" class="animatedText"></canvas></span>
+        <span class="prdescr"><span id="ns-drpgmap" class="ns ns-d">A versatile in-memory key/value store for RPG</span><canvas id="drpgmap" class="animatedText"></canvas></span>
         <a tabindex="-1" id="download-rpgmap" class="pr-link" href="https://github.com/jerps/RpgMap/archive/v1.2.1.zip" download><i class="fas fa-cloud-download-alt icon-download"></i></a>
         <a tabindex="-1" id="github-rpgmap" class="pr-link" href="https://github.com/jerps/RpgMap#readme" target="_blank"><i class="fab fa-github icon-github"></i></a>
       </div>
 
+      <!-- --  * rss-ticker  -- -->
+
+      <div class="item">
+          <a tabindex="-1" class="pr-link" href="rss-ticker/demo.html" target="_blank"><span tabindex="-1" class="prname"><span tabindex="-1" id="ns-nrssticker" class="ns ns-n">rss-ticker</span><canvas tabindex="-1" id="nrssticker" class="animatedText"></canvas></span></a>
+          <div class="sep">&#10072;</div>
+          <span class="prdescr"><span id="ns-drssticker" class="ns ns-d">RSS/Atom Feed Ticker As Custom HTML Element</span><canvas id="drssticker" class="animatedText"></canvas></span>
+          <a tabindex="-1" id="download-rssticker" class="pr-link" href="https://github.com/jerps/rss-ticker/archive/v1.0.2.zip" download>&nbsp;<i class="fas fa-cloud-download-alt icon-download"></i></a>
+          <a tabindex="-1" id="github-rssticker" class="pr-link" href="https://github.com/jerps/rss-ticker#readme" target="_blank"><i class="fab fa-github icon-github"></i></a>
+        </div>
+
       <!-- --  * Yagols  -- -->
 
       <div class="item">
-        <a tabindex="-1" class="pr-link" href="https://johnerps.com/Yagols.html" target="_blank"><span tabindex="-1" class="prname"><span tabindex="-1" id="ns-nyagols" class="ns">Yagols</span><canvas tabindex="-1" id="nyagols" class="animatedText"></canvas></span></a>
+        <a tabindex="-1" class="pr-link" href="Yagols.html" target="_blank"><span tabindex="-1" class="prname"><span tabindex="-1" id="ns-nyagols" class="ns ns-n">Yagols</span><canvas tabindex="-1" id="nyagols" class="animatedText"></canvas></span></a>
         <div class="sep">&#10072;</div>
-        <span class="prdescr"><span id="ns-dyagols" class="ns">Yet another Game of Life simulator</span><canvas id="dyagols" class="animatedText"></canvas></span>
-        <a tabindex="-1" id="download-yagols" class="pr-link" href="https://github.com/jerps/Yagols/archive/v4.4.zip" download>&nbsp;<i class="fas fa-cloud-download-alt icon-download"></i></a>
+        <span class="prdescr"><span id="ns-dyagols" class="ns ns-d">Yet another Game of Life simulator</span><canvas id="dyagols" class="animatedText"></canvas></span>
+        <a tabindex="-1" id="download-yagols" class="pr-link" href="https://github.com/jerps/Yagols/archive/v4.4.1.zip" download>&nbsp;<i class="fas fa-cloud-download-alt icon-download"></i></a>
         <a tabindex="-1" id="github-yagols" class="pr-link" href="https://github.com/jerps/Yagols#readme" target="_blank"><i class="fab fa-github icon-github"></i></a>
       </div>
 
@@ -266,7 +281,7 @@ This software is licensed under the MIT license (see LICENSE)
       </div>
     </div>
     <script>document.querySelector('#switch1').style.display = 'inline';document.querySelector('#switch2').style.display = 'inline';</script>
-    <rss-ticker id="rss" proxy-url="https://johnerps.com/php/getfile.php?url=%%_URL_%%"></rss-ticker>
+    <rss-ticker id="rss" url="http://rss.cnn.com/rss/edition.rss" proxy-url="https://johnerps.com/php/getfile.php?url=%%_URL_%%"></rss-ticker>
     <div id="bottom">
       <a tabindex="-1" class="pr-link" href="https://linkedin.com/in/john-erps" target="_blank"><span id="ns-linkedin" class="ns">LinkedIn</span><canvas id="linkedin" class="animatedText"></canvas></a>
       <a tabindex="-1" class="pr-link" href="https://github.com/jerps" target="_blank"><span id="ns-github" class="ns">GitHub</span><canvas id="github" class="animatedText"></canvas></a>
