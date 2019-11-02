@@ -561,12 +561,10 @@ hr {
 .gaugecont {
   display: none;
   flex-direction: row;
-  margin: 0;
-  padding: 0;
+  padding: 1em;
   border-radius: 1rem;
-  padding: 0.4em 1em 0.6em 0.8em;
   transition: background-color 1s ease-out;
-  height: 5em;
+  height: 6em;
 }
 
 .gaugecontx {
