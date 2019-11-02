@@ -68,10 +68,13 @@ export default class RtSettings {
         if (e.value) {
           if (c.value !== e.value) {
             let s = e.value;
+            if (s.length === 5) {
+              s = s.substring(0, 4);
+            } else if (s.length === 9) {
+              s = s.substring(0, 7);
+            }
             if (s.length === 4) {
-              s = s.substring(0, 3);
-            } else if (s.length === 8) {
-              s = s.substring(0, 6);
+              s = '#' + s.substring(1, 2).repeat(2) + s.substring(2, 3).repeat(2) + s.substring(3, 4).repeat(2);
             }
             c.value = s;
           }
