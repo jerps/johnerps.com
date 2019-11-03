@@ -14,6 +14,10 @@ $ npm run build:index:dev
 
 ### Changes
 
+* v1.0.1 (2019-11-03)
+
+  * Added GA to rss-ticker/demo.html.
+
 * v1.0.0 (2019-11-02)
 
   * Misc. changes.
