@@ -27,7 +27,7 @@ var t = [
   '',
   Util.unscramble([51,43,32,49,32,54,48,52,50,50,52,51,50,50])+'  ',
   '    ' + document.querySelector('#ns-prt').textContent + '    ',
-  Util.unscramble([111,106,110,104,101,46,112,114,64,115,109,103,105,97,46,108,111,99,109])+'  ',
+  '',
   ' ' + document.querySelector('#ns-specla').textContent + ' ',
   ' ' + document.querySelector('#ns-speclb').textContent + '  ',
   '  '+Util.unscramble([111,106,110,104,106,64,104,111,101,110,112,114,46,115,111,99,109])+' ',
@@ -38,7 +38,9 @@ var t = [
   ' ' + document.querySelector('#ns-nyagols').textContent + ' ',
   document.querySelector('#ns-dyagols').textContent,
   ' ' + document.querySelector('#ns-nrssticker').textContent + ' ',
-  document.querySelector('#ns-drssticker').textContent
+  document.querySelector('#ns-drssticker').textContent,
+  ' ' + document.querySelector('#ns-ncaf').textContent + ' ',
+  document.querySelector('#ns-dcaf').textContent
 ];
 
 var rgb0 = [208, 208, 208], nrgb0 = [208, 208, 208], drgb0 = [150, 25, 25],
@@ -59,7 +61,7 @@ var dw = 10000, dne = 200,
     d0 = 4000, d1 = 500, d2 = 1000, d3 = 600, d4 = 300, d5 = 1000, d6 = 2000, d7 = 500,
     d9 = 600, d10 = 3000, d11 = 1200, d12 = 2000;
 
-var r0a = 0.2, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.35, r2 = 0.7;
+var r0a = 0.2, r0b = 0.02, r0c = 0.07, r0d = 0.07, r0e = 0.04, r1 = 0.35;
 
 var ready = false, ak, initeddyna = false;
 
@@ -334,15 +336,6 @@ function initdyna() {
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: 'italic', letterSpacing: letterSpacing
   });
-  reganim('email2', {
-    text: t[8],
-    border: [0, 0, 0, 0],
-    fontSize: 0.95,
-    yp: -0.4,
-    rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
-    rgb1chars: '',
-    fontFamily: fontFamily, fontProps: '', letterSpacing: letterSpacing
-  });
   reganim('telno', {
     text: t[6],
     border: [0, 0, borderw, 0],
@@ -397,14 +390,23 @@ function initdyna() {
     rgb1chars: '',
     fontFamily: dfontFamily, fontProps: '', letterSpacing: letterSpacing2
   });
-  reganim('drssticker', {
-    text: t[19],
+  reganim('dcaf', {
+    text: t[21],
     border: [0, 0, 0, 0],
     fontSize: 1.1,
     yp: -0.05,
     rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: dfontFamily, fontProps: '', letterSpacing: letterSpacing2
+  });
+  reganim('ncaf', {
+    text: t[20],
+    border: [0, 0, 0, 0],
+    fontSize: 1.2,
+    yp: 0.1,
+    rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: nfontFamily, fontProps: '', letterSpacing: letterSpacing2
   });
   reganim('nrssticker', {
     text: t[18],
@@ -415,14 +417,14 @@ function initdyna() {
     rgb1chars: '',
     fontFamily: nfontFamily, fontProps: '', letterSpacing: letterSpacing2
   });
-  reganim('nyagols', {
-    text: t[16],
+  reganim('drssticker', {
+    text: t[19],
     border: [0, 0, 0, 0],
-    fontSize: 1.2,
-    yp: 0.1,
-    rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
+    fontSize: 1.1,
+    yp: -0.05,
+    rgb0: drgb0, rgb1: drgb1, rgbab: rgbab,
     rgb1chars: '',
-    fontFamily: nfontFamily, fontProps: '', letterSpacing: letterSpacing2
+    fontFamily: dfontFamily, fontProps: '', letterSpacing: letterSpacing2
   });
   reganim('dyagols', {
     text: t[17],
@@ -433,11 +435,20 @@ function initdyna() {
     rgb1chars: '',
     fontFamily: dfontFamily, fontProps: '', letterSpacing: letterSpacing2
   });
+  reganim('nyagols', {
+    text: t[16],
+    border: [0, 0, 0, 0],
+    fontSize: 1.2,
+    yp: 0.1,
+    rgb0: nrgb0, rgb1: nrgb1, rgbab: rgbab,
+    rgb1chars: '',
+    fontFamily: nfontFamily, fontProps: '', letterSpacing: letterSpacing2
+  });
   reganim('linkedin', {
     text: t[2],
     border: [0, 0, borderw, 0],
     fontSize: 1,
-    yp: 0,
+    yp: -0.9,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: '', letterSpacing: letterSpacing
@@ -446,7 +457,7 @@ function initdyna() {
     text: t[3],
     border: [0, 0, borderw, 0],
     fontSize: 1,
-    yp: 0,
+    yp: -0.9,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: '', letterSpacing: letterSpacing
@@ -455,7 +466,7 @@ function initdyna() {
     text: t[4],
     border: [0, 0, borderw, 0],
     fontSize: 1,
-    yp: 0,
+    yp: -0.9,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: 'i',
     fontFamily: fontFamily, fontProps: '', letterSpacing: letterSpacing
@@ -464,7 +475,7 @@ function initdyna() {
     text: t[1],
     border: [0, 0, borderw, 0],
     fontSize: 0.7,
-    yp: -0.3,
+    yp: -0.8,
     rgb0: rgb0, rgb1: rgb1, rgbab: rgbab,
     rgb1chars: '',
     fontFamily: fontFamily, fontProps: '', letterSpacing: letterSpacing
@@ -913,7 +924,7 @@ function initdyna() {
     }
   }, false);
 
-};
+}
 
 function dowave(d) {
   var i, j, c;
@@ -1092,9 +1103,9 @@ function updGauge3Knob() {
 function updGauge4Knob() {
   el.gauge4knob0.style.top = '' + (el.gauge4.getBoundingClientRect().height * (1 - FloatImgs.gd0) - el.gauge4knob0.getBoundingClientRect().height / 2).toFixed(3) + 'px';
   el.gauge4knob1.style.top = '' + (el.gauge4.getBoundingClientRect().height * (1 - FloatImgs.gd1) - el.gauge4knob1.getBoundingClientRect().height / 2).toFixed(3) + 'px';
-  let t = 'Duration : ' + FloatImgs.d0.toFixed(0);
+  let t = 'Duration : ' + FloatImgs.d0.toFixed(1);
   if (FloatImgs.d0 !== FloatImgs.d1) {
-    t += ' - ' + FloatImgs.d1.toFixed(0);
+    t += ' - ' + FloatImgs.d1.toFixed(1);
   }
   el.gauge4txt.textContent = t + ' sec' + (FloatImgs.d0 !== FloatImgs.d1 || FloatImgs.d0 !== 1 ? 's' : '');
 }

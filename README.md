@@ -5,14 +5,18 @@
 ### How To Build
 
 ````shell
-$ npm run build:index:prod
+npm run build:index:prod
 # for development:
-$ npm run build:index:dev
+npm run build:index:dev
 ````
 
 ***
 
 ### Changes
+
+* v1.1.0 (2019-12-01)
+
+  * Added CAF.
 
 * v1.0.1 (2019-11-03)
 

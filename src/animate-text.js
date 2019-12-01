@@ -323,7 +323,7 @@ export default function animateText(settings) {
     }
   };
   requestAnimationFrame(af);
-};
+}
 
 var busy = new Map();
 
@@ -391,11 +391,11 @@ class Animation {
             c.moveTo(0+b[i]/2, 0+b[i]/2);
             c.lineTo(0+b[i]/2, this.cheight-b[i]/2);
             break;
-        };
+        }
         c.stroke();
       }
     }
-  };
+  }
 }
 
 function scalec(pxs, c, cc, w, h) {
