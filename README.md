@@ -17,6 +17,7 @@ npm run build:index:dev
 * v1.1.1 (2020-06-13)
 
   * New version Yagols.
+  * Updated Node modules.
 
 * v1.1.0 (2019-12-01)
 
