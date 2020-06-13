@@ -18,6 +18,7 @@ npm run build:index:dev
 
   * New version Yagols.
   * Updated Node modules.
+  * Lighter red.
 
 * v1.1.0 (2019-12-01)
 

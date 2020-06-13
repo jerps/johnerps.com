@@ -45,7 +45,7 @@ body {
 
 hr {
   width: 100%;
-  background-color: rgb(150, 25, 25);
+  background-color: rgb(170, 70, 70);
   height: 1px;
 }
 
@@ -148,7 +148,7 @@ hr {
 .ns-d {
   font-family: Poppins;
   font-size: 110%;
-  color: rgb(150, 25, 25);
+  color: rgb(170, 70, 70);
 }
 #ns-linkedin {
   font-family: Armata;

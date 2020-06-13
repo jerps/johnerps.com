@@ -43,9 +43,9 @@ var t = [
   document.querySelector('#ns-dcaf').textContent
 ];
 
-var rgb0 = [208, 208, 208], nrgb0 = [208, 208, 208], drgb0 = [150, 25, 25],
-    rgb1 = [150, 25, 25], nrgb1 = [208, 208, 208], drgb1 = [150, 25, 25],
-    rgbab = [150, 25, 25, 1],
+var rgb0 = [208, 208, 208], nrgb0 = [208, 208, 208], drgb0 = [170, 70, 70],
+    rgb1 = [170, 70, 70], nrgb1 = [208, 208, 208], drgb1 = [170, 70, 70],
+    rgbab = [170, 70, 70, 1],
     fontFamily = 'Armata', nfontFamily = 'Poppins', dfontFamily = 'Poppins',
     letterSpacing = 6.4, letterSpacing2 = 10,
     borderw = 1;
