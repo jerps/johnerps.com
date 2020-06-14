@@ -100,7 +100,7 @@ window.onload = function() {
     }
   }, false);
 
-  if (window.location.hash && (window.location.hash.toLowerCase() === '#d' || window.location.hash.toLowerCase() === '#dyna' || window.location.hash.toLowerCase() === '#dynamic')) {
+  if (window.location.hash && (window.location.hash.toLowerCase() === '#f' || window.location.hash.toLowerCase() === '#fun' || window.location.hash.toLowerCase() === '#funny')) {
     dynapg = true;
     todyna();
   } else {

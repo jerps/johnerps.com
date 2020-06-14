@@ -14,6 +14,10 @@ npm run build:index:dev
 
 ### Changes
 
+* v1.1.2 (2020-06-14)
+
+  * Changed some texts.
+
 * v1.1.1 (2020-06-13)
 
   * New version Yagols.
