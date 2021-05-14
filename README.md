@@ -14,6 +14,10 @@ npm run build:index:dev
 
 ### Changes
 
+* v1.1.3 (2021-05-14)
+
+  * (Security) updates.
+
 * v1.1.2 (2020-06-14)
 
   * Changed some texts.
