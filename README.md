@@ -14,6 +14,10 @@ npm run build:index:dev
 
 ### Changes
 
+* v1.1.4 (2021-08-20)
+
+  * Updated Yagols to 4.4.4.
+
 * v1.1.3 (2021-05-14)
 
   * (Security) updates.
